@@ -6,5 +6,5 @@ machine:
 deployment:
   staging:
     branch: master
-    heroku: sharingweather 
+    heroku:  
 appname: sharingweather
