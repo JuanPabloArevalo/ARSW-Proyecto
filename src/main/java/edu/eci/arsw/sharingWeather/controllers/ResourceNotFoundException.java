@@ -1,4 +1,4 @@
-package edu.eci.arsw.sharingWheater.controllers;
+package edu.eci.arsw.sharingWeather.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
