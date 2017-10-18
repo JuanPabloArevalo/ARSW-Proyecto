@@ -1,8 +1,8 @@
-<b>Escuela Colombiana de Ingeniería</b>
+<b>ESCUELA COLOMBIANA DE INGENIERÍA JULIO GARAVITO</b>
 
 Arquitecturas de Software - ARSW
 
-PROYECTO ARQUITECTURA DE SOFTWARE - SHARINGWEATHER
+<b>PROYECTO ARQUITECTURA DE SOFTWARE - SHARINGWEATHER</b>
 
 Stefany Morón y Juan Pablo Arévalo Merchán
 
