@@ -1,4 +1,4 @@
-<b>Escuela Colombiana de Ingeniería<b>
+<b>Escuela Colombiana de Ingeniería</b>
 
 Arquitecturas de Software - ARSW
 
