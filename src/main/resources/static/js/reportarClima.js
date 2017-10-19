@@ -42,4 +42,4 @@ var reportarClima = (function(){
             }
         }
     };
-})();
+}());
