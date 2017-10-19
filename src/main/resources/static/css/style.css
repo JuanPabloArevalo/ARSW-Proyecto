@@ -9,10 +9,7 @@ and open the template in the editor.
 */
 #idImagen{
     background-repeat: no-repeat;
-    margin: 0;
-    padding: 0;
 }
-
 
 #idTitulo{
     font-family: verdana ;
@@ -28,14 +25,4 @@ and open the template in the editor.
     margin-left:1vw;
     margin-right:1vw;
      color:#2573ec;
-}
-
-.negrilla{
-    font-weight: bold;
-}
-
-#idFondo{
-  	background-image: url("/image/logo.png");
-  	padding-left:1vw;
-  	
 }

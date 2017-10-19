@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>SharingWheater - Reportar Clima</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="/webjars/jquery/jquery.min.js"></script>
+        <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <script src="js/reportarClima.js"></script>
+    </head>
+    <body onload="reportarClima.obtenerUbicacion()">
+        <!--Inicia el menú-->
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">SharingWheater</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class=""><a href="#">Consultar Mapa</a></li>
+                        <li class="active"><a href="/reportarClima.html">Reportar Clima</a></li>
+                        <li class=""><a href="#">Mis favoritos</a></li>
+                        <li class=""><a href="#">Mi perfil</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav> 
+        <!--Fin  el menú-->
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-1 col-sm-2 col-md-2 col-lg-3"></div>
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-6">
+                    <h2>Ubicación</h2>
+                    <div class="well">
+                        <div class="form-group">
+                            <label for="longitud">Longitud</label>
+                            <input type="text" class="form-control" id="txtLongitud" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="latitud">Latitud</label>
+                            <input type="text" class="form-control" id="txtLatitud" disabled>
+                        </div>
+                    </div>
+                    <h2>Clima</h2>
+                    <div class="well">
+                        <div class="form-group">
+                            <label for="sel1">Clima:</label>
+                            <select class="form-control" id="comboClima">
+                                <option>Seleccionar...</option>
+                                <option>Que solazo!</option>
+                                <option>Esta un poco nublado</option>
+                                <option>Que aguacero!!</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tiempo">Minutos que lleva ese clima</label>
+                            <input type="number" class="form-control" id="txtTiempo">
+                        </div>
+                    </div>
+                    <div><button type="button" class="btn btn-success btn-block">Publicar</button> </div>
+                </div> 
+                <div class="col-xs-1 col-sm-2 col-md-2 col-lg-3"></div>
+            </div>
+        </div>
+    </body>
+</html>
