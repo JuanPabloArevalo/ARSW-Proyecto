@@ -5,37 +5,37 @@ var reportarClima = (function(){
     return{
         obtenerUbicacion(){
             if (navigator.geolocation){
-                navigator.geolocation.getCurrentPosition(function(objPosition)
-		{
-			longitud = objPosition.coords.longitude;
-			latitud = objPosition.coords.latitude;
+                navigator.geolocation.getCurrentPosition(function(objPosition){
+                        longitud = objPosition.coords.longitude;
+                        latitud = objPosition.coords.latitude;
                         $("#txtLongitud").val(longitud);
                         $("#txtLatitud").val(latitud);
-		}, function(objPositionError)
-		{
-                    longitud = 0;
-                    latitud = 0;
-                    $("#txtLongitud").val(longitud);
-                    $("#txtLatitud").val(latitud);
-                    $("#btnPublicar").attr("disabled", true);
-                    switch (objPositionError.code)
-                    {
+                    }, 
+                    function(objPositionError){
+                        longitud = 0;
+                        latitud = 0;
+                        $("#txtLongitud").val(longitud);
+                        $("#txtLatitud").val(latitud);
+                        $("#btnPublicar").attr("disabled", true);
+                        switch (objPositionError.code){
                         case objPositionError.PERMISSION_DENIED:
-                                alert("No se ha permitido el acceso a la posición del usuario.");
-                        break;
+                            alert("No se ha permitido el acceso a la posición del usuario.");
+                            break;
                         case objPositionError.POSITION_UNAVAILABLE:
-                                alert("No se ha podido acceder a la información de su posición.");
-                        break;
+                            alert("No se ha podido acceder a la información de su posición.");
+                            break;
                         case objPositionError.TIMEOUT:
-                                alert("El servicio ha tardado demasiado tiempo en responder.");
-                        break;
+                            alert("El servicio ha tardado demasiado tiempo en responder.");
+                            break;
                         default:
-                                alert("Error desconocido.");
-                    }
-		}, {
-			maximumAge: 75000,
+                            alert("Error desconocido.");
+                        }
+                    }, 
+                    {
+			maximumAge: 0,
 			timeout: 15000
-		});
+                    }
+                );
             }
             else{
                 alert("Su navegador no soporta la API de geolocalización.");

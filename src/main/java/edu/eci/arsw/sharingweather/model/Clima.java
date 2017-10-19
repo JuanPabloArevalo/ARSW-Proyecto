@@ -5,6 +5,8 @@
  */
 package edu.eci.arsw.sharingweather.model;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author JuanArevaloMerchan y StefaniMoron
@@ -20,7 +22,8 @@ public class Clima {
     private String longitud;
     private String estado;
     private int tiempo;
-
+    private Usuario usuario;
+    private Timestamp fechaHora;
     /**
      * @return the latitud
      */
@@ -75,6 +78,34 @@ public class Clima {
      */
     public void setTiempo(int tiempo) {
         this.tiempo = tiempo;
+    }
+
+    /**
+     * @return the usuario
+     */
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    /**
+     * @return the fechaHora
+     */
+    public Timestamp getFechaHora() {
+        return fechaHora;
+    }
+
+    /**
+     * @param fechaHora the fechaHora to set
+     */
+    public void setFechaHora(Timestamp fechaHora) {
+        this.fechaHora = fechaHora;
     }
     
     
