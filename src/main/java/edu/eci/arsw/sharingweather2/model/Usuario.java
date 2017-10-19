@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.arsw.sharingWeather.model;
+package edu.eci.arsw.sharingweather2.model;
 
 /**
  *
