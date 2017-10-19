@@ -26,3 +26,9 @@ and open the template in the editor.
     margin-right:1vw;
      color:#2573ec;
 }
+#idFondo{
+  	background-image: url("/image/fondoIndex.jpg");
+        width: 100%;
+        position:fixed;
+        z-index: -1;
+}

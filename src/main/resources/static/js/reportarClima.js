@@ -3,20 +3,21 @@ var reportarClima = (function(){
     var latitud;
     
     return{
-        obtenerUbicacion:function(){
+        obtenerUbicacion(){
             if (navigator.geolocation){
                 navigator.geolocation.getCurrentPosition(function(objPosition)
 		{
 			longitud = objPosition.coords.longitude;
 			latitud = objPosition.coords.latitude;
-                        $('#txtLongitud').val(longitud);
-                        $('#txtLatitud').val(latitud);
+                        $("#txtLongitud").val(longitud);
+                        $("#txtLatitud").val(latitud);
 		}, function(objPositionError)
 		{
                     longitud = 0;
                     latitud = 0;
-                    $('#txtLongitud').val(longitud);
-                    $('#txtLatitud').val(latitud);
+                    $("#txtLongitud").val(longitud);
+                    $("#txtLatitud").val(latitud);
+                    $("#btnPublicar").attr("disabled", true);
                     switch (objPositionError.code)
                     {
                         case objPositionError.PERMISSION_DENIED:

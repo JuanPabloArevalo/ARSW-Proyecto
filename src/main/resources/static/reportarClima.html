@@ -13,8 +13,9 @@ and open the template in the editor.
         <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
         <script src="js/reportarClima.js"></script>
+        <link rel="stylesheet" href="css/reportarClima.css" />
     </head>
-    <body onload="reportarClima.obtenerUbicacion()">
+    <body id="idFondo" onload="reportarClima.obtenerUbicacion()" >
         <!--Inicia el menú-->
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -24,7 +25,7 @@ and open the template in the editor.
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">SharingWheater</a>
+                    <a class="navbar-brand" href="/index.html">SharingWheater</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
@@ -71,7 +72,7 @@ and open the template in the editor.
                             <input type="number" class="form-control" id="txtTiempo">
                         </div>
                     </div>
-                    <div><button type="button" class="btn btn-success btn-block">Publicar</button> </div>
+                    <div><button type="button" class="btn btn-success btn-block" id="btnPublicar">Publicar</button> </div>
                 </div> 
                 <div class="col-xs-1 col-sm-2 col-md-2 col-lg-3"></div>
             </div>
