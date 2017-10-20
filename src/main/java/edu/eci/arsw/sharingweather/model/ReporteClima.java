@@ -15,8 +15,8 @@ public class ReporteClima {
     private Ubicacion ubicacion;
     private int tiempo;
     private Usuario usuario;
-    private Timestamp fechaHora;
-    
+//    private Timestamp fechaHora;
+    private String clima;
     /**
      * Constructor
      */
@@ -30,13 +30,15 @@ public class ReporteClima {
      * @param tiempo
      * @param usuario
      * @param fechaHora 
+     * @param clima 
      */
-    public ReporteClima(Ubicacion ubicacion, int tiempo, Usuario usuario, Timestamp fechaHora){
+    public ReporteClima(Ubicacion ubicacion, int tiempo, Usuario usuario/*, Timestamp fechaHora*/, String clima){
         this.ubicacion = ubicacion;
         this.tiempo = tiempo;
         this.usuario = usuario;
-        this.fechaHora = fechaHora;
-    }
+//        this.fechaHora = fechaHora;
+        this.clima = clima;
+    }   
     
 
     /**
@@ -70,16 +72,16 @@ public class ReporteClima {
     /**
      * @return the fechaHora
      */
-    public Timestamp getFechaHora() {
-        return fechaHora;
-    }
+//    public Timestamp getFechaHora() {
+//        return fechaHora;
+//    }
 
     /**
      * @param fechaHora the fechaHora to set
      */
-    public void setFechaHora(Timestamp fechaHora) {
-        this.fechaHora = fechaHora;
-    }
+//    public void setFechaHora(Timestamp fechaHora) {
+//        this.fechaHora = fechaHora;
+//    }
 
     /**
      * @return the ubicacion
@@ -93,6 +95,20 @@ public class ReporteClima {
      */
     public void setUbicacion(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
+    }
+
+    /**
+     * @return the clima
+     */
+    public String getClima() {
+        return clima;
+    }
+
+    /**
+     * @param clima the clima to set
+     */
+    public void setClima(String clima) {
+        this.clima = clima;
     }
     
     

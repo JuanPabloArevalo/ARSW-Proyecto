@@ -12,6 +12,5 @@ and open the template in the editor.
 #idFondo{
   	background-image: url("/image/fondo.jpg");
         width: 100%;
-        position:fixed;
         z-index: -1;
 }

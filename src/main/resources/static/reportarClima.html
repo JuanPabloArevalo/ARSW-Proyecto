@@ -12,10 +12,11 @@ and open the template in the editor.
         <script src="/webjars/jquery/jquery.min.js"></script>
         <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <script src="js/apiclientReportarClima.js"></script>
         <script src="js/reportarClima.js"></script>
         <link rel="stylesheet" href="css/reportarClima.css" />
     </head>
-    <body id="idFondo" onload="reportarClima.obtenerUbicacion()" >
+    <body id="idFondo" onload="reportarClima.obtenerUbicacion()">
         <!--Inicia el menú-->
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -45,7 +46,10 @@ and open the template in the editor.
             <div class="row">
                 <div class="col-xs-0 col-sm-1 col-md-2 col-lg-2"></div>
                 <div class="col-xs-12 col-sm-10 col-md-8 col-lg-8">
-                    <h2>Ubicación</h2>
+                    <div class="alert alert-danger alert-dismissable fade in" hidden="" id="divError">
+                        <strong>Error! Falta ingresar los siguientes campos:</strong><code id="mensajeFalta">ASFASF</code>
+                    </div>
+                    <h3>Ubicación</h3>
                     <div class="well">
                         <div class="form-group">
                             <label for="longitud">Longitud</label>
@@ -56,15 +60,15 @@ and open the template in the editor.
                             <input type="text" class="form-control" id="txtLatitud" disabled>
                         </div>
                     </div>
-                    <h2>Clima</h2>
+                    <h3>Clima</h3>
                     <div class="well">
                         <div class="form-group">
                             <label for="sel1">Clima:</label>
                             <select class="form-control" id="comboClima">
-                                <option>Seleccionar...</option>
-                                <option>Que solazo!</option>
-                                <option>Esta un poco nublado</option>
-                                <option>Que aguacero!!</option>
+                                <option value="" disabled="disabled" selected="">Seleccionar...</option>
+                                <option value="sol">Que solazo!</option>
+                                <option value="nublado">Esta un poco nublado</option>
+                                <option value="agua">Que aguacero!!</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -72,10 +76,11 @@ and open the template in the editor.
                             <input type="number" class="form-control" id="txtTiempo">
                         </div>
                     </div>
-                    <div><button type="button" class="btn btn-success btn-block" id="btnPublicar">Publicar</button> </div>
+                    <div><button type="button" class="btn btn-success btn-block" id="btnPublicar" onclick="reportarClima.addNewReporteClima()">Publicar</button> </div>
                 </div> 
                 <div class="col-xs-0 col-sm-1 col-md-2 col-lg-2"></div>
             </div>
         </div>
+
     </body>
 </html>

@@ -1,7 +1,9 @@
 var reportarClima = (function(){
     var longitud;
     var latitud;
-    
+    var clima;
+    var minutosClima;
+    var usuario = "Juan Pablo";
     return{
         obtenerUbicacion(){
             if (navigator.geolocation){
@@ -40,6 +42,50 @@ var reportarClima = (function(){
             else{
                 alert("Su navegador no soporta la API de geolocalización.");
             }
+        },
+        addNewReporteClima(){
+            var falta = "";
+            var puedeAdicionar = true;
+            //Validar longitud
+            longitud = $("#txtLongitud").val();
+            if("0"===longitud || ""===longitud){
+                falta = falta + "Longitud. ";
+                puedeAdicionar = false;
+            }
+            //Validar latitud
+            latitud = $("#txtLatitud").val();
+            if("0"===latitud || ""===latitud){
+                falta = falta + "Latitud. ";
+                puedeAdicionar = false;
+            }
+            //Validar Clima
+            clima = $("#comboClima").val();
+            if(null===clima){
+                falta = falta + "Clima. ";
+                puedeAdicionar = false;
+            }
+            //Validar Minutos
+            minutosClima = $("#txtTiempo").val();
+            console.info($("#txtTiempo").val());
+            if(""===minutosClima){
+                falta = falta + "Minutos. ";
+                puedeAdicionar = false;
+            }
+            
+            
+            if(puedeAdicionar===false){
+               $("#mensajeFalta").text(falta); 
+               $("#divError").show();
+            }
+            else{
+               $("#mensajeFalta").text(""); 
+               $("#divError").hide();
+               apiclientReportarClima.addNewSharingweather(longitud,latitud,clima,minutosClima,usuario);
+            }
+            
+            
+            
+            
         }
     };
 }());
