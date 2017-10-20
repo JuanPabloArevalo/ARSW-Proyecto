@@ -13,24 +13,31 @@ import java.sql.Timestamp;
  */
 public class ReporteClima {
     private Ubicacion ubicacion;
-    private String estado;
     private int tiempo;
     private Usuario usuario;
     private Timestamp fechaHora;
-
+    
     /**
-     * @return the estado
+     * Constructor
      */
-    public String getEstado() {
-        return estado;
+    public ReporteClima(){
+        
     }
-
+    
     /**
-     * @param estado the estado to set
+     * Constructor
+     * @param ubicacion
+     * @param tiempo
+     * @param usuario
+     * @param fechaHora 
      */
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public ReporteClima(Ubicacion ubicacion, int tiempo, Usuario usuario, Timestamp fechaHora){
+        this.ubicacion = ubicacion;
+        this.tiempo = tiempo;
+        this.usuario = usuario;
+        this.fechaHora = fechaHora;
     }
+    
 
     /**
      * @return the tiempo

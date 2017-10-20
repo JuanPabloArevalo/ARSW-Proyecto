@@ -11,6 +11,7 @@ import edu.eci.arsw.sharingweather.model.Usuario;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherNotFoundException;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistence;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistenceException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -27,12 +28,41 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class LocalPersistence implements SharingweatherPersistence{
     // List<Object> objList = Collections.synchronizedList(new ArrayList<Object>());
-    private final ConcurrentHashMap<AtomicLong,ArrayList<ReporteClima>> climasPublicados = new ConcurrentHashMap<>();
-    private final ConcurrentHashMap<AtomicLong,ArrayList<ReporteClima>> climasNoPublicados = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<AtomicLong,ArrayList<ReporteClima>> climasPublicados = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<AtomicLong,ArrayList<ReporteClima>> climasNoPublicados = new ConcurrentHashMap<>();
     private AtomicLong numeroPublicados = new AtomicLong(0);
     private AtomicLong numeroNoPublicados = new AtomicLong(0);
     private static final double DISTANCIAMINIMA = 0.7;
     private static final int CANTIDADREPORTESMINIMO = 3;
+    
+    /**
+     * Constructor
+     */
+    public LocalPersistence(){
+        Usuario usuario = new Usuario("Juan Arevalo", 25, "juan.arevalo.merchan", "123", "juan.arevalo.merchan@hotmail.com");
+        Usuario usuario2 = new Usuario("Juan Arevalo2", 25, "juan.arevalo.merchan2", "123", "juan.arevalo.merchan@hotmail.com2");
+        Usuario usuario3 = new Usuario("Juan Arevalo3", 25, "juan.arevalo.merchan3", "123", "juan.arevalo.merchan@hotmail.com3");
+        Usuario usuario4 = new Usuario("Juan Arevalo4", 25, "juan.arevalo.merchan4", "123", "juan.arevalo.merchan@hotmail.com4");
+        Ubicacion ub1 = new Ubicacion(4.628774, -74.074181);
+        Ubicacion ub2 = new Ubicacion(4.628686, -74.074015);
+        Ubicacion ub3 = new Ubicacion(4.628321, -74.073943);
+        Ubicacion ub4 = new Ubicacion(4.628300, -74.075153);
+        ReporteClima clima1 = new ReporteClima(ub1, 10, usuario, new Timestamp(2017,10,20,11,24,20,21));
+        ReporteClima clima2 = new ReporteClima(ub2, 10, usuario2, new Timestamp(2017,10,20,11,24,20,21));
+        ReporteClima clima3 = new ReporteClima(ub3, 10, usuario3, new Timestamp(2017,10,20,11,24,20,21));
+        ReporteClima clima4 = new ReporteClima(ub4, 10, usuario4, new Timestamp(2017,10,20,11,24,20,21));
+        List<ReporteClima> objList = Collections.synchronizedList(new ArrayList<>());
+        objList.add(clima1);
+        objList.add(clima2);
+        objList.add(clima3);
+        objList.add(clima4);
+        numeroPublicados.incrementAndGet();
+        climasPublicados.put(numeroPublicados, (ArrayList<ReporteClima>) objList);
+    }
+    
+    
+    
+    
     @Override
     public void saveReporteClima(ReporteClima clima, Usuario usuario) throws SharingweatherPersistenceException {
         ArrayList<ReporteClima> objList;

@@ -18,6 +18,26 @@ public class Usuario {
     private String correo;
     
     /**
+     * Constructor
+     */
+    public Usuario(){
+    }
+    /**
+     * Constructor
+     * @param nombre
+     * @param edad
+     * @param nombreUsuario
+     * @param password
+     * @param correo 
+     */
+    public Usuario(String nombre, int edad, String nombreUsuario, String password, String correo){
+        this.nombre = nombre;
+        this.edad = edad;
+        this.nombreUsuario = nombreUsuario;
+        this.password = password;
+        this.correo = correo;
+    }
+    /**
      * @return the nombre
      */
     public String getNombre() {

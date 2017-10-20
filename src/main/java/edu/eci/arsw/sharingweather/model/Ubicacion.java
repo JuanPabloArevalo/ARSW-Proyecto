@@ -13,6 +13,21 @@ public class Ubicacion {
     private double latitud;
     private double longitud;
 
+    /**
+     * Constructor
+     */
+    public Ubicacion(){
+        
+    }
+    /**
+     * Constructor
+     * @param latitud
+     * @param longitud 
+     */
+    public Ubicacion(double latitud, double longitud){
+        this.latitud = latitud;
+        this.longitud = longitud;
+    }
     
     /**
      * @return the latitud
