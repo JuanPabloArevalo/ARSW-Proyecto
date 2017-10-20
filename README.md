@@ -13,6 +13,7 @@ Nuestra aplicación esta desplegada en Heroku en el siguiente link: [https://sha
 
 El enlace al entorno Codacy del proyecto [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cc5e54277354433084212f5e7e0997ef)](https://www.codacy.com/app/JuanPabloArevalo/ARSWProyecto?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=JuanPabloArevalo/ARSWProyecto&amp;utm_campaign=Badge_Grade)
 
+El enlace al entorno Circle.CI del proyecto [![CircleCI](https://circleci.com/gh/JuanPabloArevalo/ARSWProyecto.svg?style=svg)](https://circleci.com/gh/JuanPabloArevalo/ARSWProyecto)
 
 
 
