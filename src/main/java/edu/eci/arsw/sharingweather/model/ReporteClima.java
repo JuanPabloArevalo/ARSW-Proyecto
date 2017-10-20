@@ -11,46 +11,12 @@ import java.sql.Timestamp;
  *
  * @author JuanArevaloMerchan y StefaniMoron
  */
-public class Clima {
-    /**
-     * Latitud en grados decimales
-     */
-    private String latitud;
-    /**
-     * Longitud en grados decimales
-     */
-    private String longitud;
+public class ReporteClima {
+    private Ubicacion ubicacion;
     private String estado;
     private int tiempo;
     private Usuario usuario;
     private Timestamp fechaHora;
-    /**
-     * @return the latitud
-     */
-    public String getLatitud() {
-        return latitud;
-    }
-
-    /**
-     * @param latitud the latitud to set
-     */
-    public void setLatitud(String latitud) {
-        this.latitud = latitud;
-    }
-
-    /**
-     * @return the longitud
-     */
-    public String getLongitud() {
-        return longitud;
-    }
-
-    /**
-     * @param longitud the longitud to set
-     */
-    public void setLongitud(String longitud) {
-        this.longitud = longitud;
-    }
 
     /**
      * @return the estado
@@ -106,6 +72,20 @@ public class Clima {
      */
     public void setFechaHora(Timestamp fechaHora) {
         this.fechaHora = fechaHora;
+    }
+
+    /**
+     * @return the ubicacion
+     */
+    public Ubicacion getUbicacion() {
+        return ubicacion;
+    }
+
+    /**
+     * @param ubicacion the ubicacion to set
+     */
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
     }
     
     
