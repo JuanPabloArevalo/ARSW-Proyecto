@@ -11,6 +11,8 @@
 
 Nuestra aplicación esta desplegada en Heroku en el siguiente link: [https://sharingweather.herokuapp.com/](https://sharingweather.herokuapp.com/)
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cc5e54277354433084212f5e7e0997ef)](https://www.codacy.com/app/JuanPabloArevalo/ARSWProyecto?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=JuanPabloArevalo/ARSWProyecto&amp;utm_campaign=Badge_Grade)
+
 
 
 
