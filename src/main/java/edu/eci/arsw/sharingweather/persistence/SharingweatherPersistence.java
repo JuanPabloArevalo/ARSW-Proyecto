@@ -8,7 +8,11 @@ package edu.eci.arsw.sharingweather.persistence;
 import edu.eci.arsw.sharingweather.model.ReporteClima;
 import edu.eci.arsw.sharingweather.model.Ubicacion;
 import edu.eci.arsw.sharingweather.model.Usuario;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  *
@@ -22,23 +26,7 @@ public interface SharingweatherPersistence {
      * @throws SharingweatherPersistenceException
      */
     public void saveReporteClima(ReporteClima clima, Usuario usuario) throws SharingweatherPersistenceException;
-    
-    /**
-     * Metodo encargado de modificar o adicionar un reporte del clima
-     * @param clima
-     * @param usuario
-     * @throws SharingweatherPersistenceException 
-     */
-    public void modifyOrAddReporteClima(ReporteClima clima, Usuario usuario) throws SharingweatherPersistenceException;
-    
-    /**
-     * Metodo encargado de traer el reporte de un clima especifico de un usuario
-     * @param usuario
-     * @return
-     * @throws SharingweatherNotFoundException 
-     */
-    public ReporteClima getReporteClima(Usuario usuario) throws SharingweatherNotFoundException;
-    
+
     /**
      * Metodo encargado de traer el reporte de un clima especifico de un usuario y la ubicacion
      * @param usuario
@@ -52,19 +40,13 @@ public interface SharingweatherPersistence {
      * @return
      * @throws SharingweatherNotFoundException 
      */
-    public Set<ReporteClima> getReportesClimaPublicar() throws SharingweatherNotFoundException;
+    public ConcurrentHashMap<AtomicLong,ArrayList<ReporteClima>> getReportesClimaPublicar() throws SharingweatherNotFoundException;
     
     /**
      * Metodo encargado de traer los reposrtes de los climas sin publicar
      * @return
      * @throws SharingweatherNotFoundException 
      */
-    public Set<ReporteClima> getReportesClimaSinPublicar() throws SharingweatherNotFoundException;
-    
-    /**
-     * Metodo encargado de traer todos los reportes del clima
-     * @return
-     * @throws SharingweatherNotFoundException 
-     */
-    public Set<ReporteClima> getReportesClimaAll() throws SharingweatherNotFoundException;
+    public ConcurrentHashMap<AtomicLong,ArrayList<ReporteClima>> getReportesClimaSinPublicar() throws SharingweatherNotFoundException;
+
 }
