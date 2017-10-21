@@ -14,9 +14,27 @@ var registrarse = (function(){
     var correoElectronico;
     
     return {
-        
+        regitrarUsuario:function(){
+             nombre = $('#nombre').val(); 
+             edad = $('#edad').val(); 
+             nombreUsuario = $('#nombreUsuario').val(); 
+             contrasena = $('#contrasena').val(); 
+             correoElectronico = $('#correoElectronico').val(); 
+             
+            
+        }
         
         
     };
 }());
+
+function addUsiario(nombre, edad, nombreUsuario, contrasena, correoElectronico){
+    
+        return $.ajax({
+            url: "/sharingweather/V1.0/",
+            type: 'POST',
+            data: '{"author":"'+authname+'","name":"'+bpname+'", "points":'+JSON.stringify(points)+'}',
+            contentType: "application/json"
+        });
+}
 
