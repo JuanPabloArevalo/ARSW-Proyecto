@@ -1,3 +1,6 @@
+
+/* global apiclientReportarClima */
+
 function inicializarElementos(){
     $("#txtTiempo").val("");
     $("#comboClima").val("");
@@ -73,7 +76,6 @@ var reportarClima = (function(){
             }
             //Validar Minutos
             minutosClima = $("#txtTiempo").val();
-            console.info($("#txtTiempo").val());
             if(""===minutosClima){
                 falta = falta + "Minutos. ";
                 puedeAdicionar = false;
@@ -96,7 +98,7 @@ var reportarClima = (function(){
                         inicializarElementos();
                     },
                     function(){
-                        $("#myModal").modal('show');
+                        $("#myModal").modal("show");
                         $("#idTituloModal").text("Error!!");
                         $("#idTextoModal").text("UPS! Ha ocurrido un error al reportar el clima en tu zona. "+promesaDelete.responseText);
                     }
