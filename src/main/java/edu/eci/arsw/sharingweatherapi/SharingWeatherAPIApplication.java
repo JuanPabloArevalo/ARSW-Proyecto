@@ -14,7 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @author JuanArevaloMerchan y Stefany Moron
  */
 @SpringBootApplication
-@ComponentScan(basePackages = {"edu.eci.arsw.sharingWheather"})
+@ComponentScan(basePackages = {"edu.eci.arsw.sharingweather"})
 public class SharingWeatherAPIApplication {
     public static void main(String[] args) {
 	SpringApplication.run(SharingWeatherAPIApplication.class, args);

@@ -12,6 +12,7 @@ import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistence;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistenceException;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,7 @@ public class SharingweatherServices {
      * @return
      * @throws SharingweatherNotFoundException 
      */
-    public ConcurrentHashMap<AtomicLong,ArrayList<ReporteClima>> getReportesPublicados() throws SharingweatherNotFoundException{
+    public ConcurrentHashMap<AtomicLong,CopyOnWriteArrayList<ReporteClima>> getReportesPublicados() throws SharingweatherNotFoundException{
         return swp.getReportesClimaPublicar();
     }
     
@@ -51,7 +52,7 @@ public class SharingweatherServices {
      * @return
      * @throws SharingweatherNotFoundException 
      */
-    public ConcurrentHashMap<AtomicLong,ArrayList<ReporteClima>> getReportesSinPublicar() throws SharingweatherNotFoundException{
+    public ConcurrentHashMap<AtomicLong,CopyOnWriteArrayList<ReporteClima>> getReportesSinPublicar() throws SharingweatherNotFoundException{
         return swp.getReportesClimaSinPublicar();
     }
 }

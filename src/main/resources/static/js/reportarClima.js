@@ -59,7 +59,7 @@ var reportarClima = (function(){
                 puedeAdicionar = false;
             }
             //Validar Clima
-            clima = $("#comboClima").val();
+            clima = $("c").val();
             if(null===clima){
                 falta = falta + "Clima. ";
                 puedeAdicionar = false;
@@ -74,18 +74,34 @@ var reportarClima = (function(){
             
             
             if(puedeAdicionar===false){
-               $("#mensajeFalta").text(falta); 
-               $("#divError").show();
+                $("#mensajeFalta").text(falta); 
+                $("#divError").show();
             }
             else{
-               $("#mensajeFalta").text(""); 
-               $("#divError").hide();
-               apiclientReportarClima.addNewSharingweather(longitud,latitud,clima,minutosClima,usuario);
+                $("#mensajeFalta").text(""); 
+                $("#divError").hide();
+                let promesaDelete = apiclientReportarClima.addNewSharingweather(longitud,latitud,clima,minutosClima,usuario);
+                promesaDelete.then(
+                    function(){
+                        $('#myModal').modal('show');
+                        $("#idTituloModal").text("Enviado!!");
+                        $("#idTextoModal").text("Gracias por reportar el clima en tu zona!!");
+                        inicializarElementos();
+                    },
+                    function(){
+                        $('#myModal').modal('show');
+                        $("#idTituloModal").text("Error!!");
+                        $("#idTextoModal").text("UPS! Ha ocurrido un error al reportar el clima en tu zona. "+promesaDelete.responseText);
+                    }
+                );
             }
-            
-            
-            
-            
         }
     };
 }());
+
+function inicializarElementos(){
+    $("#txtTiempo").val("");
+    $("#comboClima").val("");
+    $("#txtLatitud").val("");
+    $("#txtLongitud").val("");
+}

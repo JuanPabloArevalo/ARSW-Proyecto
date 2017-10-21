@@ -15,7 +15,7 @@ public class ReporteClima {
     private Ubicacion ubicacion;
     private int tiempo;
     private Usuario usuario;
-//    private Timestamp fechaHora;
+    private Timestamp fechaHora;
     private String clima;
     /**
      * Constructor
@@ -29,14 +29,13 @@ public class ReporteClima {
      * @param ubicacion
      * @param tiempo
      * @param usuario
-     * @param fechaHora 
      * @param clima 
      */
-    public ReporteClima(Ubicacion ubicacion, int tiempo, Usuario usuario/*, Timestamp fechaHora*/, String clima){
+    public ReporteClima(Ubicacion ubicacion, int tiempo, Usuario usuario, String clima){
         this.ubicacion = ubicacion;
         this.tiempo = tiempo;
         this.usuario = usuario;
-//        this.fechaHora = fechaHora;
+        this.fechaHora = new Timestamp(System.currentTimeMillis());
         this.clima = clima;
     }   
     
@@ -70,20 +69,6 @@ public class ReporteClima {
     }
 
     /**
-     * @return the fechaHora
-     */
-//    public Timestamp getFechaHora() {
-//        return fechaHora;
-//    }
-
-    /**
-     * @param fechaHora the fechaHora to set
-     */
-//    public void setFechaHora(Timestamp fechaHora) {
-//        this.fechaHora = fechaHora;
-//    }
-
-    /**
      * @return the ubicacion
      */
     public Ubicacion getUbicacion() {
@@ -109,6 +94,20 @@ public class ReporteClima {
      */
     public void setClima(String clima) {
         this.clima = clima;
+    }
+
+    /**
+     * @return the fechaHora
+     */
+    public Timestamp getFechaHora() {
+        return fechaHora;
+    }
+
+    /**
+     * @param fechaHora the fechaHora to set
+     */
+    public void setFechaHora(Timestamp fechaHora) {
+        this.fechaHora = fechaHora;
     }
     
     

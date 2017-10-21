@@ -59,6 +59,7 @@ and open the template in the editor.
                             <label for="latitud">Latitud</label>
                             <input type="text" class="form-control" id="txtLatitud" disabled>
                         </div>
+                        <button type="button" class="btn btn-success btn-block" id="idBtnLocalizar" onclick="reportarClima.obtenerUbicacion()">Localizar</button>
                     </div>
                     <h3>Clima</h3>
                     <div class="well">
@@ -82,5 +83,25 @@ and open the template in the editor.
             </div>
         </div>
 
+
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="idTituloModal"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="idTextoModal"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </body>
 </html>

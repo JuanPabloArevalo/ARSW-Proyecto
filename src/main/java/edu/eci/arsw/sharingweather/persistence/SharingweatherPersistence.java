@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -40,13 +41,13 @@ public interface SharingweatherPersistence {
      * @return
      * @throws SharingweatherNotFoundException 
      */
-    public ConcurrentHashMap<AtomicLong,ArrayList<ReporteClima>> getReportesClimaPublicar() throws SharingweatherNotFoundException;
+    public ConcurrentHashMap<AtomicLong,CopyOnWriteArrayList<ReporteClima>> getReportesClimaPublicar() throws SharingweatherNotFoundException;
     
     /**
      * Metodo encargado de traer los reposrtes de los climas sin publicar
      * @return
      * @throws SharingweatherNotFoundException 
      */
-    public ConcurrentHashMap<AtomicLong,ArrayList<ReporteClima>> getReportesClimaSinPublicar() throws SharingweatherNotFoundException;
+    public ConcurrentHashMap<AtomicLong,CopyOnWriteArrayList<ReporteClima>> getReportesClimaSinPublicar() throws SharingweatherNotFoundException;
 
 }
