@@ -44,7 +44,7 @@ public class SharingweatherAPIController {
     public ResponseEntity<?> manejadorPostRecursoAdicionarReporteClima(@RequestBody ReporteClima repClima){
         System.out.println("LLego aca"+repClima);
         try {
-            sws.addNewBlueprint(repClima, repClima.getUsuario());
+            sws.addNewReporteClima(repClima, repClima.getUsuario());
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (SharingweatherPersistenceException ex) {
             Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);

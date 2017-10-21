@@ -32,7 +32,7 @@ public class SharingweatherServices {
      * @param usuario
      * @throws edu.eci.arsw.sharingweather.persistence.SharingweatherPersistenceException
      */
-    public void addNewBlueprint(ReporteClima rcl, Usuario usuario) throws SharingweatherPersistenceException{
+    public void addNewReporteClima(ReporteClima rcl, Usuario usuario) throws SharingweatherPersistenceException{
         swp.saveReporteClima(rcl, usuario);
     }
     
