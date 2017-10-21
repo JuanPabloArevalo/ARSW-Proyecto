@@ -92,7 +92,7 @@ var reportarClima = (function(){
                 let promesaDelete = apiclientReportarClima.addNewSharingweather(longitud,latitud,clima,minutosClima,usuario);
                 promesaDelete.then(
                     function(){
-                        $("#myModal").modal('show');
+                        $("#myModal").modal("show");
                         $("#idTituloModal").text("Enviado!!");
                         $("#idTextoModal").text("Gracias por reportar el clima en tu zona!!");
                         inicializarElementos();

@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/sharingweather/V1/reporteClima")
 public class SharingweatherAPIController {
     @Autowired
-    SharingweatherServices sws = null;
+    private SharingweatherServices sws = null;
     
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> manejadorGetAllReportesPublicados(){

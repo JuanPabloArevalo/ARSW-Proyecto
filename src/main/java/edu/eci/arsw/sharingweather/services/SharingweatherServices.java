@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
 public class SharingweatherServices {
     
     @Autowired
-    SharingweatherPersistence swp = null;
+    private SharingweatherPersistence swp = null;
     
     /**
      * Metodo encargado de adicionar un nuevo reporte del clima 

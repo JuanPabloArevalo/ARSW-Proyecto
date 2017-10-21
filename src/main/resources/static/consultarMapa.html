@@ -13,9 +13,12 @@ and open the template in the editor.
         <script src="/webjars/jquery/jquery.min.js"></script>
         <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="css/reportarClima.css" />
+        <link rel="stylesheet" href="css/consultarMapa.css" />
+        <script src="js/consultarMapa.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf42EgEvHdoAJf97kUqKz5h4b4LeM8Ni0"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf42EgEvHdoAJf97kUqKz5h4b4LeM8Ni0&libraries=places"></script>
     </head>
-    <body>
+    <body onload="consultarMapa.myMap()">
         <!--Inicia el menú-->
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -29,8 +32,8 @@ and open the template in the editor.
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class=""><a href="/consultarMapa.html">Consultar Mapa</a></li>
-                        <li class="active"><a href="/reportarClima.html">Reportar Clima</a></li>
+                        <li class="active"><a href="/consultarMapa.html">Consultar Mapa</a></li>
+                        <li class=""><a href="/reportarClima.html">Reportar Clima</a></li>
                         <li class=""><a href="#">Mis favoritos</a></li>
                         <li class=""><a href="#">Mi perfil</a></li>
                     </ul>
@@ -41,12 +44,19 @@ and open the template in the editor.
             </div>
         </nav> 
         <!--Fin  el menú-->
-                <div class="container">
+        <div class="container">
             <div class="row">
-                <div class="col-xs-0 col-sm-1 col-md-2 col-lg-2"></div>
-                <div class="col-xs-12 col-sm-10 col-md-8 col-lg-8">
+                <div class="col-xs-0 col-sm-0 col-md-0 col-lg-0"></div>
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <div id="idMap"></div>
                 </div> 
-                <div class="col-xs-0 col-sm-1 col-md-2 col-lg-2"></div>
+                <div class="col-xs-0 col-sm-4 col-md-4 col-lg-4">
+                    <input type="text" class="form-control" placeholder="Search" id="idTxtBusqueda">
+                    <div class="form-group">
+                        <label for="comment">Mis zonas Favoritas:</label>
+                        <textarea class="form-control" rows="20" id="idRegionesFavoritas"></textarea>
+                    </div> 
+                </div>
             </div>
         </div>
     </body>

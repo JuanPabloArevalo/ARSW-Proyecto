@@ -5,6 +5,16 @@ and open the template in the editor.
 */
 /* 
     Created on : 21/10/2017, 02:07:49 PM
-    Author     : JuanArevaloMerchan
+    Author     : JuanArevaloMerchan y StefanyMoron
 */
 
+#idMap{
+    width: 100%;
+    height: 550px;
+    background-color: grey;
+}
+
+#idTxtBusqueda{
+    width: 60%;
+    margin-top: 0.5em;
+}

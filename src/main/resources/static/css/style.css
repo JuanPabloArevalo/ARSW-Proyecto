@@ -8,7 +8,7 @@ and open the template in the editor.
     Author     : JuanArevaloMerchan y Stefany Moron
 */
 #idImagen{
-    background-repeat: no-repeat;
+    
 }
 
 #idTitulo{
@@ -29,6 +29,5 @@ and open the template in the editor.
 #idFondo{
   	background-image: url("/image/fondoIndex.jpg");
         width: 100%;
-        position:fixed;
         z-index: -1;
 }
