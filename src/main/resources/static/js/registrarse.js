@@ -53,7 +53,7 @@ var registrarse = (function(){
               }else{
                 $("#mensajeFalta").text(""); 
                 $("#divError").hide();
-                let promesa = apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico { } ); 
+                let promesa = apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico); 
                  promesa.then(
                  function(){
                 $("#btnPublicar").attr("disabled", false);
