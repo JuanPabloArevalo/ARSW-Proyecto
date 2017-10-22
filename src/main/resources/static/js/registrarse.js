@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+/* global apiclientRegistrarse */
 
 var registrarse = (function(){
     
@@ -20,28 +21,7 @@ var registrarse = (function(){
              nombreUsuario = $('#nombreUsuario').val(); 
              contrasena = $('#contrasena').val(); 
              correoElectronico = $('#correoElectronico').val(); 
-            registrarse.manejadorPostAdicionarUsuario(nombre, edad,nombreUsuario,contrasena,correoElectronico);
-             
-        },
-        existeUsuario: function(){
-           var usuarios = $.get("/sharingweather/V1/Usuarios");
-           alert(usuarios);
-           
-        },
-        
-        PostAdicionarUsuario: function(){
-             nombre = $('#nombre').val(); 
-             edad = $('#edad').val(); 
-             nombreUsuario = $('#nombreUsuario').val(); 
-             contrasena = $('#contrasena').val(); 
-             correoElectronico = $('#correoElectronico').val(); 
-        return $.ajax({
-            url: "/sharingweather/V1/Usuarios",
-            type: 'POST',
-            data: '{"nombre":"'+nombre+'","edad":"'+edad+'", "nombreUsuario":'+nombreUsuario+', "password":"'+contrasena+'","correo":"'+correoElectronico+'"}',
-            contentType: "application/json"
-        });
-        alert("Se adiciono un usuario");
+             apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico);
         }
     };
 }());
