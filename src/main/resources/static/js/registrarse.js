@@ -20,7 +20,7 @@ var registrarse = (function(){
              nombreUsuario = $('#nombreUsuario').val(); 
              contrasena = $('#contrasena').val(); 
              correoElectronico = $('#correoElectronico').val(); 
-             manejadorPostAdicionarUsuario(nombre, edad,nombreUsuario,contrasena,correoElectronico);
+            registrarse.manejadorPostAdicionarUsuario(nombre, edad,nombreUsuario,contrasena,correoElectronico);
              
         },
         existeUsuario: function(){
