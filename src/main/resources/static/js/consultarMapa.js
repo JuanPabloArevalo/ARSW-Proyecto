@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* global google, Stomp, apiclientConsultarMapa */
+/* global google, Stomp, apiclientConsultarMapa, SockJS */
 var mapaGoogle;
 
 function dibujarPuntos(reporte){
@@ -24,11 +24,10 @@ function dibujarPuntos(reporte){
                 strokeWeight: 2,
                 fillColor: color,
                 fillOpacity: 0.35,
-                map: consultarMapa.getMapa(),
+                map: mapaGoogle,
                 center: {lat: reporte.ubicacion.latitud, lng: reporte.ubicacion.longitud},
                 radius: 700
     });
-    console.info(reporte);
 }
 
 var consultarMapa = (function () {
