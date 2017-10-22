@@ -82,10 +82,13 @@ public class SharingweatherServices {
      * @return
      * @throws SharingweatherNotFoundException
      */
-    public CopyOnWriteArrayList<Usuario> getUsuarios() throws SharingweatherNotFoundException {
-        return swp.getUsuarios();
+     public Set<Usuario> getUsuarios() throws SharingweatherNotFoundException {
+        Set<Usuario> usuarios = new HashSet<>();
+        for(int i=0; i < swp.getUsuarios().size(); i++){
+           usuarios.add(swp.getUsuarios().get(i));
+        }
+        return usuarios;
     }
-
     /**
      * Metodo encargado de adicionar los usuarios a la lista de usuarios
      *
