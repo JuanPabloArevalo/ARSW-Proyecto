@@ -4,10 +4,14 @@
  * and open the template in the editor.
  */
 
-/* global google */
+/* global google, Stomp */
 var map;
 var consultarMapa = (function () {
     return{
+        init(){
+            consultarMapa.connectAndSubscribe();
+            consultarMapa.myMap();
+        },
         myMap() {
             var mapOptions = {
                 center: new google.maps.LatLng(4.6537726, -74.0660075),
@@ -70,7 +74,6 @@ var consultarMapa = (function () {
                     }
                 });
                 map.fitBounds(bounds);
-                consultarMapa.dibujarReporteClima();
             });
         },
         dibujarReporteClima() {
@@ -80,7 +83,29 @@ var consultarMapa = (function () {
                 map: map,
                 icon: image
             });
-
+            var cityCircle = new google.maps.Circle({
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#FF0000',
+                fillOpacity: 0.35,
+                map: map,
+                center: {lat: 4.6537726, lng: -74.0660075},
+                radius: 1000
+            });
+        },
+        connectAndSubscribe(){
+            console.info('Connecting to WS...');
+            var socket = new SockJS("/stompendpoint");
+            stompClient = Stomp.over(socket);
+            //subscribe to /topic/reporteClima
+            stompClient.connect({}, function (frame) {
+                console.log('Connected: ' + frame);
+                stompClient.subscribe("/topic/reporteClima", function (eventbody) {
+                    console.log(eventbody.body);
+                    dibujarReporteClima(JSON.parse(eventbody.body));
+                });
+            });
         }
     };
 }());

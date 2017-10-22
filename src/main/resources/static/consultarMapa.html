@@ -15,10 +15,11 @@ and open the template in the editor.
         <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
         <link rel="stylesheet" href="css/consultarMapa.css" />
         <script src="js/consultarMapa.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf42EgEvHdoAJf97kUqKz5h4b4LeM8Ni0"></script>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf42EgEvHdoAJf97kUqKz5h4b4LeM8Ni0&libraries=places"></script>
+        <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+        <script src="/webjars/stomp-websocket/stomp.min.js"></script>
     </head>
-    <body onload="consultarMapa.myMap()">
+    <body onload="consultarMapa.init()">
         <!--Inicia el menú-->
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -51,6 +52,7 @@ and open the template in the editor.
                     <div id="idMap"></div>
                 </div> 
                 <div class="col-xs-0 col-sm-4 col-md-4 col-lg-4">
+                    <button type="button" class="btn btn-success btn-block" id="btnPublicar" onclick="consultarMapa.dibujarReporteClima()">Publicar</button>
                     <input type="text" class="form-control" placeholder="Search" id="idTxtBusqueda">
                     <div class="form-group">
                         <label for="comment">Mis zonas Favoritas:</label>
