@@ -16,7 +16,6 @@ var registrarse = (function(){
     
     return {
         registrarUsuario(){
-            alert("Entro");
              nombre = $("#nombre").val(); 
              edad = $("#edad").val(); 
              nombreUsuario = $("#nombreUsuario").val(); 
