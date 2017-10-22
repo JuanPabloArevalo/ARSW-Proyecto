@@ -28,7 +28,7 @@ function dibujarPuntos(reporte){
                 center: {lat: reporte.ubicacion.latitud, lng: reporte.ubicacion.longitud},
                 radius: 700
     });
-    
+    console.info(reporte);
 }
 
 var consultarMapa = (function () {
