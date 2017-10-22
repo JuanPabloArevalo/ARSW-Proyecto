@@ -22,8 +22,11 @@ var registrarse = (function(){
              nombreUsuario = $("#nombreUsuario").val(); 
              contrasena = $("#contrasena").val(); 
              correoElectronico = $("#correolectronico").val(); 
-             
-            apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico);
+             let promesa = apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico, function(lbp){ 
+             } 
+            ); 
+            promesa.then(function(){},function(){alert("Ha el siguiente error: "+promesa.responseText);});
+            
                
         }
     };
