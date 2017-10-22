@@ -17,17 +17,52 @@ var registrarse = (function(){
     
     return {
         registrarUsuario(){
+             var error = "";
+             var activarBotonRegistrar = true;
+             $("#btnPublicar").attr("disabled", false);
+             
              nombre = $("#nombre").val(); 
+             if(nombre === ""){
+                error = error + "Nombre. ";
+                activarBotonRegistrar = false;
+             }
              edad = $("#edad").val(); 
-             nombreUsuario = $("#nombreUsuario").val(); 
+              if(edad === ""){
+                error = error + "Edad. ";
+                activarBotonRegistrar = false;
+              }
+             nombreUsuario = $("#nombreUsuario").val();
+             if(nombreUsuario === ""){
+                error = error + "NombreUsuario. ";
+                activarBotonRegistrar = false;
+              }
              contrasena = $("#contrasena").val(); 
-             correoElectronico = $("#correolectronico").val(); 
-             let promesa = apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico, function(lbp){ 
-             } 
-            ); 
-            promesa.then(function(){},function(){alert("Ha el siguiente error: "+promesa.responseText);});
+              if(contrasena === ""){
+                error = error + "Contraseña. ";
+                activarBotonRegistrar = false;
+              }
+             correoElectronico = $("#correolectronico").val();
+              if(correoElectronico === ""){
+                error = error + "Correo Electronico. ";
+                activarBotonRegistrar = false;
+              }
+              if(activarBotonRegistrar===false){
+                $("#mensajeFalta").text(error); 
+                $("#divError").show();
+              }else{
+                $("#mensajeFalta").text(""); 
+                $("#divError").hide();
+                let promesa = apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico { } ); 
+                 promesa.then(
+                 function(){
+                    
+                 },
+                 function(){
+                $("#mensajeFalta").text(promesa.responseText); 
+                $("#divError").show();
+                 });
             
-               
-        }
+                }
+            }
     };
 }());
