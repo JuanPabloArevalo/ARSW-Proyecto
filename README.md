@@ -8,6 +8,10 @@
 
 <b>SharingWeather</b> busca facilitar la movilidad de las personas que van en sus vehículos e incluso a las que van a pie, dándoles la idea de como esta el clima en el lugar a donde piensan ir, ya que  muchas veces cuando salimos de nuestras casas, de nuestros lugares de trabajo o de estudio, nos preguntamos ¿cómo estará el clima en nuestro lugar de destino?, ¿Será que está lloviendo? o ¿Estará haciendo sol?, pues esta será una aplicación que te podrá servir, será una red colaborativa, que te permitirá conocer el clima en tiempo real en cualquier parte.
 
+<b>¿Como funciona?:</b>
+Lo primero que podemos realizar aca, es consultar el mapa en tiempo real, este nos va a permitir estar monitoreando los reportes del clima, directamente en el mapa, así cada vez se realice algún reporte y este cumpla con los criterios de confiabilidad (3 o más reportes deben coincidir en la misma zona, esto se mide en un rango de 700 metros o menos entre cada reporte y si tienen el mismo clima), esto se verá reflejado en un circulo de un color diferente para cada clima, dependiendo de los repotes.
+
+Para poder realizar la publicación se debe poder tener acceso a la ubicación del dispositivo, de lo contrario no se podrá publicar, para ello, el navegador solicitará la ubicación del equipo y automáticamente generará la longitud y latitud donde se encuentre el usuario, después de esto, se debe poder elegir el clima que esta haciendo y por ultimo, se dirá cuanto tiempo lleva el clima en esa zona (En minutos), se procede a publicar el reporte del clima.
 
 Nuestra aplicación esta desplegada en Heroku en el siguiente link: [https://sharingweather.herokuapp.com/](https://sharingweather.herokuapp.com/)
 
