@@ -100,7 +100,7 @@ public class SharingweatherServices {
         if(swp.getUsuarios().get(i).getNombreUsuario().equals(usuario.getNombreUsuario())|| swp.getUsuarios().get(i).getCorreo().equals(usuario.getCorreo())){
             throw new SharingweatherNotFoundException("El usuario ya existe.");
         }else{
-           swp.addUsuarios(usuario);
+            swp.addUsuarios(usuario);
          }       
         }
     }

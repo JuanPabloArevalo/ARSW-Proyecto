@@ -17,19 +17,18 @@ var registrarse = (function(){
     
     return {
         registrarUsuario(){
-            usuarios = apiclientRegistrarse.getApiUsuarios();
-            //console.info(Object.keys(usuarios));
              nombre = $("#nombre").val(); 
              edad = $("#edad").val(); 
              nombreUsuario = $("#nombreUsuario").val(); 
              contrasena = $("#contrasena").val(); 
              correoElectronico = $("#correolectronico").val(); 
-             apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico);
+             
+             let promesa = apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico, function(lbp){
+                 apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico);
+             }); 
+             
+            promesa.then(function(){},function(){alert("El usuario ya existe: "+promesa.responseText);});
              
         }
     };
 }());
-
-function listaUsurios(item){
-    return {nombre:item.nombre, edad:item.edad, nombreUsuario:item.nombreUsuario, password:item.contrasena, correo: item.correo};
-}

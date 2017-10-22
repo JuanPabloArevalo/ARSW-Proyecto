@@ -11,7 +11,7 @@ var apiclientRegistrarse = (function(){
         getApiUsuarios(){
             return $.get("/sharingweather/V1/Usuarios");
         },
-        adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico){
+        adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico, callback){
             alert("Se adiciono un usuario");
             return $.ajax({
                 url: "/sharingweather/V1/Usuarios",
