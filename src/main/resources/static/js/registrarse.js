@@ -13,10 +13,12 @@ var registrarse = (function(){
     var nombreUsuario;
     var contrasena;
     var correoElectronico;
+    var usuarios=[];
     
     return {
         registrarUsuario(){
-            alert(apiclientRegistrarse.getApiUsuarios());
+            usuarios = apiclientRegistrarse.getApiUsuarios().map(listaUsurios);
+            alert(usuarios);
              nombre = $("#nombre").val(); 
              edad = $("#edad").val(); 
              nombreUsuario = $("#nombreUsuario").val(); 
@@ -28,3 +30,6 @@ var registrarse = (function(){
     };
 }());
 
+function listaUsurios(item){
+    return {nombre:item.nombre, edad:item.edad, nombreUsuario:item.nombreUsuario, password:item.contrasena, correo: item.correo};
+}
