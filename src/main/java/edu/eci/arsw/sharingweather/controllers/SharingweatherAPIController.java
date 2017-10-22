@@ -63,7 +63,7 @@ public class SharingweatherAPIController {
     
     }
     
-    @RequestMapping(path ="/Usuarios",method = RequestMethod.GET)
+    @RequestMapping(path ="/Usuarios/registrados",method = RequestMethod.GET)
     public ResponseEntity<?> manejadorGetRestrado(){
         try {
             return new ResponseEntity<>(sws.getUsuarios(),HttpStatus.ACCEPTED);
