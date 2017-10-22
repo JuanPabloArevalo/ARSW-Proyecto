@@ -69,13 +69,14 @@ public class SharingweatherServices {
      * @return
      * @throws SharingweatherNotFoundException 
      */
-    public  void addUsuarios(Usuario usuario)throws SharingweatherNotFoundException{ 
-       for(int i = 0; i < swp.getUsuarios().size();i ++){
-           if(swp.getUsuarios().get(i).getNombreUsuario().equals(usuario.getNombreUsuario())|| swp.getUsuarios().get(i).getCorreo().equals(usuario.getCorreo()) ){
+    public  void addUsuarios(Usuario usuario)throws SharingweatherNotFoundException{
+        swp.addUsuarios(usuario);
+       //for(int i = 0; i < swp.getUsuarios().size();i ++){
+           //if(swp.getUsuarios().get(i).getNombreUsuario().equals(usuario.getNombreUsuario())|| swp.getUsuarios().get(i).getCorreo().equals(usuario.getCorreo()) ){
            
-           }else{
-           swp.addUsuarios(usuario);
-           }       
-       }
+           //}else{
+           
+          // }       
+       //}
     }
 }
