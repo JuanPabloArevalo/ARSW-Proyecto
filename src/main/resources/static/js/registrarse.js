@@ -16,11 +16,12 @@ var registrarse = (function(){
     var usuarios=[];
     
     return {
+        init(){
+            $("#btnPublicar").attr("disabled", false);
+        }
         registrarUsuario(){
              var error = "";
              var activarBotonRegistrar = true;
-             $("#btnPublicar").attr("disabled", false);
-             
              nombre = $("#nombre").val(); 
              if(nombre === ""){
                 error = error + "Nombre. ";
@@ -55,7 +56,7 @@ var registrarse = (function(){
                 let promesa = apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico { } ); 
                  promesa.then(
                  function(){
-                    
+                $("#btnPublicar").attr("disabled", false);
                  },
                  function(){
                 $("#mensajeFalta").text(promesa.responseText); 
