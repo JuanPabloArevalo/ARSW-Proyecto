@@ -24,10 +24,9 @@ var registrarse = (function(){
              correoElectronico = $("#correolectronico").val(); 
              
              let promesa = apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico, function(lbp){
-                 apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico);
+                 
              }); 
-             
-            promesa.then(function(){},function(){alert("El usuario ya existe: "+promesa.responseText);});
+            promesa.then(function(apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico)){},function(){alert("El usuario ya existe: "+promesa.responseText);});
              
         }
     };
