@@ -20,10 +20,10 @@ function dibujarPuntos(reporte){
     }
     var marca = new google.maps.Circle({
                 strokeColor: color,
-                strokeOpacity: 0.6,
+                strokeOpacity: 0.2,
                 strokeWeight: 2,
                 fillColor: color,
-                fillOpacity: 0.35,
+                fillOpacity: 0.15,
                 map: mapaGoogle,
                 center: {lat: reporte.ubicacion.latitud, lng: reporte.ubicacion.longitud},
                 radius: 700
@@ -40,7 +40,7 @@ var consultarMapa = (function () {
         myMap() {
             var mapOptions = {
                 center: new google.maps.LatLng(4.6537726, -74.0660075),
-                zoom: 10,
+                zoom: 12,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             mapaGoogle = new google.maps.Map(document.getElementById("idMap"), mapOptions);
