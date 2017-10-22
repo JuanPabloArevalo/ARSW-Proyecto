@@ -18,7 +18,7 @@ var registrarse = (function(){
     return {
         registrarUsuario(){
             usuarios = apiclientRegistrarse.getApiUsuarios();
-            console.info(Object.keys(usuarios));
+            //console.info(Object.keys(usuarios));
              nombre = $("#nombre").val(); 
              edad = $("#edad").val(); 
              nombreUsuario = $("#nombreUsuario").val(); 

@@ -18,7 +18,7 @@ function dibujarPuntos(reporte){
     else{
         color ="#7F8088";
     }
-    new google.maps.Circle({
+    var marca = new google.maps.Circle({
                 strokeColor: color,
                 strokeOpacity: 0.6,
                 strokeWeight: 2,
