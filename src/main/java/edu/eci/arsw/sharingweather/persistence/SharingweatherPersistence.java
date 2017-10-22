@@ -26,14 +26,6 @@ public interface SharingweatherPersistence {
     public void saveReporteClima(ReporteClima clima, Usuario usuario) throws SharingweatherPersistenceException;
 
     /**
-     * Metodo encargado de traer el reporte de un clima especifico de un usuario y la ubicacion
-     * @param usuario
-     * @param ubicacion
-     * @return
-     * @throws SharingweatherNotFoundException 
-     */
-    public ReporteClima getReporteClima(Usuario usuario,Ubicacion ubicacion) throws SharingweatherNotFoundException;
-    /**
      * Metodo encargado de traer todos los reportes que ya se han publicado
      * @return
      * @throws SharingweatherNotFoundException 

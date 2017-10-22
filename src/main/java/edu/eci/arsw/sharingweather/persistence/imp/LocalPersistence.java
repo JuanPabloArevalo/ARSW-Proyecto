@@ -77,7 +77,6 @@ public class LocalPersistence implements SharingweatherPersistence {
             objList = entry.getValue();
             llaveActual = entry.getKey();
             for (int i = 0; i < objList.size(); i++) {
-                System.out.println("Distancia: "+objList.get(i).getUbicacion().distanciaEntreUbicaciones(clima.getUbicacion()));
                 if (objList.get(i).getUbicacion().distanciaEntreUbicaciones(clima.getUbicacion()) <= DISTANCIAMINIMA && clima.getClima().equals(objList.get(i).getClima()) /*&& !clima.getUsuario().getNombreUsuario().equals(objList.get(i).getUsuario().getNombreUsuario())*/) {
                     objList.add(clima);
                     if (objList.size() >= CANTIDADREPORTESMINIMO) {
@@ -125,11 +124,6 @@ public class LocalPersistence implements SharingweatherPersistence {
             climasNoPublicados.put(numeroNoPublicados, objList2);
             numeroNoPublicados.incrementAndGet();
         }
-    }
-
-    @Override
-    public ReporteClima getReporteClima(Usuario usuario, Ubicacion ubicacion) throws SharingweatherNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
