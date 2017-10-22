@@ -23,10 +23,8 @@ var registrarse = (function(){
              contrasena = $("#contrasena").val(); 
              correoElectronico = $("#correolectronico").val(); 
              
-             let promesa = apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico, function(lbp){
-              
-             }); 
-             promesa.then(function(){},function(){alert("El usuario ya existe: "+promesa.responseText);});  
+            apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico,callback);
+               
         }
     };
 }());
