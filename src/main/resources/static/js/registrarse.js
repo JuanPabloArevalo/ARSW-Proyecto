@@ -18,7 +18,7 @@ var registrarse = (function(){
     return {
         init(){
             $("#btnPublicar").attr("disabled", false);
-        }
+        },
         registrarUsuario(){
              var error = "";
              var activarBotonRegistrar = true;
