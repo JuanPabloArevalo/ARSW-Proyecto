@@ -11,7 +11,6 @@ import edu.eci.arsw.sharingweather.model.Usuario;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherNotFoundException;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistence;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistenceException;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -37,7 +36,7 @@ public class LocalPersistence implements SharingweatherPersistence {
     private static final int CANTIDADREPORTESMINIMO = 3;
 
     @Autowired
-    SimpMessagingTemplate msgt;
+    private SimpMessagingTemplate msgt;
 
     /**
      * Constructor

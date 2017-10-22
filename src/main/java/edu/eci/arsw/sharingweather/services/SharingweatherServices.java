@@ -47,7 +47,7 @@ public class SharingweatherServices {
      * @throws SharingweatherNotFoundException
      */
     public Set<ReporteClima> getReportesPublicados() throws SharingweatherNotFoundException {
-        Set<ReporteClima> reportes = new HashSet<>();;
+        Set<ReporteClima> reportes = new HashSet<>();
         CopyOnWriteArrayList<ReporteClima> objList;
         for (Map.Entry<AtomicLong, CopyOnWriteArrayList<ReporteClima>> entry : swp.getReportesClimaPublicar().entrySet()) {
             objList = entry.getValue();
