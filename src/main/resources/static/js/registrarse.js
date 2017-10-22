@@ -29,7 +29,12 @@ var registrarse = (function(){
            
         },
         
-        manejadorPostAdicionarUsuario: function(nombre, edad, nombreUsuario, contrasena, correoElectronico){
+        PostAdicionarUsuario: function(){
+             nombre = $('#nombre').val(); 
+             edad = $('#edad').val(); 
+             nombreUsuario = $('#nombreUsuario').val(); 
+             contrasena = $('#contrasena').val(); 
+             correoElectronico = $('#correoElectronico').val(); 
         return $.ajax({
             url: "/sharingweather/V1/Usuarios",
             type: 'POST',
