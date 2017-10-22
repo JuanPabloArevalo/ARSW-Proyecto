@@ -5,17 +5,18 @@
  */
 
 
-var apoclientRegistrate = (function(){
+var apiclientRegistrarse = (function(){
     
     return{
         adicionarUsuario: function(nombre,edad,nombreUsuario,contrasena,correoElectronico){
+            alert("Se adiciono un usuario");
             return $.ajax({
                 url: "/sharingweather/V1/Usuarios",
                 type: 'POST',
-                data: '{"nombre":"'+nombre+'","edad":"'+edad+'", "nombreUsuario":'+nombreUsuario+', "password":"'+contrasena+'","correo":"'+correoElectronico+'"}',
+                data: '{"nombre":"'+nombre+'","edad":'+edad+', "nombreUsuario":"'+nombreUsuario+'", "password":"'+contrasena+'","correo":"'+correoElectronico+'"}',
                 contentType: "application/json"
             });
-            alert("Se adiciono un usuario");
+            
         }
     };
     
