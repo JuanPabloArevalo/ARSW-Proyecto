@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* global google, Stomp */
+/* global google, Stomp, apiclientConsultarMapa */
 var mapaGoogle;
 
 function dibujarPuntos(reporte){
@@ -35,6 +35,7 @@ var consultarMapa = (function () {
         init(){
             consultarMapa.connectAndSubscribe();
             consultarMapa.myMap();
+            consultarMapa.iniciarMapaClimaPublicado();
         },
         myMap() {
             var mapOptions = {
@@ -115,6 +116,13 @@ var consultarMapa = (function () {
         },
         getMapa(){
             return mapaGoogle;
+        },
+        iniciarMapaClimaPublicado(){
+            apiclientConsultarMapa.getAllReportesPublicados( function(lbp){ 
+                    lbp.map(dibujarPuntos);
+                    console.info(lbp);
+                } 
+            ); 
         }
     };
 }());
