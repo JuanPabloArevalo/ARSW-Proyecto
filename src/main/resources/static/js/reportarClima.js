@@ -22,6 +22,7 @@ var reportarClima = (function(){
                         latitud = objPosition.coords.latitude;
                         $("#txtLongitud").val(longitud);
                         $("#txtLatitud").val(latitud);
+                        $("#btnPublicar").attr("disabled", false);
                     }, 
                     function(objPositionError){
                         longitud = 0;

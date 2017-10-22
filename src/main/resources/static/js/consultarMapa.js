@@ -5,7 +5,31 @@
  */
 
 /* global google, Stomp */
-var map;
+var mapaGoogle;
+
+function dibujarPuntos(reporte){
+    let color ="#FF0000";
+    if("sol"===reporte.clima){
+        color ="#F1F417";
+    }
+    else if("agua"===reporte.clima){
+        color ="#1724F4";
+    }
+    else{
+        color ="#7F8088";
+    }
+    new google.maps.Circle({
+                strokeColor: color,
+                strokeOpacity: 0.6,
+                strokeWeight: 2,
+                fillColor: color,
+                fillOpacity: 0.35,
+                map: consultarMapa.getMapa(),
+                center: {lat: reporte.ubicacion.latitud, lng: reporte.ubicacion.longitud},
+                radius: 700
+    });
+}
+
 var consultarMapa = (function () {
     return{
         init(){
@@ -18,14 +42,14 @@ var consultarMapa = (function () {
                 zoom: 10,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
-            map = new google.maps.Map(document.getElementById("idMap"), mapOptions);
+            mapaGoogle = new google.maps.Map(document.getElementById("idMap"), mapOptions);
 
             // Create the search box and link it to the UI element.
             var input = document.getElementById("idTxtBusqueda");
             var searchBox = new google.maps.places.SearchBox(input);
-            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-            map.addListener("bounds_changed", function () {
-                searchBox.setBounds(map.getBounds());
+            mapaGoogle.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+            mapaGoogle.addListener("bounds_changed", function () {
+                searchBox.setBounds(mapaGoogle.getBounds());
             });
 
             var markers = [];
@@ -60,7 +84,7 @@ var consultarMapa = (function () {
 
                     // Create a marker for each place.
                     markers.push(new google.maps.Marker({
-                        map: map,
+                        map: mapaGoogle,
                         icon: icon,
                         title: place.name,
                         position: place.geometry.location
@@ -73,25 +97,7 @@ var consultarMapa = (function () {
                         bounds.extend(place.geometry.location);
                     }
                 });
-                map.fitBounds(bounds);
-            });
-        },
-        dibujarReporteClima() {
-            var image = "/image/puntolluvia.png";
-            var beachMarker = new google.maps.Marker({
-                position: {lat: 4.753730, lng: -74.033273},
-                map: map,
-                icon: image
-            });
-            var cityCircle = new google.maps.Circle({
-                strokeColor: '#FF0000',
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: '#FF0000',
-                fillOpacity: 0.35,
-                map: map,
-                center: {lat: 4.6537726, lng: -74.0660075},
-                radius: 1000
+                mapaGoogle.fitBounds(bounds);
             });
         },
         connectAndSubscribe(){
@@ -102,10 +108,14 @@ var consultarMapa = (function () {
             stompClient.connect({}, function (frame) {
                 console.log('Connected: ' + frame);
                 stompClient.subscribe("/topic/reporteClima", function (eventbody) {
-                    console.log(eventbody.body);
-                    consultarMapa.dibujarReporteClima(JSON.parse(eventbody.body));
+                    var arreglo = JSON.parse(eventbody.body);
+                    arreglo.map(dibujarPuntos);
                 });
             });
+        },
+        getMapa(){
+            return mapaGoogle;
         }
     };
 }());
+
