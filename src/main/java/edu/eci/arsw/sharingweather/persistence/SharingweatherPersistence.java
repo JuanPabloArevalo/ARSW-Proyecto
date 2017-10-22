@@ -6,7 +6,6 @@
 package edu.eci.arsw.sharingweather.persistence;
 
 import edu.eci.arsw.sharingweather.model.ReporteClima;
-import edu.eci.arsw.sharingweather.model.Ubicacion;
 import edu.eci.arsw.sharingweather.model.Usuario;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
