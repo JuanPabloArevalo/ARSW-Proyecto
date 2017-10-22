@@ -51,7 +51,7 @@ public class LocalPersistence implements SharingweatherPersistence {
         listaUsuarios.add(usuario2);
         listaUsuarios.add(usuario3);
         listaUsuarios.add(usuario4);
-        Ubicacion ub1 = new Ubicacion(4.628774, -74.074181);
+        Ubicacion ub1 = new Ubicacion(4.745798, -74.029147);
         Ubicacion ub2 = new Ubicacion(4.628686, -74.074015);
         Ubicacion ub3 = new Ubicacion(4.628321, -74.073943);
         Ubicacion ub4 = new Ubicacion(4.628300, -74.075153);
@@ -78,9 +78,11 @@ public class LocalPersistence implements SharingweatherPersistence {
             objList = entry.getValue();
             llaveActual = entry.getKey();
             for (int i = 0; i < objList.size(); i++) {
-                if (objList.get(i).getUbicacion().distanciaEntreUbicaciones(clima.getUbicacion()) <= DISTANCIAMINIMA && clima.getClima().equals(objList.get(i).getClima()) && !clima.getUsuario().getNombreUsuario().equals(objList.get(i).getUsuario().getNombreUsuario())) {
+                if (/*objList.get(i).getUbicacion().distanciaEntreUbicaciones(clima.getUbicacion()) <= DISTANCIAMINIMA && */clima.getClima().equals(objList.get(i).getClima()) /*&& !clima.getUsuario().getNombreUsuario().equals(objList.get(i).getUsuario().getNombreUsuario())*/) {
+                    System.out.println("Entro 1");
                     objList.add(clima);
                     if (objList.size() >= CANTIDADREPORTESMINIMO) {
+                        System.out.println("Entro 1.1");
                         climasPublicados.put(numeroPublicados, objList);
                         numeroPublicados.incrementAndGet();
                         climasNoPublicados.remove(llaveActual);
@@ -88,6 +90,7 @@ public class LocalPersistence implements SharingweatherPersistence {
                         msgt.convertAndSend("/topic/reporteClima", objList);
                         
                     } else {
+                        System.out.println("Entro 1.2");
                         climasNoPublicados.replace(llaveActual, objList);
                     }
                     encontro = true;
@@ -104,8 +107,10 @@ public class LocalPersistence implements SharingweatherPersistence {
                 objList = entry.getValue();
                 llaveActual = entry.getKey();
                 for (int i = 0; i < objList.size(); i++) {
-                    if (objList.get(i).getUbicacion().distanciaEntreUbicaciones(clima.getUbicacion()) <= DISTANCIAMINIMA && clima.getClima().equals(objList.get(i).getClima()) && !clima.getUsuario().getNombreUsuario().equals(objList.get(i).getUsuario().getNombreUsuario())) {
+                    System.out.println("Entro 2");
+                    if (/*objList.get(i).getUbicacion().distanciaEntreUbicaciones(clima.getUbicacion()) <= DISTANCIAMINIMA &&*/ clima.getClima().equals(objList.get(i).getClima()) /*&& !clima.getUsuario().getNombreUsuario().equals(objList.get(i).getUsuario().getNombreUsuario())*/) {
                         objList.add(clima);
+                        System.out.println("Entro 2.1");
                         climasPublicados.replace(llaveActual, objList);
                         encontro = true;
                         //PUBLICAR
@@ -120,6 +125,7 @@ public class LocalPersistence implements SharingweatherPersistence {
         }
 //Insertar
         if (!encontro) {
+            System.out.println("Entro 3");
             CopyOnWriteArrayList<ReporteClima> objList2 = new CopyOnWriteArrayList<>();
             objList2.add(clima);
             climasNoPublicados.put(numeroNoPublicados, objList2);

@@ -30,7 +30,7 @@ public class SharingweatherAPIController {
     @Autowired
     private SharingweatherServices sws = null;
     
-    @RequestMapping(path ="/reportarClima",method = RequestMethod.GET)
+    @RequestMapping(path ="/reporteClima/publicados", method = RequestMethod.GET)
     public ResponseEntity<?> manejadorGetAllReportesPublicados(){
         try {
             return new ResponseEntity<>(sws.getReportesPublicados(),HttpStatus.ACCEPTED);
@@ -40,7 +40,16 @@ public class SharingweatherAPIController {
         }
     
     }
+        @RequestMapping(path ="/reporteClima/noPublicados", method = RequestMethod.GET)
+    public ResponseEntity<?> manejadorGetAllReportesNoPublicados(){
+        try {
+            return new ResponseEntity<>(sws.getReportesSinPublicar(),HttpStatus.ACCEPTED);
+        } catch (SharingweatherNotFoundException ex) {
+            Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("NO existen reportes publicados ",HttpStatus.NOT_FOUND);
+        }
     
+    }
     @RequestMapping(path ="/Usuarios",method = RequestMethod.GET)
     public ResponseEntity<?> manejadorGetAllUser(){
         try {
@@ -52,9 +61,10 @@ public class SharingweatherAPIController {
     
     }
     
-    @RequestMapping(path ="/reportarClima", method = RequestMethod.POST)	
+    @RequestMapping(path ="/reporteClima", method = RequestMethod.POST)	
     public ResponseEntity<?> manejadorPostRecursoAdicionarReporteClima(@RequestBody ReporteClima repClima){
         System.out.println("LLego aca"+repClima);
+        System.out.println("Clima"+repClima.getClima());
         try {
             sws.addNewReporteClima(repClima, repClima.getUsuario());
             return new ResponseEntity<>(HttpStatus.CREATED);

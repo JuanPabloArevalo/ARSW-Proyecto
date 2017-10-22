@@ -69,7 +69,7 @@ var reportarClima = (function(){
                 puedeAdicionar = false;
             }
             //Validar Clima
-            clima = $("c").val();
+            clima = $("#comboClima").val();
             if(null===clima){
                 falta = falta + "Clima. ";
                 puedeAdicionar = false;

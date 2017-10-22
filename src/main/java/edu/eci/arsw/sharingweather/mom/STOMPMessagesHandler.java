@@ -22,15 +22,14 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class STOMPMessagesHandler {
 	
-    @Autowired
-    SimpMessagingTemplate msgt;
-    ConcurrentHashMap<String, ArrayList<Point>> puntosTopic = new ConcurrentHashMap<String, ArrayList<Point>>();
-
-    @MessageMapping("/reporteClima")    
-    public void handlePointEvent(Point pt) throws Exception {
-            System.out.println("Nuevo punto recibido en el servidor!:"+pt);
-            
-    }
+//    @Autowired
+//    SimpMessagingTemplate msgt;
+//
+//    @MessageMapping("/reporteClima")    
+//    public void handlePointEvent(Point pt) throws Exception {
+//            System.out.println("Nuevo punto recibido en el servidor!:"+pt);
+//            
+//    }
         
         
 }

@@ -72,6 +72,7 @@ public class Ubicacion {
                 * Math.cos(Math.toRadians(getLatitud())) * Math.cos(Math.toRadians(ubicacionF.getLatitud()));  
         double va2 = 2 * Math.atan2(Math.sqrt(va1), Math.sqrt(1 - va1));  
         double distancia = radioTierra * va2;  
+        System.out.println("Distancia"+distancia);
         return distancia;
     }
 

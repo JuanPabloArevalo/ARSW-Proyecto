@@ -103,7 +103,7 @@ var consultarMapa = (function () {
                 console.log('Connected: ' + frame);
                 stompClient.subscribe("/topic/reporteClima", function (eventbody) {
                     console.log(eventbody.body);
-                    dibujarReporteClima(JSON.parse(eventbody.body));
+                    consultarMapa.dibujarReporteClima(JSON.parse(eventbody.body));
                 });
             });
         }
