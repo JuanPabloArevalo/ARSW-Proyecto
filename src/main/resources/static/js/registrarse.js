@@ -23,7 +23,7 @@ var registrarse = (function(){
              edad = $("#edad").val(); 
              nombreUsuario = $("#nombreUsuario").val(); 
              contrasena = $("#contrasena").val(); 
-             correoElectronico = $("#correoElectronico").val(); 
+             correoElectronico = $("#correolectronico").val(); 
              apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico);
              
         }
