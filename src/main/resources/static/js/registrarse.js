@@ -20,7 +20,7 @@ var registrarse = (function(){
              nombreUsuario = $('#nombreUsuario').val(); 
              contrasena = $('#contrasena').val(); 
              correoElectronico = $('#correoElectronico').val(); 
-             addUsuario(nombre, edad,nombreUsuario,contrasena,correoElectronico);
+             manejadorPostAdicionarUsuario(nombre, edad,nombreUsuario,contrasena,correoElectronico);
              
         },
         existeUsuario: function(){
@@ -29,9 +29,9 @@ var registrarse = (function(){
            
         },
         
-        addUsuario: function(nombre, edad, nombreUsuario, contrasena, correoElectronico){
+        manejadorPostAdicionarUsuario: function(nombre, edad, nombreUsuario, contrasena, correoElectronico){
         return $.ajax({
-            url: "/sharingweather/V1",
+            url: "/sharingweather/V1/Usuarios",
             type: 'POST',
             data: '{"nombre":"'+nombre+'","edad":"'+edad+'", "nombreUsuario":'+nombreUsuario+', "password":"'+contrasena+'","correo":"'+correoElectronico+'"}',
             contentType: "application/json"
