@@ -29,6 +29,7 @@ public class SharingweatherServices {
     private SharingweatherPersistence swp = null;
     
     private boolean existeUsuario = false;
+    private String mensaje ="";
 
     /**
      * Metodo encargado de adicionar un nuevo reporte del clima
@@ -110,5 +111,23 @@ public class SharingweatherServices {
     
     public void existeElUsuario(){
       existeUsuario = true;
+    }
+    
+    /**
+     * Metodo encargado de adicionar los usuarios a la lista de usuarios
+     *
+     * @return
+     * @throws SharingweatherNotFoundException
+     */
+    public String IniciarSesion(String nombreUsuario, String correo) throws SharingweatherNotFoundException {
+            
+            for(int i = 0; i < swp.getUsuarios().size();i ++){
+            if(swp.getUsuarios().get(i).getNombreUsuario().equals(nombreUsuario)|| swp.getUsuarios().get(i).getCorreo().equals(correo)){
+                mensaje = "s";
+            }   
+            }
+             mensaje = "n";
+            
+            return mensaje;
     }
 }

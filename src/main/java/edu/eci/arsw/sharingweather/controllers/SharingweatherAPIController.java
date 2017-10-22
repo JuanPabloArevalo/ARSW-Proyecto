@@ -50,8 +50,21 @@ public class SharingweatherAPIController {
         }
     
     }
+    
+    
     @RequestMapping(path ="/Usuarios",method = RequestMethod.GET)
-    public ResponseEntity<?> manejadorGetAllUser(){
+    public ResponseEntity<?> manejadorGetAllUser(@RequestBody String nombreU , @RequestBody String correo){
+        try {
+            return new ResponseEntity<>(sws.IniciarSesion(nombreU, correo),HttpStatus.ACCEPTED);
+        } catch (SharingweatherNotFoundException ex) {
+            Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("NO hay usuarios registrados ",HttpStatus.NOT_FOUND);
+        }
+    
+    }
+    
+    @RequestMapping(path ="/Usuarios",method = RequestMethod.GET)
+    public ResponseEntity<?> manejadorGetRestrado(){
         try {
             return new ResponseEntity<>(sws.getUsuarios(),HttpStatus.ACCEPTED);
         } catch (SharingweatherNotFoundException ex) {
@@ -74,6 +87,18 @@ public class SharingweatherAPIController {
         }        
     }
     
+   /** @RequestMapping(path ="/Usuarios/IniciarSesion", method = RequestMethod.POST)	
+    public ResponseEntity<?> manejadorPostRegistrado(@RequestBody String nombreU , @RequestBody String correo){
+        try {
+            sws.IniciarSesion(nombreU, correo);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (SharingweatherNotFoundException ex) {
+            Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_FOUND);            
+        }        
+
+    }**/
+    
     @RequestMapping(path ="/Usuarios", method = RequestMethod.POST)	
     public ResponseEntity<?> manejadorPostAdicionarUsuario(@RequestBody Usuario usuario){
         try {
@@ -85,7 +110,5 @@ public class SharingweatherAPIController {
         }        
 
     }
-    
-    
 
 }

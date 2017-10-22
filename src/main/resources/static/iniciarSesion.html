@@ -12,7 +12,7 @@ and open the template in the editor.
         <script src="/webjars/jquery/jquery.min.js"></script>
         <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
-        <script src="js/reportarClima.js"></script>
+        <script src="js/iniciarSesion.js"></script>
         <link rel="stylesheet" href="css/reportarClima.css" />
     </head>
     <body id="idFondo">
@@ -46,6 +46,9 @@ and open the template in the editor.
             <div class="row">
                 <div class="col-xs-0 col-sm-1 col-md-2 col-lg-2"></div>
                 <div class="col-xs-12 col-sm-10 col-md-8 col-lg-8">
+                 <div class="alert alert-danger alert-dismissable fade in" hidden="" id="divError">
+                        <strong>Error! Falta ingresar los siguientes campos:</strong><code id="mensajeFalta"></code>
+                 </div>
                 <h2 align="center">Iniciar sesión</h2>
                 <div class="well">
                         <div class="form-group">
