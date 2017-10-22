@@ -73,9 +73,7 @@ public class SharingweatherServices {
         swp.addUsuarios(usuario);
        //for(int i = 0; i < swp.getUsuarios().size();i ++){
            //if(swp.getUsuarios().get(i).getNombreUsuario().equals(usuario.getNombreUsuario())|| swp.getUsuarios().get(i).getCorreo().equals(usuario.getCorreo()) ){
-           
            //}else{
-           
           // }       
        //}
     }

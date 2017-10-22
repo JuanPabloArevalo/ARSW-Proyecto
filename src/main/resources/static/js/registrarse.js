@@ -16,12 +16,14 @@ var registrarse = (function(){
     
     return {
         registrarUsuario(){
+            alert(apiclientRegistrarse.getApiUsuarios());
              nombre = $("#nombre").val(); 
              edad = $("#edad").val(); 
              nombreUsuario = $("#nombreUsuario").val(); 
              contrasena = $("#contrasena").val(); 
              correoElectronico = $("#correoElectronico").val(); 
              apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico);
+             
         }
     };
 }());
