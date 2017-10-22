@@ -28,6 +28,7 @@ public class LocalPersistence implements SharingweatherPersistence{
     private ConcurrentHashMap<AtomicLong,CopyOnWriteArrayList<ReporteClima>> climasNoPublicados = new ConcurrentHashMap<>();
     private AtomicLong numeroPublicados = new AtomicLong(0);
     private AtomicLong numeroNoPublicados = new AtomicLong(0);
+    CopyOnWriteArrayList<Usuario> listaUsuarios = new CopyOnWriteArrayList<>();
     private static final double DISTANCIAMINIMA = 0.7;
     private static final int CANTIDADREPORTESMINIMO = 3;
     
@@ -39,6 +40,10 @@ public class LocalPersistence implements SharingweatherPersistence{
         Usuario usuario2 = new Usuario("Juan Arevalo2", 25, "juan.arevalo.merchan2", "123", "juan.arevalo.merchan@hotmail.com2");
         Usuario usuario3 = new Usuario("Juan Arevalo3", 25, "juan.arevalo.merchan3", "123", "juan.arevalo.merchan@hotmail.com3");
         Usuario usuario4 = new Usuario("Juan Arevalo4", 25, "juan.arevalo.merchan4", "123", "juan.arevalo.merchan@hotmail.com4");
+        listaUsuarios.add(usuario);
+        listaUsuarios.add(usuario2);
+        listaUsuarios.add(usuario3);
+        listaUsuarios.add(usuario4);
         Ubicacion ub1 = new Ubicacion(4.628774, -74.074181);
         Ubicacion ub2 = new Ubicacion(4.628686, -74.074015);
         Ubicacion ub3 = new Ubicacion(4.628321, -74.073943);
@@ -132,6 +137,14 @@ public class LocalPersistence implements SharingweatherPersistence{
     public ConcurrentHashMap<AtomicLong, CopyOnWriteArrayList<ReporteClima>> getReportesClimaSinPublicar() throws SharingweatherNotFoundException {
         return climasNoPublicados;
     }
-
     
+    @Override
+    public CopyOnWriteArrayList<Usuario> getUsuarios()throws SharingweatherNotFoundException {
+    return listaUsuarios;
+    }
+    
+    @Override
+    public  void addUsuarios(Usuario usuario)throws SharingweatherNotFoundException {
+    listaUsuarios.add(usuario);
+    }
 }

@@ -10,7 +10,7 @@ var registrarse = (function(){
     var nombre;
     var edad;
     var nombreUsuario;
-    var contraseña;
+    var contrasena;
     var correoElectronico;
     
     return {
@@ -21,20 +21,22 @@ var registrarse = (function(){
              contrasena = $('#contrasena').val(); 
              correoElectronico = $('#correoElectronico').val(); 
              
-            
-        }
+        },
+        existeUsuario: function(){
+           var usurios = $.get("/sharingweather/V1/Usuarios");
+           alert(usuarios);
         
-        
+        } 
     };
 }());
 
-function addUsiario(nombre, edad, nombreUsuario, contrasena, correoElectronico){
-    
+function addUsuario(nombre, edad, nombreUsuario, contrasena, correoElectronico){
         return $.ajax({
-            url: "/sharingweather/V1.0/",
+            url: "/sharingweather/V1",
             type: 'POST',
-            data: '{"author":"'+authname+'","name":"'+bpname+'", "points":'+JSON.stringify(points)+'}',
+            data: '{"nombre":"'+nombre+'","edad":"'+edad+'", "nombreUsuario":'+nombreUsuario+', "password":"'+contrasena+'","correo":"'+correoElectronico+'"}',
             contentType: "application/json"
         });
 }
+
 

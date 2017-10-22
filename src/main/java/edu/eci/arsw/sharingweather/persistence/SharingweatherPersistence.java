@@ -46,5 +46,19 @@ public interface SharingweatherPersistence {
      * @throws SharingweatherNotFoundException 
      */
     public ConcurrentHashMap<AtomicLong,CopyOnWriteArrayList<ReporteClima>> getReportesClimaSinPublicar() throws SharingweatherNotFoundException;
+    
+    /**
+     * Metodo encargado de traer La lista de los usuarios
+     * @return
+     * @throws SharingweatherNotFoundException 
+     */
+    public CopyOnWriteArrayList<Usuario> getUsuarios()throws SharingweatherNotFoundException ;
+    
+   /**
+     * Metodo encargado de adicionar los usuarios a la lista de usuarios
+     * @return
+     * @throws SharingweatherNotFoundException 
+     */
+    public  void addUsuarios(Usuario usuario)throws SharingweatherNotFoundException;
 
 }

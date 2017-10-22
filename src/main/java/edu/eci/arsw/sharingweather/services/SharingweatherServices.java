@@ -54,4 +54,28 @@ public class SharingweatherServices {
     public ConcurrentHashMap<AtomicLong,CopyOnWriteArrayList<ReporteClima>> getReportesSinPublicar() throws SharingweatherNotFoundException{
         return swp.getReportesClimaSinPublicar();
     }
+    
+    /**
+     * Metodo encargado de traer La lista de los usuarios
+     * @return
+     * @throws SharingweatherNotFoundException 
+     */
+    public CopyOnWriteArrayList<Usuario> getUsuarios()throws SharingweatherNotFoundException {
+        return swp.getUsuarios();
+    }
+    
+   /**
+     * Metodo encargado de adicionar los usuarios a la lista de usuarios
+     * @return
+     * @throws SharingweatherNotFoundException 
+     */
+    public  void addUsuarios(Usuario usuario)throws SharingweatherNotFoundException{ 
+       for(int i = 0; i < swp.getUsuarios().size();i ++){
+           if(swp.getUsuarios().get(i).getNombreUsuario().equals(usuario.getNombreUsuario())|| swp.getUsuarios().get(i).getCorreo().equals(usuario.getCorreo()) ){
+           
+           }else{
+           swp.addUsuarios(usuario);
+           }       
+       }
+    }
 }

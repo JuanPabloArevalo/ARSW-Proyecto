@@ -6,6 +6,7 @@
 package edu.eci.arsw.sharingweather.controllers;
 
 import edu.eci.arsw.sharingweather.model.ReporteClima;
+import edu.eci.arsw.sharingweather.model.Usuario;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherNotFoundException;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistenceException;
 import edu.eci.arsw.sharingweather.services.SharingweatherServices;
@@ -24,18 +25,29 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Juan Pablo Arévalo y Stefany Moron
  */
 @RestController
-@RequestMapping(value = "/sharingweather/V1/reporteClima")
+@RequestMapping(value = "/sharingweather/V1")
 public class SharingweatherAPIController {
     @Autowired
     private SharingweatherServices sws = null;
     
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(path ="/reportarClima",method = RequestMethod.GET)
     public ResponseEntity<?> manejadorGetAllReportesPublicados(){
         try {
             return new ResponseEntity<>(sws.getReportesPublicados(),HttpStatus.ACCEPTED);
         } catch (SharingweatherNotFoundException ex) {
             Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("NO existen reportes publicados ",HttpStatus.NOT_FOUND);
+        }
+    
+    }
+    
+    @RequestMapping(path ="/Usuarios",method = RequestMethod.GET)
+    public ResponseEntity<?> manejadorGetAllUser(){
+        try {
+            return new ResponseEntity<>(sws.getUsuarios(),HttpStatus.ACCEPTED);
+        } catch (SharingweatherNotFoundException ex) {
+            Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("NO hay usuarios registrados ",HttpStatus.NOT_FOUND);
         }
     
     }
@@ -50,7 +62,20 @@ public class SharingweatherAPIController {
             Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_FOUND);            
         }        
+    }
+    
+    @RequestMapping(method = RequestMethod.POST)	
+    public ResponseEntity<?> manejadorPostAdicionarUsuario(@RequestBody Usuario usuario){
+        try {
+            sws.addUsuarios(usuario);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (SharingweatherNotFoundException ex) {
+            Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_FOUND);            
+        }        
 
     }
+    
+    
 
 }
