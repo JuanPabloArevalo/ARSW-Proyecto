@@ -5,7 +5,7 @@
  */
 
 /* global google */
-
+var map;
 var consultarMapa = (function () {
     return{
         myMap() {
@@ -14,7 +14,7 @@ var consultarMapa = (function () {
                 zoom: 10,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
-            var map = new google.maps.Map(document.getElementById("idMap"), mapOptions);
+            map = new google.maps.Map(document.getElementById("idMap"), mapOptions);
 
             // Create the search box and link it to the UI element.
             var input = document.getElementById("idTxtBusqueda");
@@ -70,6 +70,15 @@ var consultarMapa = (function () {
                     }
                 });
                 map.fitBounds(bounds);
+                consultarMapa.dibujarReporteClima();
+            });
+        },
+        dibujarReporteClima() {
+            var image = "/image/puntolluvia.png";
+            var beachMarker = new google.maps.Marker({
+                position: {lat: 4.753730, lng: -74.033273},
+                map: map,
+                icon: image
             });
 
         }
