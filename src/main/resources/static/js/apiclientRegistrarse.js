@@ -12,7 +12,6 @@ var apiclientRegistrarse = (function(){
             return $.get("/sharingweather/V1/Usuarios");
         },
         adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico){
-            alert("Se adiciono un usuario");
             return $.ajax({
                 url: "/sharingweather/V1/Usuarios",
                 type: "POST",
