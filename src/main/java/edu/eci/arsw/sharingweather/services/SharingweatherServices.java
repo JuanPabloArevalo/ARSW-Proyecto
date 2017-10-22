@@ -105,9 +105,7 @@ public class SharingweatherServices {
             throw new SharingweatherNotFoundException("El usuario ya existe.");
             }   
         }
-        if(existeUsuario){
             swp.addUsuarios(usuario);
-        }
     }
     
     public void existeElUsuario(){
