@@ -23,7 +23,7 @@ var registrarse = (function(){
              
         },
         existeUsuario: function(){
-           var usurios = $.get("/sharingweather/V1/Usuarios");
+           var usuarios = $.get("/sharingweather/V1/Usuarios");
            alert(usuarios);
         
         } 
