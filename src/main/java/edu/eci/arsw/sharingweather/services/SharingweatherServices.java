@@ -27,6 +27,8 @@ public class SharingweatherServices {
 
     @Autowired
     private SharingweatherPersistence swp = null;
+    
+    private boolean existeUsuario = false;
 
     /**
      * Metodo encargado de adicionar un nuevo reporte del clima
@@ -98,12 +100,17 @@ public class SharingweatherServices {
     public void addUsuarios(Usuario usuario) throws SharingweatherNotFoundException {
         
         for(int i = 0; i < swp.getUsuarios().size();i ++){
-        if(!(swp.getUsuarios().get(i).getNombreUsuario().equals(usuario.getNombreUsuario())|| swp.getUsuarios().get(i).getCorreo().equals(usuario.getCorreo()))){
-            swp.addUsuarios(usuario);
-        }else{
-            
+        if(swp.getUsuarios().get(i).getNombreUsuario().equals(usuario.getNombreUsuario())|| swp.getUsuarios().get(i).getCorreo().equals(usuario.getCorreo())){
+            existeElUsuario();
             throw new SharingweatherNotFoundException("El usuario ya existe.");
-         }       
+            }   
         }
+        if(existeUsuario){
+            swp.addUsuarios(usuario);
+        }
+    }
+    
+    public void existeElUsuario(){
+      existeUsuario = true;
     }
 }
