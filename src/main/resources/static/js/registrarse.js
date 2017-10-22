@@ -23,7 +23,7 @@ var registrarse = (function(){
              contrasena = $("#contrasena").val(); 
              correoElectronico = $("#correolectronico").val(); 
              
-            apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico,callback);
+            apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico);
                
         }
     };
