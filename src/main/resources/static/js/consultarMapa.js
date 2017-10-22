@@ -102,12 +102,10 @@ var consultarMapa = (function () {
             });
         },
         connectAndSubscribe(){
-            console.info('Connecting to WS...');
             var socket = new SockJS("/stompendpoint");
-            stompClient = Stomp.over(socket);
+            var stompClient = Stomp.over(socket);
             //subscribe to /topic/reporteClima
-            stompClient.connect({}, function (frame) {
-                console.log('Connected: ' + frame);
+            stompClient.connect({}, function () {
                 stompClient.subscribe("/topic/reporteClima", function (eventbody) {
                     var arreglo = JSON.parse(eventbody.body);
                     arreglo.map(dibujarPuntos);
@@ -120,7 +118,6 @@ var consultarMapa = (function () {
         iniciarMapaClimaPublicado(){
             apiclientConsultarMapa.getAllReportesPublicados( function(lbp){ 
                     lbp.map(dibujarPuntos);
-                    console.info(lbp);
                 } 
             ); 
         }
