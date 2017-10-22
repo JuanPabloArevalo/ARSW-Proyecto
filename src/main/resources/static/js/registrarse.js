@@ -20,23 +20,24 @@ var registrarse = (function(){
              nombreUsuario = $('#nombreUsuario').val(); 
              contrasena = $('#contrasena').val(); 
              correoElectronico = $('#correoElectronico').val(); 
+             addUsuario(nombre, edad,nombreUsuario,contrasena,correoElectronico);
              
         },
         existeUsuario: function(){
            var usuarios = $.get("/sharingweather/V1/Usuarios");
            alert(usuarios);
+           
+        },
         
-        } 
-    };
-}());
-
-function addUsuario(nombre, edad, nombreUsuario, contrasena, correoElectronico){
+        addUsuario: function(nombre, edad, nombreUsuario, contrasena, correoElectronico){
         return $.ajax({
             url: "/sharingweather/V1",
             type: 'POST',
             data: '{"nombre":"'+nombre+'","edad":"'+edad+'", "nombreUsuario":'+nombreUsuario+', "password":"'+contrasena+'","correo":"'+correoElectronico+'"}',
             contentType: "application/json"
         });
-}
-
+        alert("Se adiciono un usuario");
+        }
+    };
+}());
 
