@@ -15,6 +15,8 @@ Para poder realizar la publicación se debe poder tener acceso a la ubicación d
 
 <b>Información por defecto:</b><br><br>
        <b>Usuarios:</b><br><br>
+       - Conectarse con un botón
+
           - Usuario 1:
               <b>Nombre:</b> Juan Arevalo<br>
               <b>Edad:</b> 25<br>
