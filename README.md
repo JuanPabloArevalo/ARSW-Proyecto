@@ -35,12 +35,7 @@ Para poder realizar la publicación se debe poder tener acceso a la ubicación d
               <b>correo:</b> hector.cadavid@mail.escuelaing.edu.co<br><br>
               
               
-       <b>Reportes de clima:</b><br><br>
-          <b>Reporte 1:</b><br>
-              <b>Latitud:</b> 4.746147<br>
-              <b>Longitud:</b> -74.030096<br>
-              <b>Clima:</b> sol<br>
-              <b>Usuario:</b>Usuario 1<br>
+       <b>Reportes de clima:</b>
               
               
 Nuestra aplicación esta desplegada en Heroku en el siguiente link: [https://sharingweather.herokuapp.com/](https://sharingweather.herokuapp.com/)
