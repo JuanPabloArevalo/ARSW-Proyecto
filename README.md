@@ -14,25 +14,25 @@ Lo primero que podemos realizar aca, es consultar el mapa en tiempo real, este n
 Para poder realizar la publicación se debe poder tener acceso a la ubicación del dispositivo, de lo contrario no se podrá publicar, para ello, el navegador solicitará la ubicación del equipo y automáticamente generará la longitud y latitud donde se encuentre el usuario, después de esto, se debe poder elegir el clima que esta haciendo y por ultimo, se dirá cuanto tiempo lleva el clima en esa zona (En minutos), se procede a publicar el reporte del clima.
 
 <b>Información por defecto:</b><br>
-       <b>Usuarios:</b><br>
-          Usuario 1:<br>
-              Nombre: Juan Arevalo<br>
-              Edad: 25<br>
-              nombreUsuario: juan.arevalo.merchan<br>
-              contraseña: 123<br>
-              correo: juan.arevalo-m@mail.escuelaing.edu.co<br>
-          Usuario 2:<br>
-              Nombre: Stefany Moron<br>
-              Edad: 27<br>
-              nombreUsuario: stefany.moron<br>
-              contraseña: 1234<br>
-              correo: stefany.moron@mail.escuelaing.edu.co<br>
-          Usuario 3:<br>
-              Nombre: Hector Cadavid<br>
-              Edad: 18<br>
-              nombreUsuario: hector.cadavid<br>
-              contraseña: 12345<br>
-              correo: hector.cadavid@mail.escuelaing.edu.co<br>
+       <b>Usuarios:</b><br><br>
+          <b>Usuario 1:</b><br>
+              <b>Nombre:</b> Juan Arevalo<br>
+              <b>Edad:</b> 25<br>
+              <b>nombreUsuario:</b> juan.arevalo.merchan<br>
+              <b>contraseña:</b> 123<br>
+              <b>correo:</b> juan.arevalo-m@mail.escuelaing.edu.co<br><br>
+          <b>Usuario 2:</b><br>
+              <b>Nombre:</b> Stefany Moron<br>
+              <b>Edad:</b> 27<br>
+              <b>nombreUsuario:</b> stefany.moron<br>
+              <b>contraseña:</b> 1234<br>
+              <b>correo:</b> stefany.moron@mail.escuelaing.edu.co<br><br>
+         <b> Usuario 3:</b><br>
+              <b>Nombre:</b> Hector Cadavid<br>
+              <b>Edad:</b> 18<br>
+              <b>nombreUsuario:</b> hector.cadavid<br>
+              <b>contraseña:</b> 12345<br>
+              <b>correo:</b> hector.cadavid@mail.escuelaing.edu.co<br><br>
 
 Nuestra aplicación esta desplegada en Heroku en el siguiente link: [https://sharingweather.herokuapp.com/](https://sharingweather.herokuapp.com/)
 
