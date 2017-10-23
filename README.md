@@ -15,8 +15,6 @@ Para poder realizar la publicación se debe poder tener acceso a la ubicación d
 
 <b>Información por defecto:</b><br><br>
        <b>Usuarios:</b><br><br>
-       - Conectarse con un botón
-
           - Usuario 1:
               <b>Nombre:</b> Juan Arevalo<br>
               <b>Edad:</b> 25<br>
@@ -35,8 +33,6 @@ Para poder realizar la publicación se debe poder tener acceso a la ubicación d
               <b>nombreUsuario:</b> hector.cadavid<br>
               <b>contraseña:</b> 12345<br>
               <b>correo:</b> hector.cadavid@mail.escuelaing.edu.co<br><br>
-              
-              
        <b>Reportes de clima:</b>
               
               
