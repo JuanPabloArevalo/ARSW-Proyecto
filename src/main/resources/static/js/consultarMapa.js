@@ -26,7 +26,7 @@ function dibujarPuntos(reporte){
                 fillOpacity: 0.15,
                 map: mapaGoogle,
                 center: {lat: reporte.ubicacion.latitud, lng: reporte.ubicacion.longitud},
-                radius: 500
+                radius: 400
     });
 }
 
