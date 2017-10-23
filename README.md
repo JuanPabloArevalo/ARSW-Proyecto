@@ -96,7 +96,6 @@ Para poder realizar la publicación se debe poder tener acceso a la ubicación d
 
 Nuestra aplicación esta desplegada en Heroku en el siguiente link: [https://sharingweather.herokuapp.com/](https://sharingweather.herokuapp.com/)
 
-NOTA: Para tener acceso a la ubicación, se debe ingresar por medio del protocolo https, si se utiliza http, automaticamente se bloquea la ubicación del dispositivo.
 
 El enlace al entorno Codacy del proyecto [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cc5e54277354433084212f5e7e0997ef)](https://www.codacy.com/app/JuanPabloArevalo/ARSWProyecto?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=JuanPabloArevalo/ARSWProyecto&amp;utm_campaign=Badge_Grade)
 
