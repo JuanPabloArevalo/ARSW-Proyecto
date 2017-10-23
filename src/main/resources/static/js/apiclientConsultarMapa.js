@@ -6,7 +6,7 @@
 var apiclientConsultarMapa=(function(){
 	return {
             getAllReportesPublicados(callback){
-                return $.get("/sharingweather/V1/reporteClima/publicados",callback); 
+                return $.get("/sharingweather/V1/reportesClima/publicados",callback); 
             }
 	};	
 

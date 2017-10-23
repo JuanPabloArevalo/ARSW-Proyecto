@@ -26,7 +26,7 @@ function dibujarPuntos(reporte){
                 fillOpacity: 0.15,
                 map: mapaGoogle,
                 center: {lat: reporte.ubicacion.latitud, lng: reporte.ubicacion.longitud},
-                radius: 700
+                radius: 500
     });
 }
 
@@ -42,7 +42,6 @@ var consultarMapa = (function () {
                 center: new google.maps.LatLng(4.6537726, -74.0660075),
                 zoom: 12,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
-                scrollwheel: false, //si colocas true en vez de false el usuario podrá hacer scroll dentro del mapa
 		draggable: true
             };
             mapaGoogle = new google.maps.Map(document.getElementById("idMap"), mapOptions);

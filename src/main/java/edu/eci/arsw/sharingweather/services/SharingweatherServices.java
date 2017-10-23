@@ -13,8 +13,8 @@ import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistenceExceptio
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,9 +50,11 @@ public class SharingweatherServices {
      * @throws SharingweatherNotFoundException
      */
     public Set<ReporteClima> getReportesPublicados() throws SharingweatherNotFoundException {
+        ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> mapa = swp.getReportesClimaPublicar();
+        System.out.println("Aca hay: "+mapa.size());
         Set<ReporteClima> reportes = new HashSet<>();
         CopyOnWriteArrayList<ReporteClima> objList;
-        for (Map.Entry<AtomicLong, CopyOnWriteArrayList<ReporteClima>> entry : swp.getReportesClimaPublicar().entrySet()) {
+        for (Map.Entry<Long, CopyOnWriteArrayList<ReporteClima>> entry : mapa.entrySet()) {
             objList = entry.getValue();
             for (int i = 0; i < objList.size(); i++) {
                 reportes.add(objList.get(i));
@@ -70,7 +72,7 @@ public class SharingweatherServices {
     public Set<ReporteClima>  getReportesSinPublicar() throws SharingweatherNotFoundException {
         Set<ReporteClima> reportes = new HashSet<>();
         CopyOnWriteArrayList<ReporteClima> objList;
-        for (Map.Entry<AtomicLong, CopyOnWriteArrayList<ReporteClima>> entry : swp.getReportesClimaSinPublicar().entrySet()) {
+        for (Map.Entry<Long, CopyOnWriteArrayList<ReporteClima>> entry : swp.getReportesClimaSinPublicar().entrySet()) {
             objList = entry.getValue();
             for (int i = 0; i < objList.size(); i++) {
                 reportes.add(objList.get(i));

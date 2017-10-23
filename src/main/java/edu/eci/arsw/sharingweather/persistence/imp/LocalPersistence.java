@@ -25,12 +25,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class LocalPersistence implements SharingweatherPersistence {
-
-    // List<Object> objList = Collections.synchronizedList(new ArrayList<Object>());
-    private ConcurrentHashMap<AtomicLong, CopyOnWriteArrayList<ReporteClima>> climasPublicados = new ConcurrentHashMap<>();
-    private ConcurrentHashMap<AtomicLong, CopyOnWriteArrayList<ReporteClima>> climasNoPublicados = new ConcurrentHashMap<>();
-    private AtomicLong numeroPublicados = new AtomicLong(0);
-    private AtomicLong numeroNoPublicados = new AtomicLong(0);
+    private ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> climasPublicados = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> climasNoPublicados = new ConcurrentHashMap<>();
+    private AtomicLong numeroPublicados = new AtomicLong(1);
+    private AtomicLong numeroNoPublicados = new AtomicLong(1);
     private CopyOnWriteArrayList<Usuario> listaUsuarios = new CopyOnWriteArrayList<>();
     private static final double DISTANCIAMINIMA = 0.7;
     private static final int CANTIDADREPORTESMINIMO = 3;
@@ -42,45 +40,65 @@ public class LocalPersistence implements SharingweatherPersistence {
      * Constructor
      */
     public LocalPersistence() {
-        Usuario usuario = new Usuario("Juan Arevalo", 25, "juan.arevalo.merchan", "123", "juan.arevalo.merchan@hotmail.com");
-        Usuario usuario2 = new Usuario("Juan Arevalo2", 25, "juan.arevalo.merchan2", "123", "juan.arevalo.merchan@hotmail.com2");
-        Usuario usuario3 = new Usuario("Juan Arevalo3", 25, "juan.arevalo.merchan3", "123", "juan.arevalo.merchan@hotmail.com3");
-        Usuario usuario4 = new Usuario("Juan Arevalo4", 25, "juan.arevalo.merchan4", "123", "juan.arevalo.merchan@hotmail.com4");
+        Usuario usuario = new Usuario("Juan Arevalo", 25, "juan.arevalo.merchan", "123", "juan.arevalo-m@mail.escuelaing.edu.co");
+        Usuario usuario2 = new Usuario("Stefany Moron", 25, "stefany.moron", "123", "stefany.moron@mail.escuelaing.edu.co");
+        Usuario usuario3 = new Usuario("Hector Cadavid", 25, "hector.cadavid", "123", "hector.cadavid@mail.escuelaing.edu.co");
         listaUsuarios.add(usuario);
         listaUsuarios.add(usuario2);
         listaUsuarios.add(usuario3);
-        listaUsuarios.add(usuario4);
-        Ubicacion ub1 = new Ubicacion(4.745798, -74.029147);
-        Ubicacion ub2 = new Ubicacion(4.628686, -74.074015);
-        Ubicacion ub3 = new Ubicacion(4.628321, -74.073943);
-        Ubicacion ub4 = new Ubicacion(4.628300, -74.075153);
+        Ubicacion ub1 = new Ubicacion(4.746147, -74.030096);
+        Ubicacion ub2 = new Ubicacion(4.746040, -74.031995);
+        Ubicacion ub3 = new Ubicacion(4.748638, -74.030353);
         ReporteClima clima1 = new ReporteClima(ub1, 10, usuario,"sol");
         ReporteClima clima2 = new ReporteClima(ub2, 10, usuario2,"sol");
         ReporteClima clima3 = new ReporteClima(ub3, 10, usuario3,"sol");
-        ReporteClima clima4 = new ReporteClima(ub4, 10, usuario4,"sol");
         CopyOnWriteArrayList<ReporteClima> objList = new CopyOnWriteArrayList<>();
         objList.add(clima1);
         objList.add(clima2);
         objList.add(clima3);
-        objList.add(clima4);
-        numeroPublicados.incrementAndGet();
-        climasPublicados.put(numeroPublicados, objList);
+        climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
+        System.out.println("Numero: "+ numeroPublicados);
+        ub1 = new Ubicacion(4.733147,-74.035017);
+        ub2 = new Ubicacion(4.729650,-74.031289);
+        ub3 = new Ubicacion(4.732430,-74.033574);
+        clima1 = new ReporteClima(ub1, 25, usuario,"agua");
+        clima2 = new ReporteClima(ub2, 32, usuario2,"agua");
+        clima3 = new ReporteClima(ub3, 45, usuario3,"agua");
+        objList = new CopyOnWriteArrayList<>();
+        objList.add(clima1);
+        objList.add(clima2);
+        objList.add(clima3);
+        System.out.println("Numero: "+ numeroPublicados);
+        climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
+        
+        ub1 = new Ubicacion(4.706553,-74.035508);
+        ub2 = new Ubicacion(4.703313,-74.034446);
+        ub3 = new Ubicacion(4.703377,-74.036817);
+        clima1 = new ReporteClima(ub1, 55, usuario,"nublado");
+        clima2 = new ReporteClima(ub2, 65, usuario2,"nublado");
+        clima3 = new ReporteClima(ub3, 75, usuario3,"nublado");
+        objList = new CopyOnWriteArrayList<>();
+        objList.add(clima1);
+        objList.add(clima2);
+        objList.add(clima3);
+        climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
+        System.out.println("Climas Publicados: "+ climasPublicados.size());
     }
 
     @Override
     public void saveReporteClima(ReporteClima clima, Usuario usuario) throws SharingweatherPersistenceException {
         CopyOnWriteArrayList<ReporteClima> objList;
         boolean encontro = false;
-        AtomicLong llaveActual;
+        Long llaveActual;
 //Validar primero en climas no publicados
-        for (Map.Entry<AtomicLong, CopyOnWriteArrayList<ReporteClima>> entry : climasNoPublicados.entrySet()) {
+        for (Map.Entry<Long, CopyOnWriteArrayList<ReporteClima>> entry : climasNoPublicados.entrySet()) {
             objList = entry.getValue();
             llaveActual = entry.getKey();
             for (int i = 0; i < objList.size(); i++) {
                 if (objList.get(i).getUbicacion().distanciaEntreUbicaciones(clima.getUbicacion()) <= DISTANCIAMINIMA && clima.getClima().equals(objList.get(i).getClima()) /*&& !clima.getUsuario().getNombreUsuario().equals(objList.get(i).getUsuario().getNombreUsuario())*/) {
                     objList.add(clima);
                     if (objList.size() >= CANTIDADREPORTESMINIMO) {
-                        climasPublicados.put(numeroPublicados, objList);
+                        climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
                         numeroPublicados.incrementAndGet();
                         climasNoPublicados.remove(llaveActual);
                         //PUBLICAR ZONA
@@ -99,7 +117,7 @@ public class LocalPersistence implements SharingweatherPersistence {
         }
         //Validar en climas publicados       
         if (!encontro) {
-            for (Map.Entry<AtomicLong, CopyOnWriteArrayList<ReporteClima>> entry : climasPublicados.entrySet()) {
+            for (Map.Entry<Long, CopyOnWriteArrayList<ReporteClima>> entry : climasPublicados.entrySet()) {
                 objList = entry.getValue();
                 llaveActual = entry.getKey();
                 for (int i = 0; i < objList.size(); i++) {
@@ -121,19 +139,20 @@ public class LocalPersistence implements SharingweatherPersistence {
         if (!encontro) {
             CopyOnWriteArrayList<ReporteClima> objList2 = new CopyOnWriteArrayList<>();
             objList2.add(clima);
-            climasNoPublicados.put(numeroNoPublicados, objList2);
+            climasNoPublicados.put(numeroPublicados.incrementAndGet(), objList2);
             numeroNoPublicados.incrementAndGet();
         }
     }
 
     @Override
-    public ConcurrentHashMap<AtomicLong, CopyOnWriteArrayList<ReporteClima>> getReportesClimaPublicar() throws SharingweatherNotFoundException {
+    public ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> getReportesClimaPublicar() throws SharingweatherNotFoundException {
+        System.out.println("Por aca hay: "+climasPublicados.size());
         return climasPublicados;
 
     }
 
     @Override
-    public ConcurrentHashMap<AtomicLong, CopyOnWriteArrayList<ReporteClima>> getReportesClimaSinPublicar() throws SharingweatherNotFoundException {
+    public ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> getReportesClimaSinPublicar() throws SharingweatherNotFoundException {
         return climasNoPublicados;
     }
 

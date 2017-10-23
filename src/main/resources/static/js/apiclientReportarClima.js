@@ -9,7 +9,7 @@ var apiclientReportarClima=(function(){
             addNewSharingweather(longitud,latitud,clima,minutos,usuario){
                    //, fechaHora:'+new Date()+'
                 return $.ajax({
-                    url: "/sharingweather/V1/reporteClima",
+                    url: "/sharingweather/V1/reportesClima",
                     type: "POST",
                     data: '{"tiempo":'+minutos+', "clima":"'+clima+'", "ubicacion":{"longitud":'+longitud+',"latitud":'+latitud+'}, "usuario":{"nombre":"", "edad" : 0, "nombreUsuario":"'+usuario+'","password":"", "correo":""}}',
                     contentType: "application/json"

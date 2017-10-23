@@ -9,7 +9,6 @@ import edu.eci.arsw.sharingweather.model.ReporteClima;
 import edu.eci.arsw.sharingweather.model.Usuario;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  *
@@ -29,14 +28,14 @@ public interface SharingweatherPersistence {
      * @return
      * @throws SharingweatherNotFoundException 
      */
-    public ConcurrentHashMap<AtomicLong,CopyOnWriteArrayList<ReporteClima>> getReportesClimaPublicar() throws SharingweatherNotFoundException;
+    public ConcurrentHashMap<Long,CopyOnWriteArrayList<ReporteClima>> getReportesClimaPublicar() throws SharingweatherNotFoundException;
     
     /**
      * Metodo encargado de traer los reposrtes de los climas sin publicar
      * @return
      * @throws SharingweatherNotFoundException 
      */
-    public ConcurrentHashMap<AtomicLong,CopyOnWriteArrayList<ReporteClima>> getReportesClimaSinPublicar() throws SharingweatherNotFoundException;
+    public ConcurrentHashMap<Long,CopyOnWriteArrayList<ReporteClima>> getReportesClimaSinPublicar() throws SharingweatherNotFoundException;
     
     /**
      * Metodo encargado de traer La lista de los usuarios
