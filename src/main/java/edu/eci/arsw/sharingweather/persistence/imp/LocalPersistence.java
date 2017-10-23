@@ -54,10 +54,10 @@ public class LocalPersistence implements SharingweatherPersistence {
         Ubicacion ub2 = new Ubicacion(4.628686, -74.074015);
         Ubicacion ub3 = new Ubicacion(4.628321, -74.073943);
         Ubicacion ub4 = new Ubicacion(4.628300, -74.075153);
-        ReporteClima clima1 = new ReporteClima(ub1, 10, usuario, /*new Timestamp(2017,10,20,11,24,20,21),*/ "Que Solazo!");
-        ReporteClima clima2 = new ReporteClima(ub2, 10, usuario2,/* new Timestamp(2017,10,20,11,24,20,21),*/ "Que Solazo!");
-        ReporteClima clima3 = new ReporteClima(ub3, 10, usuario3,/* new Timestamp(2017,10,20,11,24,20,21),*/ "Que Solazo!");
-        ReporteClima clima4 = new ReporteClima(ub4, 10, usuario4, /*new Timestamp(2017,10,20,11,24,20,21),*/ "Que Solazo!");
+        ReporteClima clima1 = new ReporteClima(ub1, 10, usuario,"sol");
+        ReporteClima clima2 = new ReporteClima(ub2, 10, usuario2,"sol");
+        ReporteClima clima3 = new ReporteClima(ub3, 10, usuario3,"sol");
+        ReporteClima clima4 = new ReporteClima(ub4, 10, usuario4,"sol");
         CopyOnWriteArrayList<ReporteClima> objList = new CopyOnWriteArrayList<>();
         objList.add(clima1);
         objList.add(clima2);
