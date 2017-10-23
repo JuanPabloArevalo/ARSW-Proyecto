@@ -41,8 +41,8 @@ public class LocalPersistence implements SharingweatherPersistence {
      */
     public LocalPersistence() {
         Usuario usuario = new Usuario("Juan Arevalo", 25, "juan.arevalo.merchan", "123", "juan.arevalo-m@mail.escuelaing.edu.co");
-        Usuario usuario2 = new Usuario("Stefany Moron", 25, "stefany.moron", "123", "stefany.moron@mail.escuelaing.edu.co");
-        Usuario usuario3 = new Usuario("Hector Cadavid", 25, "hector.cadavid", "123", "hector.cadavid@mail.escuelaing.edu.co");
+        Usuario usuario2 = new Usuario("Stefany Moron", 27, "stefany.moron", "1234", "stefany.moron@mail.escuelaing.edu.co");
+        Usuario usuario3 = new Usuario("Hector Cadavid", 18, "hector.cadavid", "12345", "hector.cadavid@mail.escuelaing.edu.co");
         listaUsuarios.add(usuario);
         listaUsuarios.add(usuario2);
         listaUsuarios.add(usuario3);
@@ -50,14 +50,13 @@ public class LocalPersistence implements SharingweatherPersistence {
         Ubicacion ub2 = new Ubicacion(4.746040, -74.031995);
         Ubicacion ub3 = new Ubicacion(4.748638, -74.030353);
         ReporteClima clima1 = new ReporteClima(ub1, 10, usuario,"sol");
-        ReporteClima clima2 = new ReporteClima(ub2, 10, usuario2,"sol");
-        ReporteClima clima3 = new ReporteClima(ub3, 10, usuario3,"sol");
+        ReporteClima clima2 = new ReporteClima(ub2, 12, usuario2,"sol");
+        ReporteClima clima3 = new ReporteClima(ub3, 18, usuario3,"sol");
         CopyOnWriteArrayList<ReporteClima> objList = new CopyOnWriteArrayList<>();
         objList.add(clima1);
         objList.add(clima2);
         objList.add(clima3);
         climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
-        System.out.println("Numero: "+ numeroPublicados);
         ub1 = new Ubicacion(4.733147,-74.035017);
         ub2 = new Ubicacion(4.729650,-74.031289);
         ub3 = new Ubicacion(4.732430,-74.033574);
@@ -68,7 +67,6 @@ public class LocalPersistence implements SharingweatherPersistence {
         objList.add(clima1);
         objList.add(clima2);
         objList.add(clima3);
-        System.out.println("Numero: "+ numeroPublicados);
         climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
         
         ub1 = new Ubicacion(4.706553,-74.035508);
@@ -82,7 +80,6 @@ public class LocalPersistence implements SharingweatherPersistence {
         objList.add(clima2);
         objList.add(clima3);
         climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
-        System.out.println("Climas Publicados: "+ climasPublicados.size());
     }
 
     @Override
