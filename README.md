@@ -13,6 +13,27 @@ Lo primero que podemos realizar aca, es consultar el mapa en tiempo real, este n
 
 Para poder realizar la publicación se debe poder tener acceso a la ubicación del dispositivo, de lo contrario no se podrá publicar, para ello, el navegador solicitará la ubicación del equipo y automáticamente generará la longitud y latitud donde se encuentre el usuario, después de esto, se debe poder elegir el clima que esta haciendo y por ultimo, se dirá cuanto tiempo lleva el clima en esa zona (En minutos), se procede a publicar el reporte del clima.
 
+<b>Información por defecto:</b>
+       <b>Usuarios:</b>
+          Usuario 1:
+              Nombre: Juan Arevalo
+              Edad: 25
+              nombreUsuario: juan.arevalo.merchan
+              contraseña: 123
+              correo: juan.arevalo-m@mail.escuelaing.edu.co
+          Usuario 2:
+              Nombre: Stefany Moron
+              Edad: 27
+              nombreUsuario: stefany.moron
+              contraseña: 1234
+              correo: stefany.moron@mail.escuelaing.edu.co
+          Usuario 3:
+              Nombre: Hector Cadavid
+              Edad: 18
+              nombreUsuario: hector.cadavid
+              contraseña: 12345
+              correo: hector.cadavid@mail.escuelaing.edu.co
+
 Nuestra aplicación esta desplegada en Heroku en el siguiente link: [https://sharingweather.herokuapp.com/](https://sharingweather.herokuapp.com/)
 
 El enlace al entorno Codacy del proyecto [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cc5e54277354433084212f5e7e0997ef)](https://www.codacy.com/app/JuanPabloArevalo/ARSWProyecto?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=JuanPabloArevalo/ARSWProyecto&amp;utm_campaign=Badge_Grade)
