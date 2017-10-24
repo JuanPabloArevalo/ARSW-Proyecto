@@ -11,7 +11,7 @@ var iniciarSesion = (function(){
     var password;
     
     return {
-            iniciar(){
+            iniciar:function(){
                 alert("Entro");
                 console.info("entro");
              var error = "";
@@ -23,7 +23,7 @@ var iniciarSesion = (function(){
                 activarBotonRegistrar = false;
              }
              password = $("#contraseñaInicioSesion").val();
-              if(correoElectronico === ""){
+              if(password === ""){
                 error = error + "Contraseña.";
                 activarBotonRegistrar = false;
               }
