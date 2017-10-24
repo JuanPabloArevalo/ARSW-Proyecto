@@ -17,8 +17,6 @@ var iniciarSesion = (function(){
                 alert("sesion");
             },
             iniciar(){
-                alert("Entro");
-                console.info("entro");
              var error = "";
              var activarBotonRegistrar = true;
              
@@ -42,7 +40,7 @@ var iniciarSesion = (function(){
                 $.when(apiclientInicioSesion.autenticacion(nombreUsuario,password )).done(function (usuario){
                     sessionStorage.setItem("nombreUsuario", usuario.nombreUsuario);
                     sessionStorage.setItem("password", usuario.password);
-                    //alert("Bienvenido, " + data.name);
+                    alert("Bienvenido, " + usuario.nombreUsuario + usuario.password);
                     window.location.href = "reportarClima.html";
                 }).fail(function(errorThrown){
                 console.log(errorThrown);
