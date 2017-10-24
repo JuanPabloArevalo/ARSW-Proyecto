@@ -5,6 +5,8 @@
  */
 
 
+/* global apiclientInicioSesion */
+
 var iniciarSesion = (function(){
     
     var nombreUsuario;
