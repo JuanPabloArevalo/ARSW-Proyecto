@@ -52,17 +52,6 @@ public class SharingweatherAPIController {
     }
     
     
-    @RequestMapping(path ="/Usuarios",method = RequestMethod.GET)
-    public ResponseEntity<?> manejadorGetAllUser(@RequestBody String nombreU , @RequestBody String correo){
-        try {
-            return new ResponseEntity<>(sws.IniciarSesion(nombreU, correo),HttpStatus.ACCEPTED);
-        } catch (SharingweatherNotFoundException ex) {
-            Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("NO hay usuarios registrados ",HttpStatus.NOT_FOUND);
-        }
-    
-    }
-    
     @RequestMapping(path ="/Usuarios/registrados",method = RequestMethod.GET)
     public ResponseEntity<?> manejadorGetRestrado(){
         try {
