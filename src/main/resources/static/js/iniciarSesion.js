@@ -11,7 +11,7 @@ var iniciarSesion = (function(){
     var password;
     
     return {
-           iniciarSesion(){
+           iniciar(){
              var error = "";
              var activarBotonRegistrar = true;
              nombreUsuario = $("#nombreUsuario").val();
