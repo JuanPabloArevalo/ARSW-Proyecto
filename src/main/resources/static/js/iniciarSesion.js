@@ -31,7 +31,7 @@ var iniciarSesion = (function(){
               }else{
                 $("#mensajeFalta").text(""); 
                 $("#divError").hide();
-                $.when(apiclientInicioSesion.autenticacion(nombreUsuario,contrasena )).done(function (usuario){
+                $.when(apiclientInicioSesion.autenticacion(nombreUsuario,password )).done(function (usuario){
                     sessionStorage.setItem("usuario", usuario.nombreUsuario);
                     sessionStorage.setItem("contrasena", usuario.password);
                     //alert("Bienvenido, " + data.name);
