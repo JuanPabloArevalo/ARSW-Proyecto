@@ -13,7 +13,7 @@ var iniciarSesion = (function(){
     var password;
     
     return {
-            iniciar:function(){
+            iniciar(){
                 alert("Entro");
                 console.info("entro");
              var error = "";
@@ -47,8 +47,7 @@ var iniciarSesion = (function(){
                 });
             
                 }
-            }
-        
+            }   
     };
     
 });
