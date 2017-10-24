@@ -8,26 +8,40 @@
 var iniciarSesion = (function(){
     
     var nombreUsuario;
-    var correo;
+    var password;
     
     return {
-           iniciarS(){
+           iniciarSesion(){
              var error = "";
              var activarBotonRegistrar = true;
              nombreUsuario = $("#nombreUsuario").val();
              if(nombreUsuario === ""){
-                error = error + "NombreUsuario. ";
+                error = error + "NombreUsuario.";
                 activarBotonRegistrar = false;
              }
-             correo = $("#correolectronico").val();
+             password = $("#contrasena").val();
               if(correoElectronico === ""){
-                error = error + "Correo Electronico. ";
+                error = error + "Contraseña.";
                 activarBotonRegistrar = false;
               }
               if(activarBotonRegistrar===false){
                 $("#mensajeFalta").text(error); 
                 $("#divError").show();
-              }
+                
+              }else{
+                $("#mensajeFalta").text(""); 
+                $("#divError").hide();
+                $.when(apiclientInicioSesion.autenticacion(nombreUsuario,contrasena )).done(function (usuario){
+                    sessionStorage.setItem("usuario", usuario.nombreUsuario);
+                    sessionStorage.setItem("contrasena", usuario.password);
+                    //alert("Bienvenido, " + data.name);
+                    window.location.href = "reportarClima.html";
+                }).fail(function(errorThrown){
+                console.log(errorThrown);
+                alert("Usted no se ha autenticado correctamente.");
+                });
+            
+                }
                
            }
         

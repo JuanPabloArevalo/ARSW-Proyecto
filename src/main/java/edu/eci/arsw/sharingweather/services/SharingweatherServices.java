@@ -94,6 +94,22 @@ public class SharingweatherServices {
         }
         return usuarios;
     }
+      /**
+     * Metodo encargado de traer un usuario en particular
+     *
+     * @return
+     * @throws SharingweatherNotFoundException
+     */
+     public Usuario getUsuario(String nombreUsuario) throws SharingweatherNotFoundException {
+        
+        for(int i=0; i < swp.getUsuarios().size(); i++){
+            if(swp.getUsuarios().get(i).getNombreUsuario().equals(nombreUsuario)){
+                return swp.getUsuarios().get(i);
+            }
+        }
+        return null;
+    }
+     
     /**
      * Metodo encargado de adicionar los usuarios a la lista de usuarios
      *
@@ -111,6 +127,8 @@ public class SharingweatherServices {
             swp.addUsuarios(usuario);
     }
     
+    
+    
     public void existeElUsuario(){
       existeUsuario = true;
     }
@@ -121,15 +139,14 @@ public class SharingweatherServices {
      * @return
      * @throws SharingweatherNotFoundException
      */
-    public String IniciarSesion(String nombreUsuario, String correo) throws SharingweatherNotFoundException {
-            
+    public Usuario IniciarSesion(String nombreUsuario, String password) throws SharingweatherNotFoundException {
+             
             for(int i = 0; i < swp.getUsuarios().size();i ++){
-            if(swp.getUsuarios().get(i).getNombreUsuario().equals(nombreUsuario)|| swp.getUsuarios().get(i).getCorreo().equals(correo)){
-                mensaje = "s";
-            }   
+                if(swp.getUsuarios().get(i).getNombreUsuario().equals(nombreUsuario)&& swp.getUsuarios().get(i).getPassword().equals(password)){
+                return getUsuario(nombreUsuario);
+                }   
             }
-             mensaje = "n";
-            
-            return mensaje;
+             
+            return null;
     }
 }
