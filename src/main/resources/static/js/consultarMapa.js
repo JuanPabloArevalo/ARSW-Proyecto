@@ -8,7 +8,7 @@
 var mapaGoogle;
 
 function dibujarPuntos(reporte){
-    let color ="#FF0000";
+    var color ="#FF0000";
     if("sol"===reporte.clima){
         color ="#F1F417";
     }
