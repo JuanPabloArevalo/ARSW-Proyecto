@@ -12,6 +12,8 @@ var iniciarSesion = (function(){
     
     return {
             iniciar(){
+                alert("Entro");
+                console.info("entro");
              var error = "";
              var activarBotonRegistrar = true;
              
