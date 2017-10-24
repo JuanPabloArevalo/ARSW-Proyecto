@@ -14,12 +14,12 @@ var iniciarSesion = (function(){
            iniciar(){
              var error = "";
              var activarBotonRegistrar = true;
-             nombreUsuario = $("#nombreUsuario").val();
+             nombreUsuario = $("#nombreInicioSesion").val();
              if(nombreUsuario === ""){
                 error = error + "NombreUsuario.";
                 activarBotonRegistrar = false;
              }
-             password = $("#contrasena").val();
+             password = $("#contraseñaInicioSesion").val();
               if(correoElectronico === ""){
                 error = error + "Contraseña.";
                 activarBotonRegistrar = false;
@@ -32,8 +32,8 @@ var iniciarSesion = (function(){
                 $("#mensajeFalta").text(""); 
                 $("#divError").hide();
                 $.when(apiclientInicioSesion.autenticacion(nombreUsuario,password )).done(function (usuario){
-                    sessionStorage.setItem("usuario", usuario.nombreUsuario);
-                    sessionStorage.setItem("contrasena", usuario.password);
+                    sessionStorage.setItem("nombreUsuario", usuario.nombreUsuario);
+                    sessionStorage.setItem("password", usuario.password);
                     //alert("Bienvenido, " + data.name);
                     window.location.href = "reportarClima.html";
                 }).fail(function(errorThrown){
@@ -42,8 +42,7 @@ var iniciarSesion = (function(){
                 });
             
                 }
-               
-           }
+            }
         
     };
     
