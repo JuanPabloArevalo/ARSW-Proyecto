@@ -90,7 +90,7 @@ var reportarClima = (function(){
             else{
                 $("#mensajeFalta").text(""); 
                 $("#divError").hide();
-                let promesaDelete = apiclientReportarClima.addNewSharingweather(longitud,latitud,clima,minutosClima,usuario);
+                var promesaDelete = apiclientReportarClima.addNewSharingweather(longitud,latitud,clima,minutosClima,usuario);
                 promesaDelete.then(
                     function(){
                         $("#myModal").modal("show");
