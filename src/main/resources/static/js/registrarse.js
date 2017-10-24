@@ -56,6 +56,7 @@ var registrarse = (function(){
                 let promesa = apiclientRegistrarse.adicionarUsuario(nombre,edad,nombreUsuario,contrasena,correoElectronico); 
                  promesa.then(
                  function(){
+                     window.location.href = "iniciarSesion.html";
                  },
                  function(){
                 $("#mensajeFalta").text(promesa.responseText); 
