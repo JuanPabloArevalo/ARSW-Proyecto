@@ -11,9 +11,10 @@ var iniciarSesion = (function(){
     var password;
     
     return {
-           iniciar(){
+            iniciar(){
              var error = "";
              var activarBotonRegistrar = true;
+             
              nombreUsuario = $("#nombreInicioSesion").val();
              if(nombreUsuario === ""){
                 error = error + "NombreUsuario.";
