@@ -13,6 +13,9 @@ var iniciarSesion = (function(){
     var password;
     
     return {
+            init(){
+                alert("sesion");
+            },
             iniciar(){
                 alert("Entro");
                 console.info("entro");
