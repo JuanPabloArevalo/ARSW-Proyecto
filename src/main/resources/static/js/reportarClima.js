@@ -112,8 +112,8 @@ var reportarClima = (function () {
                         },
                         function () {
                             $("#myModal").modal("show");
-                            $("#idTituloModal").text("Error!!");
-                            $("#idTextoModal").text("UPS! Ha ocurrido un error al reportar el clima en tu zona. " + promesaDelete.responseText);
+                            $("#idTituloModal").text("UPPPS!!");
+                            $("#idTextoModal").text("Algo salio mal. " + promesaDelete.responseText);
                         }
                 );
             }

@@ -95,7 +95,7 @@ public class LocalPersistence implements SharingweatherPersistence {
             for (int i = 0; i < objList.size(); i++) {
                 if (objList.get(i).getUbicacion().distanciaEntreUbicaciones(clima.getUbicacion()) <= DISTANCIAMINIMA && clima.getClima().equals(objList.get(i).getClima())) {
                     if (clima.getUsuario().getNombreUsuario().equals(objList.get(i).getUsuario().getNombreUsuario())) {
-                        throw new SharingweatherPersistenceException("Ya se ha publicado un reporte en la misma zona.");
+                        throw new SharingweatherPersistenceException("Ya has publicado un reporte en la misma zona y con el mismo clima.");
                     }
                     objList.add(clima);
                     if (objList.size() >= CANTIDADREPORTESMINIMO) {
@@ -124,7 +124,7 @@ public class LocalPersistence implements SharingweatherPersistence {
                 for (int i = 0; i < objList.size(); i++) {
                     if (objList.get(i).getUbicacion().distanciaEntreUbicaciones(clima.getUbicacion()) <= DISTANCIAMINIMA && clima.getClima().equals(objList.get(i).getClima())) {
                         if (clima.getUsuario().getNombreUsuario().equals(objList.get(i).getUsuario().getNombreUsuario())) {
-                            throw new SharingweatherPersistenceException("Ya se ha publicado un reporte en la misma zona.");
+                            throw new SharingweatherPersistenceException("Ya has publicado un reporte en la misma zona y con el mismo clima.");
                         }
                         objList.add(clima);
                         climasPublicados.replace(llaveActual, objList);
