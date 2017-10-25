@@ -39,7 +39,7 @@ var iniciarSesion = (function(){
                 $("#divError").hide();
                 var promesa = apiclientInicioSesion.autenticacion(nombreUsuario,password , function(usuario){ 
                     sessionStorage.setItem("nombreUsuario", usuario.nombreUsuario);
-                    sessionStorage.setItem("password", usuario.password);
+                    sessionStorage.setItem("nombre", usuario.nombre);
                     alert("Bienvenido, " + usuario.nombreUsuario + usuario.password);
                     window.location.href = "reportarClima.html";
                 }); 
