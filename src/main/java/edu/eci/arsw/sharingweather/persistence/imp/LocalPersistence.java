@@ -10,6 +10,7 @@ import edu.eci.arsw.sharingweather.model.Ubicacion;
 import edu.eci.arsw.sharingweather.model.Usuario;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherNotFoundException;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistence;
+import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistenceException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -24,6 +25,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class LocalPersistence implements SharingweatherPersistence {
+
     private ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> climasPublicados = new ConcurrentHashMap<>();
     private ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> climasNoPublicados = new ConcurrentHashMap<>();
     private AtomicLong numeroPublicados = new AtomicLong(1);
@@ -48,32 +50,32 @@ public class LocalPersistence implements SharingweatherPersistence {
         Ubicacion ub1 = new Ubicacion(4.746147, -74.030096);
         Ubicacion ub2 = new Ubicacion(4.746040, -74.031995);
         Ubicacion ub3 = new Ubicacion(4.748638, -74.030353);
-        ReporteClima clima1 = new ReporteClima(ub1, 10, usuario,"sol");
-        ReporteClima clima2 = new ReporteClima(ub2, 12, usuario2,"sol");
-        ReporteClima clima3 = new ReporteClima(ub3, 18, usuario3,"sol");
+        ReporteClima clima1 = new ReporteClima(ub1, 10, usuario, "sol");
+        ReporteClima clima2 = new ReporteClima(ub2, 12, usuario2, "sol");
+        ReporteClima clima3 = new ReporteClima(ub3, 18, usuario3, "sol");
         CopyOnWriteArrayList<ReporteClima> objList = new CopyOnWriteArrayList<>();
         objList.add(clima1);
         objList.add(clima2);
         objList.add(clima3);
         climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
-        ub1 = new Ubicacion(4.733147,-74.035017);
-        ub2 = new Ubicacion(4.729650,-74.031289);
-        ub3 = new Ubicacion(4.732430,-74.033574);
-        clima1 = new ReporteClima(ub1, 25, usuario,"agua");
-        clima2 = new ReporteClima(ub2, 32, usuario2,"agua");
-        clima3 = new ReporteClima(ub3, 45, usuario3,"agua");
+        ub1 = new Ubicacion(4.733147, -74.035017);
+        ub2 = new Ubicacion(4.729650, -74.031289);
+        ub3 = new Ubicacion(4.732430, -74.033574);
+        clima1 = new ReporteClima(ub1, 25, usuario, "agua");
+        clima2 = new ReporteClima(ub2, 32, usuario2, "agua");
+        clima3 = new ReporteClima(ub3, 45, usuario3, "agua");
         objList = new CopyOnWriteArrayList<>();
         objList.add(clima1);
         objList.add(clima2);
         objList.add(clima3);
         climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
-        
-        ub1 = new Ubicacion(4.706553,-74.035508);
-        ub2 = new Ubicacion(4.703313,-74.034446);
-        ub3 = new Ubicacion(4.703377,-74.036817);
-        clima1 = new ReporteClima(ub1, 55, usuario,"nublado");
-        clima2 = new ReporteClima(ub2, 65, usuario2,"nublado");
-        clima3 = new ReporteClima(ub3, 75, usuario3,"nublado");
+
+        ub1 = new Ubicacion(4.706553, -74.035508);
+        ub2 = new Ubicacion(4.703313, -74.034446);
+        ub3 = new Ubicacion(4.703377, -74.036817);
+        clima1 = new ReporteClima(ub1, 55, usuario, "nublado");
+        clima2 = new ReporteClima(ub2, 65, usuario2, "nublado");
+        clima3 = new ReporteClima(ub3, 75, usuario3, "nublado");
         objList = new CopyOnWriteArrayList<>();
         objList.add(clima1);
         objList.add(clima2);
@@ -82,7 +84,7 @@ public class LocalPersistence implements SharingweatherPersistence {
     }
 
     @Override
-    public void saveReporteClima(ReporteClima clima, Usuario usuario) {
+    public void saveReporteClima(ReporteClima clima, Usuario usuario) throws SharingweatherPersistenceException {
         CopyOnWriteArrayList<ReporteClima> objList;
         boolean encontro = false;
         Long llaveActual;
@@ -91,7 +93,10 @@ public class LocalPersistence implements SharingweatherPersistence {
             objList = entry.getValue();
             llaveActual = entry.getKey();
             for (int i = 0; i < objList.size(); i++) {
-                if (objList.get(i).getUbicacion().distanciaEntreUbicaciones(clima.getUbicacion()) <= DISTANCIAMINIMA && clima.getClima().equals(objList.get(i).getClima()) && !clima.getUsuario().getNombreUsuario().equals(objList.get(i).getUsuario().getNombreUsuario())) {
+                if (objList.get(i).getUbicacion().distanciaEntreUbicaciones(clima.getUbicacion()) <= DISTANCIAMINIMA && clima.getClima().equals(objList.get(i).getClima())) {
+                    if (clima.getUsuario().getNombreUsuario().equals(objList.get(i).getUsuario().getNombreUsuario())) {
+                        throw new SharingweatherPersistenceException("Ya has publicado un reporte en la misma zona y con el mismo clima.");
+                    }
                     objList.add(clima);
                     if (objList.size() >= CANTIDADREPORTESMINIMO) {
                         climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
@@ -99,7 +104,7 @@ public class LocalPersistence implements SharingweatherPersistence {
                         climasNoPublicados.remove(llaveActual);
                         //PUBLICAR ZONA
                         msgt.convertAndSend("/topic/reporteClima", objList);
-                        
+
                     } else {
                         climasNoPublicados.replace(llaveActual, objList);
                     }
@@ -117,7 +122,10 @@ public class LocalPersistence implements SharingweatherPersistence {
                 objList = entry.getValue();
                 llaveActual = entry.getKey();
                 for (int i = 0; i < objList.size(); i++) {
-                    if (objList.get(i).getUbicacion().distanciaEntreUbicaciones(clima.getUbicacion()) <= DISTANCIAMINIMA && clima.getClima().equals(objList.get(i).getClima()) && !clima.getUsuario().getNombreUsuario().equals(objList.get(i).getUsuario().getNombreUsuario())) {
+                    if (objList.get(i).getUbicacion().distanciaEntreUbicaciones(clima.getUbicacion()) <= DISTANCIAMINIMA && clima.getClima().equals(objList.get(i).getClima())) {
+                        if (clima.getUsuario().getNombreUsuario().equals(objList.get(i).getUsuario().getNombreUsuario())) {
+                            throw new SharingweatherPersistenceException("Ya has publicado un reporte en la misma zona y con el mismo clima.");
+                        }
                         objList.add(clima);
                         climasPublicados.replace(llaveActual, objList);
                         encontro = true;

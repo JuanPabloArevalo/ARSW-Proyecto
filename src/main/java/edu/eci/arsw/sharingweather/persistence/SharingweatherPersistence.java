@@ -19,8 +19,9 @@ public interface SharingweatherPersistence {
      * Metodo encargado de guardar un nuevo reporte del clima
      * @param clima
      * @param usuario
+     * @throws edu.eci.arsw.sharingweather.persistence.SharingweatherPersistenceException
      */
-    public void saveReporteClima(ReporteClima clima, Usuario usuario);
+    public void saveReporteClima(ReporteClima clima, Usuario usuario) throws SharingweatherPersistenceException;
 
     /**
      * Metodo encargado de traer todos los reportes que ya se han publicado
