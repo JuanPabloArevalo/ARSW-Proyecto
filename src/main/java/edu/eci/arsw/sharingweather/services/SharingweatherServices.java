@@ -102,7 +102,6 @@ public class SharingweatherServices {
      * @throws SharingweatherNotFoundException
      */
      public Usuario getUsuario(String nombreUsuario) throws SharingweatherNotFoundException {
-        
         for(int i=0; i < swp.getUsuarios().size(); i++){
             if(swp.getUsuarios().get(i).getNombreUsuario().equals(nombreUsuario)){
                 return swp.getUsuarios().get(i);
@@ -141,9 +140,9 @@ public class SharingweatherServices {
      * @throws SharingweatherNotFoundException
      */
     public Usuario IniciarSesion(String nombreUsuario, String password) throws SharingweatherNotFoundException {
-             
-            for(int i = 0; i < swp.getUsuarios().size();i ++){
-                if(swp.getUsuarios().get(i).getNombreUsuario().equals(nombreUsuario)&& swp.getUsuarios().get(i).getPassword().equals(password)){
+         CopyOnWriteArrayList<Usuario> usuarios= swp.getUsuarios();
+            for(int i = 0; i < usuarios.size();i ++){
+                if(usuarios.get(i).getNombreUsuario().equals(nombreUsuario)&& usuarios.get(i).getPassword().equals(password)){
                 return getUsuario(nombreUsuario);
                 }   
             }

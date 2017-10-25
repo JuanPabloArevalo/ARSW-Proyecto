@@ -64,7 +64,7 @@ public class SharingweatherAPIController {
     }
     
     @RequestMapping(path ="/Usuarios/loggeados",method = RequestMethod.GET)
-    public ResponseEntity<?> manejadorPostRegistrado(@RequestBody String nombreU , @RequestBody String password){
+    public ResponseEntity<?> manejadorGetRegistrado(@RequestBody String nombreU , @RequestBody String password){
         try {
             return new ResponseEntity<>(sws.IniciarSesion(nombreU, password),HttpStatus.ACCEPTED);
         } catch (SharingweatherNotFoundException ex) {
