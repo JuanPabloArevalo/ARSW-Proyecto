@@ -8,13 +8,10 @@
 var apiclientInicioSesion = (function(){
     
     return{
-            autenticacion(nombreUsuario,contrasena){
-            return $.ajax({
-                url: "/sharingweather/V1/Usuarios/loggeados",
-                type: "POST",
-                data: '{"nombreUsuario":"'+nombreUsuario+'", "password":"'+contrasena+'"}',
-                contentType: "application/json"
-            });
+            autenticacion(nombreUsuario,contrasena, callback){
+            
+                return $.get("/sharingweather/V1/Usuarios/loggeados",callback); 
+            
         }
         
     };
