@@ -150,7 +150,7 @@ public class SharingweatherServices {
             }
         }
         if (usuario == null) {
-            throw new SharingweatherNotFoundException("El usuario no se encuentra registrado.");
+            throw new SharingweatherNotFoundException(" El usuario o la contraseña son incorrectos.");
         }
         return null;
 
