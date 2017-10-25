@@ -89,8 +89,9 @@ public class SharingweatherServices {
      */
      public Set<Usuario> getUsuarios() throws SharingweatherNotFoundException {
         Set<Usuario> usuarios = new HashSet<>();
-        for(int i=0; i < swp.getUsuarios().size(); i++){
-           usuarios.add(swp.getUsuarios().get(i));
+        CopyOnWriteArrayList<Usuario> usuariostemp = swp.getUsuarios();
+        for(int i=0; i < usuariostemp.size(); i++){
+           usuarios.add(usuariostemp.get(i));
         }
         return usuarios;
     }
