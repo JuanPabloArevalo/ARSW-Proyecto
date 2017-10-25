@@ -35,12 +35,15 @@ and open the template in the editor.
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/consultarMapa.html">Consultar Mapa</a></li>
-                        <li class=""><a href="/reportarClima.html">Reportar Clima</a></li>
-                        <li class=""><a href="#">Mis favoritos</a></li>
-                        <li class=""><a href="#">Mi perfil</a></li>
+                        <li id="idReportarClima" class="hide"><a href="/reportarClima.html">Reportar Clima</a></li>
+                        <li id="idMisFavoritos" class="hide"><a href="#">Mis favoritos</a></li>
+                        <li id="idMiPerfil" class="hide"><a href="#">Mi perfil</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
+                        <li id="idCerrarSesion" class="hide"><a href="#"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
+                        <li id="idIniciarSesion" class="hide"><a href="/iniciarSesion.html"><span class="glyphicon glyphicon-user"></span>Iniciar sesión</a></li>
+                        <li id="idRegistrarse" class="hide"><a href="/registrarse.html"><span class="glyphicon glyphicon-log-in"></span>Registrarse</a></li>
+                    
                     </ul>
                 </div>
             </div>
@@ -54,7 +57,7 @@ and open the template in the editor.
                 </div> 
                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <input type="text" class="form-control" placeholder="Search" id="idTxtBusqueda" >
-                    <div class="form-group">
+                    <div id="idDivRegionesFavoritas" class="form-group">
                         <label for="comment">Mis zonas Favoritas:</label>
                         <textarea class="form-control" rows="20" id="idRegionesFavoritas" disabled=""></textarea>
                     </div> 

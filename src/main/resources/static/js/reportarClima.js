@@ -16,7 +16,7 @@ var reportarClima = (function () {
     var usuario = "";
     return{
         obtenerUbicacion() {
-            if ("undefined" === sessionStorage.getItem("nombreUsuario")) {
+            if ("undefined" === sessionStorage.getItem("nombreUsuario") || null === sessionStorage.getItem("nombreUsuario")) {
                 alert("Para esta función, debe iniciar sesión primero.");
                 window.location.href = "index.html";
             }
@@ -58,7 +58,7 @@ var reportarClima = (function () {
             }
         },
         addNewReporteClima() {
-            if ("undefined" === sessionStorage.getItem("nombreUsuario")) {
+            if ("undefined" === sessionStorage.getItem("nombreUsuario") || null === sessionStorage.getItem("nombreUsuario")) {
                 alert("Para esta función, debe iniciar sesión primero.");
                 window.location.href = "index.html";
             }

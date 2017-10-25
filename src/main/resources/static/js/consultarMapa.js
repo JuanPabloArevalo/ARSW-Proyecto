@@ -7,32 +7,51 @@
 /* global google, Stomp, apiclientConsultarMapa, SockJS */
 var mapaGoogle;
 
-function dibujarPuntos(reporte){
-    var color ="#FF0000";
-    if("sol"===reporte.clima){
-        color ="#F1F417";
-    }
-    else if("agua"===reporte.clima){
-        color ="#1724F4";
-    }
-    else{
-        color ="#7F8088";
+function dibujarPuntos(reporte) {
+    var color = "#FF0000";
+    if ("sol" === reporte.clima) {
+        color = "#F1F417";
+    } else if ("agua" === reporte.clima) {
+        color = "#1724F4";
+    } else {
+        color = "#7F8088";
     }
     var marca = new google.maps.Circle({
-                strokeColor: color,
-                strokeOpacity: 0.2,
-                strokeWeight: 2,
-                fillColor: color,
-                fillOpacity: 0.15,
-                map: mapaGoogle,
-                center: {lat: reporte.ubicacion.latitud, lng: reporte.ubicacion.longitud},
-                radius: 400
+        strokeColor: color,
+        strokeOpacity: 0.2,
+        strokeWeight: 2,
+        fillColor: color,
+        fillOpacity: 0.15,
+        map: mapaGoogle,
+        center: {lat: reporte.ubicacion.latitud, lng: reporte.ubicacion.longitud},
+        radius: 400
     });
 }
 
 var consultarMapa = (function () {
     return{
-        init(){
+        init() {
+            if ("undefined" === sessionStorage.getItem("nombreUsuario") || null === sessionStorage.getItem("nombreUsuario")) {
+                //no inicio sesion
+                $("#idReportarClima").attr("class", "hide");
+                $("#idMisFavoritos").attr("class", "hide");
+                $("#idMiPerfil").attr("class", "hide");
+                $("#idCerrarSesion").attr("class", "hide");
+                $("#idIniciarSesion").attr("class", "");
+                $("#idRegistrarse").attr("class", "");
+                $("#idDivRegionesFavoritas").hide();
+            }
+            else{
+                 //no inicio sesion
+                $("#idReportarClima").attr("class", "");
+                $("#idMisFavoritos").attr("class", "");
+                $("#idMiPerfil").attr("class", "");
+                $("#idCerrarSesion").attr("class", "");
+                $("#idIniciarSesion").attr("class", "hide");
+                $("#idRegistrarse").attr("class", "hide");
+                $("#idDivRegionesFavoritas").show();
+            }
+
             consultarMapa.connectAndSubscribe();
             consultarMapa.myMap();
             consultarMapa.iniciarMapaClimaPublicado();
@@ -42,7 +61,7 @@ var consultarMapa = (function () {
                 center: new google.maps.LatLng(4.6537726, -74.0660075),
                 zoom: 12,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
-		draggable: true
+                draggable: true
             };
             mapaGoogle = new google.maps.Map(document.getElementById("idMap"), mapOptions);
 
@@ -102,7 +121,7 @@ var consultarMapa = (function () {
                 mapaGoogle.fitBounds(bounds);
             });
         },
-        connectAndSubscribe(){
+        connectAndSubscribe() {
             var socket = new SockJS("/stompendpoint");
             var stompClient = Stomp.over(socket);
             //subscribe to /topic/reporteClima
@@ -113,14 +132,14 @@ var consultarMapa = (function () {
                 });
             });
         },
-        getMapa(){
+        getMapa() {
             return mapaGoogle;
         },
-        iniciarMapaClimaPublicado(){
-            apiclientConsultarMapa.getAllReportesPublicados( function(lbp){ 
-                    lbp.map(dibujarPuntos);
-                } 
-            ); 
+        iniciarMapaClimaPublicado() {
+            apiclientConsultarMapa.getAllReportesPublicados(function (lbp) {
+                lbp.map(dibujarPuntos);
+            }
+            );
         }
     };
 }());
