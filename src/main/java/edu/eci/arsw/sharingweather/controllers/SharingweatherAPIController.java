@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -63,8 +64,8 @@ public class SharingweatherAPIController {
     
     }
     
-    @RequestMapping(path ="/Usuarios/loggeados",method = RequestMethod.GET)
-    public ResponseEntity<?> manejadorGetRegistrado(@RequestBody String nombreU , @RequestBody String password){
+    @RequestMapping(path ="/Usuarios/{usuario}/{password}",method = RequestMethod.GET)
+    public ResponseEntity<?> manejadorGetRegistrado(@PathVariable ("usuario") String nombreU , @PathVariable ("password") String password){
         try {
             return new ResponseEntity<>(sws.IniciarSesion(nombreU, password),HttpStatus.ACCEPTED);
         } catch (SharingweatherNotFoundException ex) {
