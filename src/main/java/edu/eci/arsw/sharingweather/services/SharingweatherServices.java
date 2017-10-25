@@ -146,11 +146,13 @@ public class SharingweatherServices {
                 if(usuarios.get(i).getNombreUsuario().equals(nombreUsuario)&& usuarios.get(i).getPassword().equals(password)){
                     
                 usuario = getUsuario(nombreUsuario);
+                return usuario;
                 }   
             }
             if(usuario == null){
              throw new SharingweatherNotFoundException("El usuario no se encuntra registrado.");
             }
+        return null;
            
     }
 }
