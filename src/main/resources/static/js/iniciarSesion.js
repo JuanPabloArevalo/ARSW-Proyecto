@@ -25,7 +25,7 @@ var iniciarSesion = (function(){
                 error = error + "NombreUsuario.";
                 activarBotonRegistrar = false;
              }
-             password = $("#contraseñaInicioSesion").val();
+             password = $("#Password").val();
               if(password === ""){
                 error = error + "Contraseña.";
                 activarBotonRegistrar = false;
