@@ -69,7 +69,7 @@ public class SharingweatherAPIController {
             return new ResponseEntity<>(sws.IniciarSesion(nombreU, password),HttpStatus.ACCEPTED);
         } catch (SharingweatherNotFoundException ex) {
             Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("El usuario no esta registrado  ",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_FOUND);
         }
     
     }
