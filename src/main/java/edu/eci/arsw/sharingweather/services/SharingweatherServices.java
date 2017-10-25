@@ -148,6 +148,6 @@ public class SharingweatherServices {
                 }   
             }
              
-            return null;
+            throw new SharingweatherNotFoundException("El usuario no existe.");
     }
 }
