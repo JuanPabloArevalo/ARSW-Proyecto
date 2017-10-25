@@ -15,6 +15,13 @@ and open the template in the editor.
         <script src="js/apiclientReportarClima.js"></script>
         <script src="js/reportarClima.js"></script>
         <link rel="stylesheet" href="css/consultarMapa.css" />
+        
+        <script>             
+            if ("undefined" === sessionStorage.getItem("nombreUsuario")) {
+                alert("Para esta función, debe iniciar sesión primero.");
+                window.location.href = "index.html";
+            } 
+        </script>
     </head>
     <body id="idFondo" onload="reportarClima.obtenerUbicacion()">
         <!--Inicia el menú-->

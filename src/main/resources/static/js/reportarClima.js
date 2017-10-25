@@ -13,20 +13,13 @@ var reportarClima = (function () {
     var latitud;
     var clima;
     var minutosClima;
-    var usuario = "Juan Pablo";
+    var usuario = "";
     return{
         obtenerUbicacion() {
             if ("undefined" === sessionStorage.getItem("nombreUsuario")) {
                 alert("Para esta función, debe iniciar sesión primero.");
                 window.location.href = "index.html";
-            } else {
-                alert("No es nulo");
             }
-
-            alert(sessionStorage.getItem("nombreUsuario"));
-            console.info(sessionStorage.getItem("nombreUsuario"));
-
-
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (objPosition) {
                     longitud = objPosition.coords.longitude;
@@ -95,7 +88,8 @@ var reportarClima = (function () {
                 falta = falta + "Minutos. ";
                 puedeAdicionar = false;
             }
-
+            
+            usuario = sessionStorage
 
             if (puedeAdicionar === false) {
                 $("#mensajeFalta").text(falta);
