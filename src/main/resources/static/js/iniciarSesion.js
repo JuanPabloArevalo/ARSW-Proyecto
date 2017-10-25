@@ -45,7 +45,7 @@ var iniciarSesion = (function(){
                 }); 
             promesa.then(function(){},function(){
                 $("#mensajeError").text(promesa.responseText); 
-                $("#divError").show();
+                $("#error").show();
                 });
              }
          
