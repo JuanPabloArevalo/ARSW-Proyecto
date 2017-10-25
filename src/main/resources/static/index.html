@@ -13,8 +13,9 @@ and open the template in the editor.
         <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
         <link rel="stylesheet" href="css/style.css" />
+        <script src="js/index.js"></script>
     </head>
-    <body id="idFondo">
+    <body id="idFondo" onload="index.init()">
         <!--Inicia el menú-->
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -28,12 +29,15 @@ and open the template in the editor.
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class=""><a href="/consultarMapa.html">Consultar Mapa</a></li>
-                        <li class=""><a href="/reportarClima.html">Reportar Clima</a></li>
+                        <li class="active"><a href="/consultarMapa.html">Consultar Mapa</a></li>
+                        <li id="idReportarClima" class="hide"><a href="/reportarClima.html">Reportar Clima</a></li>
+                        <li id="idMisFavoritos" class="hide"><a href="#">Mis favoritos</a></li>
+                        <li id="idMiPerfil" class="hide"><a href="#">Mi perfil</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/iniciarSesion.html"><span class="glyphicon glyphicon-user"></span>Iniciar sesión</a></li>
-                        <li ><a href="/registrarse.html"><span class="glyphicon glyphicon-log-in"></span>Registrarse</a></li>
+                        <li id="idCerrarSesion" class="hide"><a href="#"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
+                        <li id="idIniciarSesion" class="hide"><a href="/iniciarSesion.html"><span class="glyphicon glyphicon-user"></span>Iniciar sesión</a></li>
+                        <li id="idRegistrarse" class="hide"><a href="/registrarse.html"><span class="glyphicon glyphicon-log-in"></span>Registrarse</a></li>
                     </ul>
                 </div>
             </div>
