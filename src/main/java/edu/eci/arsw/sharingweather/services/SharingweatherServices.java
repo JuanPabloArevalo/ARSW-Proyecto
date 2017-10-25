@@ -28,20 +28,17 @@ public class SharingweatherServices {
 
     @Autowired
     private SharingweatherPersistence swp = null;
-    
-    private boolean existeUsuario = false;
-    private String mensaje ="";
 
     /**
      * Metodo encargado de adicionar un nuevo reporte del clima
      *
      * @param rcl
-     * @param usuario
-     * @throws edu.eci.arsw.sharingweather.persistence.SharingweatherNotFoundException
+     * @throws
+     * edu.eci.arsw.sharingweather.persistence.SharingweatherNotFoundException
      */
-    public void addNewReporteClima(ReporteClima rcl, Usuario usuario) throws SharingweatherNotFoundException{
+    public void addNewReporteClima(ReporteClima rcl) throws SharingweatherNotFoundException {
         try {
-            usuario = getUsuario(usuario.getNombreUsuario());
+            Usuario usuario = getUsuario(rcl.getUsuario().getNombreUsuario());
             rcl.setUsuario(usuario);
             swp.saveReporteClima(rcl, usuario);
         } catch (SharingweatherNotFoundException ex) {
@@ -75,7 +72,7 @@ public class SharingweatherServices {
      * @return
      * @throws SharingweatherNotFoundException
      */
-    public Set<ReporteClima>  getReportesSinPublicar() throws SharingweatherNotFoundException {
+    public Set<ReporteClima> getReportesSinPublicar() throws SharingweatherNotFoundException {
         Set<ReporteClima> reportes = new HashSet<>();
         CopyOnWriteArrayList<ReporteClima> objList;
         for (Map.Entry<Long, CopyOnWriteArrayList<ReporteClima>> entry : swp.getReportesClimaSinPublicar().entrySet()) {
@@ -93,30 +90,31 @@ public class SharingweatherServices {
      * @return
      * @throws SharingweatherNotFoundException
      */
-     public Set<Usuario> getUsuarios() throws SharingweatherNotFoundException {
+    public Set<Usuario> getUsuarios() throws SharingweatherNotFoundException {
         Set<Usuario> usuarios = new HashSet<>();
         CopyOnWriteArrayList<Usuario> usuariostemp = swp.getUsuarios();
-        for(int i=0; i < usuariostemp.size(); i++){
-           usuarios.add(usuariostemp.get(i));
+        for (int i = 0; i < usuariostemp.size(); i++) {
+            usuarios.add(usuariostemp.get(i));
         }
         return usuarios;
     }
-      /**
+
+    /**
      * Metodo encargado de traer un usuario en particular
      *
      * @param nombreUsuario
      * @return
      * @throws SharingweatherNotFoundException
      */
-     public Usuario getUsuario(String nombreUsuario) throws SharingweatherNotFoundException {
-        for(int i=0; i < swp.getUsuarios().size(); i++){
-            if(swp.getUsuarios().get(i).getNombreUsuario().equals(nombreUsuario)){
+    public Usuario getUsuario(String nombreUsuario) throws SharingweatherNotFoundException {
+        for (int i = 0; i < swp.getUsuarios().size(); i++) {
+            if (swp.getUsuarios().get(i).getNombreUsuario().equals(nombreUsuario)) {
                 return swp.getUsuarios().get(i);
             }
         }
         return null;
     }
-     
+
     /**
      * Metodo encargado de adicionar los usuarios a la lista de usuarios
      *
@@ -124,22 +122,15 @@ public class SharingweatherServices {
      * @throws SharingweatherNotFoundException
      */
     public void addUsuarios(Usuario usuario) throws SharingweatherNotFoundException {
-        
-        for(int i = 0; i < swp.getUsuarios().size();i ++){
-        if(swp.getUsuarios().get(i).getNombreUsuario().equals(usuario.getNombreUsuario())|| swp.getUsuarios().get(i).getCorreo().equals(usuario.getCorreo())){
-            existeElUsuario();
-            throw new SharingweatherNotFoundException("El usuario ya existe.");
-            }   
+
+        for (int i = 0; i < swp.getUsuarios().size(); i++) {
+            if (swp.getUsuarios().get(i).getNombreUsuario().equals(usuario.getNombreUsuario()) || swp.getUsuarios().get(i).getCorreo().equals(usuario.getCorreo())) {
+                throw new SharingweatherNotFoundException("El usuario ya existe.");
+            }
         }
-            swp.addUsuarios(usuario);
+        swp.addUsuarios(usuario);
     }
-    
-    
-    
-    public void existeElUsuario(){
-      existeUsuario = true;
-    }
-    
+
     /**
      * Metodo encargado de adicionar los usuarios a la lista de usuarios
      *
@@ -148,20 +139,20 @@ public class SharingweatherServices {
      * @return
      * @throws SharingweatherNotFoundException
      */
-    public Usuario IniciarSesion(String nombreUsuario, String password) throws SharingweatherNotFoundException {
-         CopyOnWriteArrayList<Usuario> usuarios= swp.getUsuarios();
-         Usuario usuario = null ;
-            for(int i = 0; i < usuarios.size();i ++){
-                if(usuarios.get(i).getNombreUsuario().equals(nombreUsuario)&& usuarios.get(i).getPassword().equals(password)){
-                    
+    public Usuario iniciarSesion(String nombreUsuario, String password) throws SharingweatherNotFoundException {
+        CopyOnWriteArrayList<Usuario> usuarios = swp.getUsuarios();
+        Usuario usuario = null;
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getNombreUsuario().equals(nombreUsuario) && usuarios.get(i).getPassword().equals(password)) {
+
                 usuario = getUsuario(nombreUsuario);
                 return usuario;
-                }   
             }
-            if(usuario == null){
-             throw new SharingweatherNotFoundException("El usuario no se encuentra registrado.");
-            }
+        }
+        if (usuario == null) {
+            throw new SharingweatherNotFoundException("El usuario no se encuentra registrado.");
+        }
         return null;
-           
+
     }
 }

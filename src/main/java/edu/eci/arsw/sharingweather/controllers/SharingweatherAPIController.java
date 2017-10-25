@@ -66,7 +66,7 @@ public class SharingweatherAPIController {
     @RequestMapping(path ="/Usuarios/{usuario}/{password}",method = RequestMethod.GET)
     public ResponseEntity<?> manejadorGetRegistrado(@PathVariable ("usuario") String nombreU , @PathVariable ("password") String password){
         try {
-            return new ResponseEntity<>(sws.IniciarSesion(nombreU, password),HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(sws.iniciarSesion(nombreU, password),HttpStatus.ACCEPTED);
         } catch (SharingweatherNotFoundException ex) {
             Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_FOUND);
@@ -77,7 +77,7 @@ public class SharingweatherAPIController {
     @RequestMapping(path ="/reportesClima", method = RequestMethod.POST)	
     public ResponseEntity<?> manejadorPostRecursoAdicionarReporteClima(@RequestBody ReporteClima repClima){
         try {
-            sws.addNewReporteClima(repClima, repClima.getUsuario());
+            sws.addNewReporteClima(repClima);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (SharingweatherNotFoundException ex) {
             Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
