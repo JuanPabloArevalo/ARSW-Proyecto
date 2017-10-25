@@ -14,6 +14,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
         <link rel="stylesheet" href="css/style.css" />
         <script src="js/index.js"></script>
+        <script src="js/cerrarSesion.js"></script>
     </head>
     <body id="idFondo" onload="index.init()">
         <!--Inicia el menú-->
@@ -35,7 +36,7 @@ and open the template in the editor.
                         <li id="idMiPerfil" class="hide"><a href="#">Mi perfil</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li id="idCerrarSesion" class="hide"><a href="#"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
+                        <li id="idCerrarSesion" class="hide"><a onclick="cerrarSesion.cerrarSesion()"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
                         <li id="idIniciarSesion" class="hide"><a href="/iniciarSesion.html"><span class="glyphicon glyphicon-user"></span>Iniciar sesión</a></li>
                         <li id="idRegistrarse" class="hide"><a href="/registrarse.html"><span class="glyphicon glyphicon-log-in"></span>Registrarse</a></li>
                     </ul>

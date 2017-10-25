@@ -14,7 +14,8 @@ and open the template in the editor.
         <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
         <script src="js/apiclientReportarClima.js"></script>
         <script src="js/reportarClima.js"></script>
-        <link rel="stylesheet" href="css/consultarMapa.css" />
+        <script src="js/cerrarSesion.js"></script>
+        <link rel="stylesheet" href="css/reportarClima.css" />
 
     </head>
     <body id="idFondo" onload="reportarClima.init()">
@@ -37,7 +38,7 @@ and open the template in the editor.
                         <li class=""><a href="#">Mi perfil</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/index.html" onclick="reportarClima.logout()"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
+                        <li><a onclick="cerrarSesion.cerrarSesion()"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
                     </ul>
                 </div>
             </div>

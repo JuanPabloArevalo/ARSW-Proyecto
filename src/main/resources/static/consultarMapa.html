@@ -16,11 +16,12 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/consultarMapa.css" />
         <script src="js/apiclientConsultarMapa.js"></script>
         <script src="js/consultarMapa.js"></script>
+        <script src="js/cerrarSesion.js"></script>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf42EgEvHdoAJf97kUqKz5h4b4LeM8Ni0&libraries=places"></script>
         <script src="/webjars/sockjs-client/sockjs.min.js"></script>
         <script src="/webjars/stomp-websocket/stomp.min.js"></script>
     </head>
-    <body onload="consultarMapa.init()">
+    <body onload="consultarMapa.init()" id="idFondo">
         <!--Inicia el menú-->
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -40,7 +41,7 @@ and open the template in the editor.
                         <li id="idMiPerfil" class="hide"><a href="#">Mi perfil</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li id="idCerrarSesion" class="hide"><a href="#"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
+                        <li id="idCerrarSesion" class="hide" ><a onclick="cerrarSesion.cerrarSesion()"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
                         <li id="idIniciarSesion" class="hide"><a href="/iniciarSesion.html"><span class="glyphicon glyphicon-user"></span>Iniciar sesión</a></li>
                         <li id="idRegistrarse" class="hide"><a href="/registrarse.html"><span class="glyphicon glyphicon-log-in"></span>Registrarse</a></li>
                     

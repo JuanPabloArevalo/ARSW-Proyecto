@@ -18,3 +18,9 @@ and open the template in the editor.
     width: 60%;
     margin-top: 0.5em;
 }
+
+#idFondo{
+  	background-image: url("/image/fondo.jpg");
+        width: 100%;
+        z-index: -1;
+}

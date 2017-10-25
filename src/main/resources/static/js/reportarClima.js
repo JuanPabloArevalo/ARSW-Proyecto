@@ -117,9 +117,6 @@ var reportarClima = (function () {
                         }
                 );
             }
-        },
-        cerrarSesion() {
-            sessionStorage.clear();
         }
     };
 }());
