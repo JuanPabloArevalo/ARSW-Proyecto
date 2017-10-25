@@ -40,12 +40,11 @@ var iniciarSesion = (function(){
                 var promesa = apiclientInicioSesion.autenticacion(nombreUsuario,password , function(usuario){ 
                     sessionStorage.setItem("nombreUsuario", usuario.nombreUsuario);
                     sessionStorage.setItem("nombre", usuario.nombre);
-                    alert("Bienvenido, " + usuario.nombreUsuario + usuario.password);
+                    alert("Bienvenido, " + usuario.nombreUsuario);
                     window.location.href = "reportarClima.html";
                 }); 
             promesa.then(function(){},function(){
-                alert("Ha el siguiente error: "+promesa.responseText)
-                $("#mensajeFalta").text(promesa.responseText); 
+                $("#mensajeError").text(promesa.responseText); 
                 $("#divError").show();
                 });
              }
