@@ -148,7 +148,9 @@ public class SharingweatherServices {
                 usuario = getUsuario(nombreUsuario);
                 }   
             }
-             
-            return usuario;
+            if(usuario == null){
+             throw new SharingweatherNotFoundException("El usuario no se encuntra registrado.");
+            }
+           
     }
 }

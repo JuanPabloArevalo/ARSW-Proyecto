@@ -10,8 +10,7 @@ var apiclientInicioSesion = (function(){
     return{
             autenticacion(nombreUsuario,password, callback){
             
-                return $.get("/sharingweather/V1/Usuarios/"+nombreUsuario+"/"+password,callback); 
-            
+                return $.get("/sharingweather/V1/Usuarios/"+nombreUsuario+"/"+password,callback);  
         }
         
     };
