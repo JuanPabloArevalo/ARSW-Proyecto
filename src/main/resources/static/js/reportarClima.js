@@ -111,12 +111,11 @@ var reportarClima = (function () {
                             $("#idTextoModal").text("UPS! Ha ocurrido un error al reportar el clima en tu zona. " + promesaDelete.responseText);
                         }
                 );
-            },
-            
-            cerrarSesion(){
-                sessionStorage.clear();
             }
-        }
+        }, 
+        cerrarSesion(){
+          sessionStorage.clear();
+         }
     };
 }());
 
