@@ -47,7 +47,7 @@ var iniciarSesion = (function(){
                 alert("Ha el siguiente error: "+promesa.responseText)
                 $("#mensajeFalta").text(promesa.responseText); 
                 $("#divError").show();
-                ;});
+                });
              });
             }   
     };
