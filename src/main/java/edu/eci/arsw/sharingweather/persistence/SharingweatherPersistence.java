@@ -19,9 +19,8 @@ public interface SharingweatherPersistence {
      * Metodo encargado de guardar un nuevo reporte del clima
      * @param clima
      * @param usuario
-     * @throws SharingweatherPersistenceException
      */
-    public void saveReporteClima(ReporteClima clima, Usuario usuario) throws SharingweatherPersistenceException;
+    public void saveReporteClima(ReporteClima clima, Usuario usuario);
 
     /**
      * Metodo encargado de traer todos los reportes que ya se han publicado
@@ -46,7 +45,7 @@ public interface SharingweatherPersistence {
     
    /**
      * Metodo encargado de adicionar los usuarios a la lista de usuarios
-     * @return
+     * @param usuario
      * @throws SharingweatherNotFoundException 
      */
     public  void addUsuarios(Usuario usuario)throws SharingweatherNotFoundException;

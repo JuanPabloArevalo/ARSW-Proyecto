@@ -89,7 +89,7 @@ var reportarClima = (function () {
                 puedeAdicionar = false;
             }
             
-            usuario = sessionStorage
+            usuario = sessionStorage.getItem("nombreUsuario");
 
             if (puedeAdicionar === false) {
                 $("#mensajeFalta").text(falta);

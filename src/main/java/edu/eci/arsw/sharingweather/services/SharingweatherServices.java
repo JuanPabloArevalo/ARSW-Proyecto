@@ -9,12 +9,13 @@ import edu.eci.arsw.sharingweather.model.ReporteClima;
 import edu.eci.arsw.sharingweather.model.Usuario;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherNotFoundException;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistence;
-import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistenceException;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,11 +37,17 @@ public class SharingweatherServices {
      *
      * @param rcl
      * @param usuario
-     * @throws
-     * edu.eci.arsw.sharingweather.persistence.SharingweatherPersistenceException
+     * @throws edu.eci.arsw.sharingweather.persistence.SharingweatherNotFoundException
      */
-    public void addNewReporteClima(ReporteClima rcl, Usuario usuario) throws SharingweatherPersistenceException {
-        swp.saveReporteClima(rcl, usuario);
+    public void addNewReporteClima(ReporteClima rcl, Usuario usuario) throws SharingweatherNotFoundException{
+        try {
+            usuario = getUsuario(usuario.getNombreUsuario());
+            rcl.setUsuario(usuario);
+            swp.saveReporteClima(rcl, usuario);
+        } catch (SharingweatherNotFoundException ex) {
+            Logger.getLogger(SharingweatherServices.class.getName()).log(Level.SEVERE, null, ex);
+            throw new SharingweatherNotFoundException("Usuario invalido");
+        }
     }
 
     /**
@@ -51,7 +58,6 @@ public class SharingweatherServices {
      */
     public Set<ReporteClima> getReportesPublicados() throws SharingweatherNotFoundException {
         ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> mapa = swp.getReportesClimaPublicar();
-        System.out.println("Aca hay: "+mapa.size());
         Set<ReporteClima> reportes = new HashSet<>();
         CopyOnWriteArrayList<ReporteClima> objList;
         for (Map.Entry<Long, CopyOnWriteArrayList<ReporteClima>> entry : mapa.entrySet()) {
@@ -98,6 +104,7 @@ public class SharingweatherServices {
       /**
      * Metodo encargado de traer un usuario en particular
      *
+     * @param nombreUsuario
      * @return
      * @throws SharingweatherNotFoundException
      */
@@ -113,7 +120,7 @@ public class SharingweatherServices {
     /**
      * Metodo encargado de adicionar los usuarios a la lista de usuarios
      *
-     * @return
+     * @param usuario
      * @throws SharingweatherNotFoundException
      */
     public void addUsuarios(Usuario usuario) throws SharingweatherNotFoundException {
@@ -136,6 +143,8 @@ public class SharingweatherServices {
     /**
      * Metodo encargado de adicionar los usuarios a la lista de usuarios
      *
+     * @param nombreUsuario
+     * @param password
      * @return
      * @throws SharingweatherNotFoundException
      */
@@ -150,7 +159,7 @@ public class SharingweatherServices {
                 }   
             }
             if(usuario == null){
-             throw new SharingweatherNotFoundException("El usuario no se encuntra registrado.");
+             throw new SharingweatherNotFoundException("El usuario no se encuentra registrado.");
             }
         return null;
            

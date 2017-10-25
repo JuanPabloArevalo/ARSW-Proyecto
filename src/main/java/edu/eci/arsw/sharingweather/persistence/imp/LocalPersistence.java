@@ -10,7 +10,6 @@ import edu.eci.arsw.sharingweather.model.Ubicacion;
 import edu.eci.arsw.sharingweather.model.Usuario;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherNotFoundException;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistence;
-import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistenceException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -83,7 +82,7 @@ public class LocalPersistence implements SharingweatherPersistence {
     }
 
     @Override
-    public void saveReporteClima(ReporteClima clima, Usuario usuario) throws SharingweatherPersistenceException {
+    public void saveReporteClima(ReporteClima clima, Usuario usuario) {
         CopyOnWriteArrayList<ReporteClima> objList;
         boolean encontro = false;
         Long llaveActual;
@@ -92,7 +91,7 @@ public class LocalPersistence implements SharingweatherPersistence {
             objList = entry.getValue();
             llaveActual = entry.getKey();
             for (int i = 0; i < objList.size(); i++) {
-                if (objList.get(i).getUbicacion().distanciaEntreUbicaciones(clima.getUbicacion()) <= DISTANCIAMINIMA && clima.getClima().equals(objList.get(i).getClima()) /*&& !clima.getUsuario().getNombreUsuario().equals(objList.get(i).getUsuario().getNombreUsuario())*/) {
+                if (objList.get(i).getUbicacion().distanciaEntreUbicaciones(clima.getUbicacion()) <= DISTANCIAMINIMA && clima.getClima().equals(objList.get(i).getClima()) && !clima.getUsuario().getNombreUsuario().equals(objList.get(i).getUsuario().getNombreUsuario())) {
                     objList.add(clima);
                     if (objList.size() >= CANTIDADREPORTESMINIMO) {
                         climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
@@ -118,7 +117,7 @@ public class LocalPersistence implements SharingweatherPersistence {
                 objList = entry.getValue();
                 llaveActual = entry.getKey();
                 for (int i = 0; i < objList.size(); i++) {
-                    if (objList.get(i).getUbicacion().distanciaEntreUbicaciones(clima.getUbicacion()) <= DISTANCIAMINIMA && clima.getClima().equals(objList.get(i).getClima()) /*&& !clima.getUsuario().getNombreUsuario().equals(objList.get(i).getUsuario().getNombreUsuario())*/) {
+                    if (objList.get(i).getUbicacion().distanciaEntreUbicaciones(clima.getUbicacion()) <= DISTANCIAMINIMA && clima.getClima().equals(objList.get(i).getClima()) && !clima.getUsuario().getNombreUsuario().equals(objList.get(i).getUsuario().getNombreUsuario())) {
                         objList.add(clima);
                         climasPublicados.replace(llaveActual, objList);
                         encontro = true;
@@ -143,7 +142,6 @@ public class LocalPersistence implements SharingweatherPersistence {
 
     @Override
     public ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> getReportesClimaPublicar() throws SharingweatherNotFoundException {
-        System.out.println("Por aca hay: "+climasPublicados.size());
         return climasPublicados;
 
     }

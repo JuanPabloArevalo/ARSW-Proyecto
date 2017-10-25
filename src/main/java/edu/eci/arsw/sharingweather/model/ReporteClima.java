@@ -36,7 +36,6 @@ public class ReporteClima {
         this.tiempo = tiempo;
         this.usuario = usuario;
         this.fechaHora = new Timestamp(System.currentTimeMillis());
-        System.out.println("FechaHora: "+fechaHora);
         this.clima = clima;
     }   
     

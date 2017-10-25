@@ -8,7 +8,6 @@ package edu.eci.arsw.sharingweather.controllers;
 import edu.eci.arsw.sharingweather.model.ReporteClima;
 import edu.eci.arsw.sharingweather.model.Usuario;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherNotFoundException;
-import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistenceException;
 import edu.eci.arsw.sharingweather.services.SharingweatherServices;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -77,14 +76,12 @@ public class SharingweatherAPIController {
     
     @RequestMapping(path ="/reportesClima", method = RequestMethod.POST)	
     public ResponseEntity<?> manejadorPostRecursoAdicionarReporteClima(@RequestBody ReporteClima repClima){
-        System.out.println("LLego aca"+repClima);
-        System.out.println("Clima"+repClima.getClima());
         try {
             sws.addNewReporteClima(repClima, repClima.getUsuario());
             return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (SharingweatherPersistenceException ex) {
+        } catch (SharingweatherNotFoundException ex) {
             Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_FOUND);            
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.UNAUTHORIZED);            
         }        
     }
     
