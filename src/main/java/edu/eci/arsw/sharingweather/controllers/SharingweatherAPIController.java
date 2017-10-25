@@ -8,6 +8,7 @@ package edu.eci.arsw.sharingweather.controllers;
 import edu.eci.arsw.sharingweather.model.ReporteClima;
 import edu.eci.arsw.sharingweather.model.Usuario;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherNotFoundException;
+import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistenceException;
 import edu.eci.arsw.sharingweather.services.SharingweatherServices;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -82,6 +83,9 @@ public class SharingweatherAPIController {
         } catch (SharingweatherNotFoundException ex) {
             Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>(ex.getMessage(),HttpStatus.UNAUTHORIZED);            
+        } catch (SharingweatherPersistenceException ex) {
+            Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_FOUND);   
         }        
     }
     

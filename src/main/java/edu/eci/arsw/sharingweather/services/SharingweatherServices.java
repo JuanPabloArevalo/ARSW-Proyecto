@@ -9,6 +9,7 @@ import edu.eci.arsw.sharingweather.model.ReporteClima;
 import edu.eci.arsw.sharingweather.model.Usuario;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherNotFoundException;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistence;
+import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistenceException;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -35,16 +36,13 @@ public class SharingweatherServices {
      * @param rcl
      * @throws
      * edu.eci.arsw.sharingweather.persistence.SharingweatherNotFoundException
+     * @throws edu.eci.arsw.sharingweather.persistence.SharingweatherPersistenceException
      */
-    public void addNewReporteClima(ReporteClima rcl) throws SharingweatherNotFoundException {
-        try {
+    public void addNewReporteClima(ReporteClima rcl) throws SharingweatherNotFoundException, SharingweatherPersistenceException {
             Usuario usuario = getUsuario(rcl.getUsuario().getNombreUsuario());
             rcl.setUsuario(usuario);
             swp.saveReporteClima(rcl, usuario);
-        } catch (SharingweatherNotFoundException ex) {
-            Logger.getLogger(SharingweatherServices.class.getName()).log(Level.SEVERE, null, ex);
-            throw new SharingweatherNotFoundException("Usuario invalido");
-        }
+        
     }
 
     /**
