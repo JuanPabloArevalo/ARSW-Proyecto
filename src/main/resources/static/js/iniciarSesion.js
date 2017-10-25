@@ -40,7 +40,7 @@ var iniciarSesion = (function(){
                 var promesa = apiclientInicioSesion.autenticacion(nombreUsuario,password , function(usuario){ 
                     sessionStorage.setItem("nombreUsuario", usuario.nombreUsuario);
                     sessionStorage.setItem("nombre", usuario.nombre);
-                    alert("Bienvenido, " + usuario.nombreUsuario);
+                    alert("Bienvenido, " + usuario.nombre);
                     window.location.href = "reportarClima.html";
                 }); 
             promesa.then(function(){},function(){
