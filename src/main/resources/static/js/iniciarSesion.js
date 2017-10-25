@@ -37,7 +37,7 @@ var iniciarSesion = (function(){
               }else{
                 $("#mensajeFalta").text(""); 
                 $("#divError").hide();
-                let promesa = apiclientInicioSesion.autenticacion(nombreUsuario,password , function(usuario){ 
+                var promesa = apiclientInicioSesion.autenticacion(nombreUsuario,password , function(usuario){ 
                     sessionStorage.setItem("nombreUsuario", usuario.nombreUsuario);
                     sessionStorage.setItem("password", usuario.password);
                     alert("Bienvenido, " + usuario.nombreUsuario + usuario.password);
