@@ -48,8 +48,9 @@ var iniciarSesion = (function(){
                 $("#mensajeFalta").text(promesa.responseText); 
                 $("#divError").show();
                 });
-             });
-            }   
+             }
+         
+         }
     };
     
 }());
