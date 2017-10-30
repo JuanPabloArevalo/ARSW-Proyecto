@@ -69,7 +69,7 @@ Para poder realizar la publicación se debe poder tener acceso a la ubicación d
            <b>Reporte 6:</b><br>
               <b>Latitud:</b>4.732430<br>
               <b>Longitud:</b>-74.033574<br>
-              <b>Clima:</b>sol<br>
+              <b>Clima:</b>agua<br>
               <b>Tiempo:</b>32<br>
               <b>Usuario:</b>Usuario 3<br><br>
           <b>ZONA 3:</b><br>
@@ -88,7 +88,7 @@ Para poder realizar la publicación se debe poder tener acceso a la ubicación d
            <b>Reporte 9:</b><br>
               <b>Latitud:</b>4.703377<br>
               <b>Longitud:</b>-74.036817<br>
-              <b>Clima:</b>sol<br>
+              <b>Clima:</b>nublado<br>
               <b>Tiempo:</b>75<br>
               <b>Usuario:</b>Usuario 3<br><br>
               
