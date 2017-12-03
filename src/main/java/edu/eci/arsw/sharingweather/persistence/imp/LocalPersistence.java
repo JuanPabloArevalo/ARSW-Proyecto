@@ -5,9 +5,11 @@
  */
 package edu.eci.arsw.sharingweather.persistence.imp;
 
+import edu.eci.arsw.sharingweather.model.LocalidadesBogota;
 import edu.eci.arsw.sharingweather.model.ReporteClima;
 import edu.eci.arsw.sharingweather.model.Ubicacion;
 import edu.eci.arsw.sharingweather.model.Usuario;
+import edu.eci.arsw.sharingweather.model.imp.LocalidadesBogotaLocal;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherNotFoundException;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistence;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistenceException;
@@ -36,7 +38,8 @@ public class LocalPersistence implements SharingweatherPersistence {
 
     @Autowired
     private SimpMessagingTemplate msgt;
-
+    @Autowired
+    private LocalidadesBogota localidades = null;
     /**
      * Constructor
      */
@@ -70,7 +73,7 @@ public class LocalPersistence implements SharingweatherPersistence {
         objList.add(clima3);
         climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
 
-        ub1 = new Ubicacion(4.706553, -74.035508);
+        ub1 = new Ubicacion(4.776487, -74.061366);
         ub2 = new Ubicacion(4.703313, -74.034446);
         ub3 = new Ubicacion(4.703377, -74.036817);
         clima1 = new ReporteClima(ub1, 55, usuario, "nublado");
@@ -81,6 +84,9 @@ public class LocalPersistence implements SharingweatherPersistence {
         objList.add(clima2);
         objList.add(clima3);
         climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
+        
+        localidades = new LocalidadesBogotaLocal();
+//        System.out.println("lb.getLocalidad(ub1): "+localidades.getLocalidad(ub1).getNombre());
     }
 
     @Override
@@ -88,6 +94,7 @@ public class LocalPersistence implements SharingweatherPersistence {
         CopyOnWriteArrayList<ReporteClima> objList;
         boolean encontro = false;
         Long llaveActual;
+        int numeroLocalidad;
 //Validar primero en climas no publicados
         for (Map.Entry<Long, CopyOnWriteArrayList<ReporteClima>> entry : climasNoPublicados.entrySet()) {
             objList = entry.getValue();
@@ -104,6 +111,11 @@ public class LocalPersistence implements SharingweatherPersistence {
                         climasNoPublicados.remove(llaveActual);
                         //PUBLICAR ZONA
                         msgt.convertAndSend("/topic/reporteClima", objList);
+                        //Publicar Zona favorita
+                        numeroLocalidad = localidades.getLocalidad(clima.getUbicacion()).getNumero();
+                        if(numeroLocalidad!=22){
+                           msgt.convertAndSend("/topic/regionFavorita."+numeroLocalidad, objList);  
+                        }
 
                     } else {
                         climasNoPublicados.replace(llaveActual, objList);
@@ -131,6 +143,11 @@ public class LocalPersistence implements SharingweatherPersistence {
                         encontro = true;
                         //PUBLICAR
                         msgt.convertAndSend("/topic/reporteClima", objList);
+                        //Publicar Zona favorita
+                        numeroLocalidad = localidades.getLocalidad(clima.getUbicacion()).getNumero();
+                        if(numeroLocalidad!=22){
+                           msgt.convertAndSend("/topic/regionFavorita."+numeroLocalidad, objList);  
+                        }
                         break;
                     }
                 }
