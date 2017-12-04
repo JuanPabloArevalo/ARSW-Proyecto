@@ -49,10 +49,6 @@ var iniciarSesion = (function(){
                 });
              }
          
-         }, 
-         getNombreUsuario(){
-             nombreUsuario;
-             
          }
     };
     

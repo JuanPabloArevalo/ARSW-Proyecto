@@ -5,18 +5,20 @@
  */
 
 
+/* global apiclientMisFavoritos */
+
 var gestionarFavoritos = (function(){
     
     var numero;
     var nombre;
     
     return {
-        
-          addMisFavoritos(){
+        addMisFavoritos(){
+            
               numero = $( "#localidades" ).val();
               nombre = $( "#localidades option:selected" ).text();
               
-              let promesa = apiclientMisFavoritos.adicionarMisFavoritos(sessionStorage.getItem("nombreUsuario"), numero, nombre); 
+              var promesa = apiclientMisFavoritos.adicionarMisFavoritos(sessionStorage.getItem("nombreUsuario"), numero, nombre); 
                  promesa.then(
                  function(){
                      //window.location.href = "iniciarSesion.html";
@@ -27,9 +29,7 @@ var gestionarFavoritos = (function(){
                  function(){
                      alerta("segundo");
                  });
-          }
-        
-        
+        }
     };
     
 }());

@@ -16,6 +16,6 @@ var apiclientMisFavoritos = (function(){
                 contentType: "application/json"
             });
         }
-    };
+      };
     
 }());
