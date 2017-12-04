@@ -13,7 +13,7 @@ var gFavoritos = (function(){
     var nombre = "";
     
     return {
-            adicionarfavoritos:function(){
+            adicionarfavoritos(){
             
               numero = $( "#localidades" ).val();
               nombre = $( "#localidades option:selected" ).text();
@@ -24,10 +24,8 @@ var gFavoritos = (function(){
                      //window.location.href = "iniciarSesion.html";
                       var filasTabla = "<tr class=\"filas\"><td>" + numero + "</td><td>" + nombre + "</td><td><button type=\"button\" class=\"btn btn-info\" onclick=\"app.actualizarPlano('"+numero+"')\">Borrar</button></td></tr>";
                       $("table tbody").append(filasTabla);
-                      alerta("primero");
                  },
                  function(){
-                     alerta("segundo");
                  });
         }
     };
