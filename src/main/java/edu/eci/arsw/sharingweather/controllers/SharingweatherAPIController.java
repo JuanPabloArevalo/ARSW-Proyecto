@@ -128,10 +128,10 @@ public class SharingweatherAPIController {
 
     }
     
-    @RequestMapping(path = "/favoritos", method = RequestMethod.POST)
-    public ResponseEntity<?> manejadorPostAdicionarFavorito(@RequestBody Usuario u ) {
+    @RequestMapping(path = "/regionesFavoritas/{usuario}", method = RequestMethod.POST)
+    public ResponseEntity<?> manejadorPostAdicionarFavorito(@PathVariable("usuario") String nombreU, @RequestBody Usuario u ) {
         try {
-            sws.addLocalidadesFavoritas(u.getNombreUsuario(), u.getlocalidad());
+            sws.addLocalidadesFavoritas(nombreU, u.getlocalidad());
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (SharingweatherNotFoundException ex) {
             Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
