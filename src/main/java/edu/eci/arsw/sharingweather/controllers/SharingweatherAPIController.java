@@ -134,7 +134,8 @@ public class SharingweatherAPIController {
             System.out.println("Entro");
             System.out.println("getlocalida"+ u.getlocalidad().getNombre());
             System.out.println("getlocalida"+ u.getlocalidad().getNumero());
-            sws.addLocalidadesFavoritas(nombreU, u.getlocalidad());
+            //sws.addLocalidadesFavoritas(nombreU, u.getlocalidad());
+            sws.prueba(nombreU);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (SharingweatherNotFoundException ex) {
             Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);

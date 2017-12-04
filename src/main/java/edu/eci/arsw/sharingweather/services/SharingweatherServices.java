@@ -175,4 +175,9 @@ public class SharingweatherServices {
         }
         return null;
     }
+    
+    public void prueba(String p)throws SharingweatherNotFoundException{
+        String p1;
+        p1 = p;
+    }
 }
