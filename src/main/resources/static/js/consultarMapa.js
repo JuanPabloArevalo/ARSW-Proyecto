@@ -44,7 +44,7 @@ function suscribirseTopicosRegionesFavoritas(region){
             else{
                 clim = " esta haciendo un solazo!" 
             }
-            $("textarea#idRegionesFavoritas").val($("textarea#idRegionesFavoritas").val() + "\n" + "En "+ region.nombre+clim);
+            $("textarea#idRegionesFavoritas").val("En "+ region.nombre+clim + "\n" +  $("textarea#idRegionesFavoritas").val());
         });
     });
 }
