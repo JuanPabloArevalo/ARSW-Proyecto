@@ -12,7 +12,7 @@ var apiclientMisFavoritos = (function(){
            alert("api"+numero);
            alert("api"+nombre);
             return $.ajax({
-                url: "/sharingweather/V1/regiosnesFavoritas/"+nombreUsuario,
+                url: "/sharingweather/V1/regionesFavoritas/"+nombreUsuario,
                 type: "POST",
                 data: '{"nombreUsuario":"'+ nombreUsuario +'","lFavoritas":{"numero":'+ numero +', "nombre":"'+ nombre +'"}}',
                 contentType: "application/json"
