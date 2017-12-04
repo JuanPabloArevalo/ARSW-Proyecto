@@ -19,7 +19,7 @@ var gFavoritos = (function(){
               nombre = $( "#localidades option:selected" ).text();
               alert("esto hay"+sessionStorage.getItem("nombreUsuario"));
               
-              var promesa = apiclientMisFavoritos.adicionarMisFavoritos(sessionStorage.getItem("nombreUsuario"), numero, nombre); 
+              var promesa = apiclientMisFavoritos.adicionarMisFavoritos(numero, nombre); 
                  promesa.then(
                  function(){
                      //window.location.href = "iniciarSesion.html";
