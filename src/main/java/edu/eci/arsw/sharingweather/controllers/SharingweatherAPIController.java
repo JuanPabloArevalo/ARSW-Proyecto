@@ -78,7 +78,17 @@ public class SharingweatherAPIController {
         }
 
     }
+    
+     @RequestMapping(path = "/Usuarios/{usuario}/Favoritos", method = RequestMethod.GET)
+    public ResponseEntity<?> manejadorGetRegistrado(@PathVariable("usuario") String nombreU) {
+        try {
+            return new ResponseEntity<>(sws.getFavoritos(nombreU), HttpStatus.ACCEPTED);
+        } catch (SharingweatherNotFoundException ex) {
+            Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+        }
 
+    }
     
     @RequestMapping(path = "/reportesClima", method = RequestMethod.POST)
     public ResponseEntity<?> manejadorPostRecursoAdicionarReporteClima(@RequestBody ReporteClima repClima) {
