@@ -25,8 +25,10 @@ var gFavoritos = (function(){
                      //window.location.href = "iniciarSesion.html";
                       var filasTabla = "<tr class=\"filas\"><td>" + numero + "</td><td>" + nombre + "</td><td><button type=\"button\" class=\"btn btn-info\" onclick=\"app.actualizarPlano('"+numero+"')\">Borrar</button></td></tr>";
                       $("table tbody").append(filasTabla);
+                      alert("primero");
                  },
                  function(){
+                     alert("segundo");
                  });
         }
     };
