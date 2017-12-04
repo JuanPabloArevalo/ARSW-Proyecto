@@ -17,6 +17,7 @@ var gFavoritos = (function(){
             
               numero = $( "#localidades" ).val();
               nombre = $( "#localidades option:selected" ).text();
+              alert("esto hay"+sessionStorage.getItem("nombreUsuario"));
               
               var promesa = apiclientMisFavoritos.adicionarMisFavoritos(sessionStorage.getItem("nombreUsuario"), numero, nombre); 
                  promesa.then(
