@@ -24,12 +24,14 @@ public class Usuario {
     
     /**
      * Constructor
+     * @param nombreUsuario
+     * @param lFavoritas
      * @param numero
      * @param nombre
      */
-    public Usuario(){
-        
-        
+    public Usuario(String nombreUsuario, LocalidadFavoritas lFavoritas){
+        this.nombreUsuario = nombreUsuario;
+        this.localidad = lFavoritas; 
     }
     /**
      * Constructor
@@ -39,14 +41,13 @@ public class Usuario {
      * @param password
      * @param correo 
      */
-    public Usuario(String nombre, int edad, String nombreUsuario, String password, String correo, LocalidadFavoritas lFavoritas){
+    public Usuario(String nombre, int edad, String nombreUsuario, String password, String correo){
         this.nombre = nombre;
         this.edad = edad;
         this.nombreUsuario = nombreUsuario;
         this.password = password;
         this.correo = correo;
-        this.localidad = lFavoritas;
-        localidadesFavoritas.add(localidad);
+        
     }
     
     /**
@@ -118,7 +119,10 @@ public class Usuario {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-
+    
+    public LocalidadFavoritas getlocalidad(){
+       return localidad;
+    }
     
     public List<LocalidadFavoritas> getLocalidadesFavoritas(){
         return localidadesFavoritas;

@@ -12,7 +12,7 @@ var apiclientMisFavoritos = (function(){
             return $.ajax({
                 url: "/sharingweather/V1/favoritos",
                 type: "POST",
-                data: '{"nombreUsuario":"'+ nombreUsuario +'","localidad":{"numero":'+ numero +', "nombre":"'+ nombre +'"}}',
+                data: '{"nombreUsuario":"'+ nombreUsuario +'","lFavoritas":{"numero":'+ numero +', "nombre":"'+ nombre +'"}}',
                 contentType: "application/json"
             });
         }

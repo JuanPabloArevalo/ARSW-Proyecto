@@ -48,9 +48,9 @@ public class LocalPersistence implements SharingweatherPersistence {
         LocalidadFavoritas localidades1 = new LocalidadFavoritas(1,"usaquen"); 
         LocalidadFavoritas localidades2 = new LocalidadFavoritas(2,"Chapinero");
         LocalidadFavoritas localidades3 = new LocalidadFavoritas(3,"Santa fe");
-        Usuario usuario = new Usuario("Juan Arevalo", 25, "juan.arevalo.merchan", "123", "juan.arevalo-m@mail.escuelaing.edu.co",localidades1);
-        Usuario usuario2 = new Usuario("Stefany Moron", 27, "stefany.moron", "1234", "stefany.moron@mail.escuelaing.edu.co", localidades2);
-        Usuario usuario3 = new Usuario("Hector Cadavid", 18, "hector.cadavid", "12345", "hector.cadavid@mail.escuelaing.edu.co",localidades3);
+        Usuario usuario = new Usuario("Juan Arevalo", 25, "juan.arevalo.merchan", "123", "juan.arevalo-m@mail.escuelaing.edu.co");
+        Usuario usuario2 = new Usuario("Stefany Moron", 27, "stefany.moron", "1234", "stefany.moron@mail.escuelaing.edu.co");
+        Usuario usuario3 = new Usuario("Hector Cadavid", 18, "hector.cadavid", "12345", "hector.cadavid@mail.escuelaing.edu.co");
         listaUsuarios.add(usuario);
         listaUsuarios.add(usuario2);
         listaUsuarios.add(usuario3);
