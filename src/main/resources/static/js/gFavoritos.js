@@ -53,7 +53,7 @@ var gFavoritos = (function(){
         },
         eliminarFavoritos(numero, nombre){
            var nombreUsuario = sessionStorage.getItem("nombreUsuario");
-           var promesa = apiclientMisFavoritos.adicionarMisFavoritos(numero, nombre, nombreUsuario); 
+           var promesa = apiclientMisFavoritos.eliminarMisFavoritos(numero, nombre, nombreUsuario); 
             promesa.then(
                 function () {   
                     gFavoritos.cargarFavoritos();  
