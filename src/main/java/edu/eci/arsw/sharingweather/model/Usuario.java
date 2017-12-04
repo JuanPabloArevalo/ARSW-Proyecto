@@ -7,6 +7,7 @@ package edu.eci.arsw.sharingweather.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  *
@@ -20,7 +21,7 @@ public class Usuario {
     private String password;
     private String correo;
     private LocalidadFavoritas localidad;
-    private List<LocalidadFavoritas> localidadesFavoritas = new ArrayList<LocalidadFavoritas>();
+    private CopyOnWriteArrayList<LocalidadFavoritas> localidadesFavoritas = new CopyOnWriteArrayList<>();
     
     /**
      * Constructor
@@ -120,11 +121,26 @@ public class Usuario {
        return localidad;
     }
     
-    public List<LocalidadFavoritas> getLocalidadesFavoritas(){
+    public CopyOnWriteArrayList<LocalidadFavoritas> getLocalidadesFavoritas(){
         return localidadesFavoritas;
     }
     
     public void addLocalidadFavorita(LocalidadFavoritas l){
          localidadesFavoritas.add(l);
+    }
+    
+    /**
+     * Metodo encargado de validar si existe la localidad favorita
+     * @param lf
+     * @return 
+     */
+    public boolean existeLocalidad(LocalidadFavoritas lf){
+        for(int i=0; i<localidadesFavoritas.size(); i++){
+            if(localidadesFavoritas.get(i).getNumero()==lf.getNumero()){
+                return true;
+            }
+        }
+        
+        return false;
     }
 }

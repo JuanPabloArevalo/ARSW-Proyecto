@@ -8,13 +8,17 @@
 var apiclientMisFavoritos = (function(){
     return{
        
-       adicionarMisFavoritos(numero, nombre){
+       adicionarMisFavoritos(numero, nombre, nombreUsuario){
+            console.info("ESTO: "+nombreUsuario)
             return $.ajax({
-                url: "/sharingweather/V1/regionesFavoritas/"+sessionStorage.getItem("nombreUsuario"),
+                url: "/sharingweather/V1/regionesFavoritas/"+nombreUsuario,
                 type: "POST",
                 data: '{"numero":'+ numero +', "nombre":"'+ nombre +'"}',
                 contentType: "application/json"
             });
+        },
+        getFavoritos(nombreUsuario){
+            return $.get("/sharingweather/V1/regionesFavoritas/"+nombreUsuario); 
         }
       };
     

@@ -5,6 +5,7 @@
  */
 package edu.eci.arsw.sharingweather.persistence;
 
+import edu.eci.arsw.sharingweather.model.LocalidadFavoritas;
 import edu.eci.arsw.sharingweather.model.ReporteClima;
 import edu.eci.arsw.sharingweather.model.Usuario;
 import java.util.concurrent.ConcurrentHashMap;
@@ -50,5 +51,23 @@ public interface SharingweatherPersistence {
      * @throws SharingweatherNotFoundException 
      */
     public  void addUsuarios(Usuario usuario)throws SharingweatherNotFoundException;
-
+    
+    
+    /**
+     * Metodo encargado de adicionar una localidad favorita
+     * @param usaurio
+     * @param lf
+     * @throws SharingweatherNotFoundException 
+     */
+    public void addRegionFavorita(Usuario usaurio, LocalidadFavoritas lf) throws SharingweatherNotFoundException;
+    
+        /**
+     * Metodo encargado de traer La lista de los usuarios
+     * @return
+     * @throws SharingweatherNotFoundException 
+     */
+    public CopyOnWriteArrayList<LocalidadFavoritas> getRegionesFavoritas(Usuario usuario)throws SharingweatherNotFoundException ;
+    
+    
+    
 }

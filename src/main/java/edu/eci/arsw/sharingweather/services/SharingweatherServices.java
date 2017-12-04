@@ -157,23 +157,49 @@ public class SharingweatherServices {
     }
     
     public void addLocalidadesFavoritas(String nombreUsuario, LocalidadFavoritas l) throws SharingweatherNotFoundException{
+        Usuario usuario = null;      
+        System.out.println("2():"+nombreUsuario);
         CopyOnWriteArrayList<Usuario> usuarios = swp.getUsuarios();
-         for (int i = 0; i < usuarios.size(); i++) {
-            if (usuarios.get(i).getNombreUsuario().equals(nombreUsuario)) {
-                   usuarios.get(i).addLocalidadFavorita(l);  
+        for (int i = 0; i < usuarios.size(); i++) {
+            System.out.println("1():"+usuarios.get(i).getNombreUsuario());
+            if (usuarios.get(i).getNombreUsuario().equalsIgnoreCase(nombreUsuario)) {
+                   usuario = usuarios.get(i);
+                   break;
             }
+        }
+         
+        if(usuario!=null){
+            swp.addRegionFavorita(usuario, l);
+        }
+        else{
+            throw new SharingweatherNotFoundException("Usuario no válido");
         }
     
     }
     
-    public List<LocalidadFavoritas> getFavoritos(String nombreUsuario) throws SharingweatherNotFoundException{
+    public Set<LocalidadFavoritas> getFavoritos(String nombreUsuario) throws SharingweatherNotFoundException{
+        Set<LocalidadFavoritas> localidades = new HashSet<>();
         CopyOnWriteArrayList<Usuario> usuarios = swp.getUsuarios();
-         for (int i = 0; i < usuarios.size(); i++) {
-            if (usuarios.get(i).getNombreUsuario().equals(nombreUsuario)) {
-                 return  usuarios.get(i).getLocalidadesFavoritas();
+        Usuario usuario = null;     
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getNombreUsuario().equalsIgnoreCase(nombreUsuario)) {
+                   usuario = usuarios.get(i);
+                   break;
             }
         }
-        return null;
+                 
+        if(usuario!=null){
+            CopyOnWriteArrayList<LocalidadFavoritas> localidadesTemp = swp.getRegionesFavoritas(usuario);
+            for (int i = 0; i < localidadesTemp.size(); i++) {
+                localidades.add(localidadesTemp.get(i));
+            }
+            return localidades;
+        }
+        else{
+            throw new SharingweatherNotFoundException("Usuario no válido");
+        }
+
+       
     }
     
     public void prueba(String p)throws SharingweatherNotFoundException{

@@ -11,25 +11,45 @@ var gFavoritos = (function(){
     
     var numero = 0;
     var nombre = "";
+    var nombreUsuario = "";
+
+    function inicializarElementos(){
+        $(".filas").remove("tr");
+    }
+
+    function adicionarFila(item){
+        var markup = "<tr class=\"filas\"><td>" + item.numero + "</td><td>" + item.nombre + "</td><td><button type=\"button\" class=\"btn btn-info\" onclick=\"\">Borrar</button></td></tr>";
+        $("table tbody").append(markup);
+    }
     
     return {
-            adicionarfavoritos(){
-            
-              numero = $( "#localidades" ).val();
-              nombre = $( "#localidades option:selected" ).text();
-              alert("esto hay"+sessionStorage.getItem("nombreUsuario"));
-              
-              var promesa = apiclientMisFavoritos.adicionarMisFavoritos(numero, nombre); 
-                 promesa.then(
-                 function(){
-                     //window.location.href = "iniciarSesion.html";
-                      var filasTabla = "<tr class=\"filas\"><td>" + numero + "</td><td>" + nombre + "</td><td><button type=\"button\" class=\"btn btn-info\" onclick=\"app.actualizarPlano('"+numero+"')\">Borrar</button></td></tr>";
-                      $("table tbody").append(filasTabla);
-                      alert("primero");
-                 },
-                 function(){
-                     alert("segundo");
-                 });
+        adicionarfavoritos(){
+            var numero = $( "#localidades" ).val();
+            var nombre = $( "#localidades option:selected" ).text();
+            var nombreUsuario = sessionStorage.getItem("nombreUsuario");
+            var promesa = apiclientMisFavoritos.adicionarMisFavoritos(numero, nombre, nombreUsuario); 
+            promesa.then(
+                function () {   
+                    gFavoritos.cargarFavoritos();
+                    
+                },
+                function (dato) {
+                    alert(dato.responseJSON.message);
+                }
+            );
+        },
+        cargarFavoritos(){
+            var nombreUsuario = sessionStorage.getItem("nombreUsuario");
+            var promesaConsulta = apiclientMisFavoritos.getFavoritos(nombreUsuario);
+            promesaConsulta.then(
+                function (datos) {  
+                    inicializarElementos();
+                    datos.map(adicionarFila);
+                },
+                function (dato) {
+                    alert(dato.responseJSON.message);
+                }
+            );
         }
     };
     

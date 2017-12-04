@@ -14,6 +14,11 @@ public class LocalidadFavoritas {
     private int numero;
     private String nombre;
     
+    public LocalidadFavoritas(){
+        
+    }
+    
+    
     public LocalidadFavoritas(int numero , String nombre){
      this.numero = numero;
      this.nombre = nombre;
