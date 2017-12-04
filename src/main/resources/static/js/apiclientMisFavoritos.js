@@ -10,7 +10,7 @@ var apiclientMisFavoritos = (function(){
        
        adicionarMisFavoritos(){
             return $.ajax({
-                url: "/sharingweather/V1/favoritos",
+                url: "/sharingweather/V1/Favoritos",
                 type: "POST",
                 data: '{"nombreUsuario":"'+ nombreUsuario +'","numero":'+ numero +', "nombre":"'+ nombre +'"}',
                 contentType: "application/json"

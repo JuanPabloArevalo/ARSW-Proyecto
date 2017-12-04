@@ -12,6 +12,7 @@ import edu.eci.arsw.sharingweather.persistence.SharingweatherNotFoundException;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistence;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistenceException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -163,5 +164,15 @@ public class SharingweatherServices {
             }
         }
     
+    }
+    
+    public List<LocalidadFavoritas> getFavoritos(String nombreUsuario) throws SharingweatherNotFoundException{
+        CopyOnWriteArrayList<Usuario> usuarios = swp.getUsuarios();
+         for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getNombreUsuario().equals(nombreUsuario)) {
+                 return  usuarios.get(i).getLocalidadesFavoritas();
+            }
+        }
+        return null;
     }
 }

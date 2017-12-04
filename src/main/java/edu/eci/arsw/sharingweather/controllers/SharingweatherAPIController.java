@@ -79,6 +79,7 @@ public class SharingweatherAPIController {
 
     }
 
+    
     @RequestMapping(path = "/reportesClima", method = RequestMethod.POST)
     public ResponseEntity<?> manejadorPostRecursoAdicionarReporteClima(@RequestBody ReporteClima repClima) {
         try {
@@ -117,7 +118,7 @@ public class SharingweatherAPIController {
 
     }
     
-    @RequestMapping(path = "/favoritos", method = RequestMethod.POST)
+    @RequestMapping(path = "/Favoritos", method = RequestMethod.POST)
     public ResponseEntity<?> manejadorPostAdicionarUsuario(@RequestBody String nombreUsuario,@RequestBody LocalidadFavoritas f  ) {
         try {
             sws.addLocalidadesFavoritas(nombreUsuario, f);
