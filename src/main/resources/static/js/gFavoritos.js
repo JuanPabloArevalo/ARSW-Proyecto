@@ -18,7 +18,7 @@ var gFavoritos = (function(){
     }
 
     function adicionarFila(item){
-        var markup = "<tr class=\"filas\"><td>" + item.numero + "</td><td>" + item.nombre + "</td><td><button type=\"button\" class=\"btn btn-info\" onclick=\"\">Borrar</button></td></tr>";
+        var markup = "<tr class=\"filas\"><td>" + item.numero + "</td><td>" + item.nombre + "</td><td><button type=\"button\" class=\"btn btn-info\" onclick=\"gFavoritos.eliminarFavoritos('"+item.numero+","+ item.nombre +"')\">Borrar</button></td></tr>";
         $("table tbody").append(markup);
     }
     
@@ -50,6 +50,19 @@ var gFavoritos = (function(){
                     alert(dato.responseJSON.message);
                 }
             );
+        },
+        eliminarFavoritos(numero, nombre){
+           var nombreUsuario = sessionStorage.getItem("nombreUsuario");
+           var promesa = apiclientMisFavoritos.adicionarMisFavoritos(numero, nombre, nombreUsuario); 
+            promesa.then(
+                function () {   
+                    gFavoritos.cargarFavoritos();  
+                },
+                function (dato) {
+                    alert(dato.responseJSON.message);
+                }
+            );
+           
         }
     };
     

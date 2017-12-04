@@ -202,8 +202,23 @@ public class SharingweatherServices {
        
     }
     
-    public void prueba(String p)throws SharingweatherNotFoundException{
-        String p1;
-        p1 = p;
-    }
+   public void EliminarFavoritos(String nombreUsuario, LocalidadFavoritas l) throws SharingweatherNotFoundException{
+       CopyOnWriteArrayList<Usuario> usuarios = swp.getUsuarios();
+       Usuario usuario = null;
+       for (int i = 0; i < usuarios.size(); i++) {
+           if (usuarios.get(i).getNombreUsuario().equalsIgnoreCase(nombreUsuario)) {
+               usuario = usuarios.get(i);
+                for (int j = 0; j < usuario.getLocalidadesFavoritas().size(); j++) {
+                    if(usuario.getLocalidadesFavoritas().get(j).equals(l)){
+                       usuario.getLocalidadesFavoritas().remove(j);
+                    }
+                    
+                }    
+            } 
+       }
+        if(usuario==null){
+            throw new SharingweatherNotFoundException("Usuario no válido");
+        }
+   }  
+    
 }

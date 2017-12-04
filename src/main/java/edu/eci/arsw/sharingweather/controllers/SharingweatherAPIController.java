@@ -128,6 +128,18 @@ public class SharingweatherAPIController {
 
     }
     
+    @RequestMapping(value = "/regionesFavoritas/{usuario}", method = RequestMethod.DELETE)    
+    public ResponseEntity<?> manejadorDeleteFavoritos(@PathVariable("usuario") String loginU, @RequestBody LocalidadFavoritas l){
+            try { 
+            sws.EliminarFavoritos(loginU, l);
+            //registrar dato
+            return new ResponseEntity<>(HttpStatus.CREATED);
+            } catch (Exception ex) {
+            Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error bla bla bla",HttpStatus.FORBIDDEN);            
+             }        
+    } 
+    
     
 
 }
