@@ -14,7 +14,7 @@ var gestionarFavoritos = (function(){
         
           addMisFavoritos(){
               numero = $( "#localidades" ).val();
-              nombre = $( "#myselect numero" ).text();
+              nombre = $( "#ocalidades option:selected" ).text();
               var markup = "<tr class=\"filas\"><td>" + numero + "</td><td>" + nombre + "</td><td><button type=\"button\" class=\"btn btn-info\" onclick=\"app.actualizarPlano('"+numero+"')\">Borrar</button></td></tr>";
               $("table tbody").append(markup);
               
