@@ -28,6 +28,27 @@ function dibujarPuntos(reporte) {
     });
 }
 
+function suscribirseTopicosRegionesFavoritas(region){
+    var socket = new SockJS("/stompendpoint");
+    var stompClient = Stomp.over(socket);
+    stompClient.connect({}, function () {
+        stompClient.subscribe("/topic/regionFavorita."+region.numero, function (eventbody) {
+            var arreglo = JSON.parse(eventbody.body);
+            var clim = "";
+            if(arreglo.clima === "agua"){
+                clim = " esta cayendo un aguacero!"
+            }
+            else if(arreglo.clima === "nublado"){
+                clim = " esta a punto de llover"
+            }
+            else{
+                clim = " esta haciendo un solazo!" 
+            }
+            $("textarea#idRegionesFavoritas").val($("textarea#idRegionesFavoritas").val() + "\n" + "En "+ region.nombre+clim);
+        });
+    });
+}
+
 var consultarMapa = (function () {
     return{
         init() {
@@ -55,6 +76,7 @@ var consultarMapa = (function () {
             consultarMapa.connectAndSubscribe();
             consultarMapa.myMap();
             consultarMapa.iniciarMapaClimaPublicado();
+            consultarMapa.suscribirseRegionesFavoritas();
         },
         myMap() {
             var mapOptions = {
@@ -140,6 +162,22 @@ var consultarMapa = (function () {
                 lbp.map(dibujarPuntos);
             }
             );
+        },
+        suscribirseRegionesFavoritas(){
+            if ("undefined" === sessionStorage.getItem("nombreUsuario") || null === sessionStorage.getItem("nombreUsuario")) {
+            }
+            else{
+                var promesa = apiclientConsultarMapa.getAllRegionesFavoritas(sessionStorage.getItem("nombreUsuario"));
+                promesa.then(
+                        function (datos) {
+                            datos.map(suscribirseTopicosRegionesFavoritas);
+                        },
+                        function () {
+                            alert(promesa.responseText);
+                        }
+                );
+                
+            }
         }
     };
 }());

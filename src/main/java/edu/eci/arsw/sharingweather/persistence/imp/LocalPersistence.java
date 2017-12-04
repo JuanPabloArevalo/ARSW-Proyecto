@@ -77,7 +77,7 @@ public class LocalPersistence implements SharingweatherPersistence {
         objList.add(clima3);
         climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
 
-        ub1 = new Ubicacion(4.776487, -74.061366);
+        ub1 = new Ubicacion(4.703313, -74.034446);
         ub2 = new Ubicacion(4.703313, -74.034446);
         ub3 = new Ubicacion(4.703377, -74.036817);
         clima1 = new ReporteClima(ub1, 55, usuario, "nublado");
@@ -90,7 +90,6 @@ public class LocalPersistence implements SharingweatherPersistence {
         climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
         
         localidades = new LocalidadesBogotaLocal();
-//        System.out.println("lb.getLocalidad(ub1): "+localidades.getLocalidad(ub1).getNombre());
     }
 
     @Override
@@ -118,7 +117,8 @@ public class LocalPersistence implements SharingweatherPersistence {
                         //Publicar Zona favorita
                         numeroLocalidad = localidades.getLocalidad(clima.getUbicacion()).getNumero();
                         if(numeroLocalidad!=22){
-                           msgt.convertAndSend("/topic/regionFavorita."+numeroLocalidad, objList);  
+                           msgt.convertAndSend("/topic/regionFavorita."+numeroLocalidad, clima);  
+                           
                         }
 
                     } else {
@@ -150,7 +150,7 @@ public class LocalPersistence implements SharingweatherPersistence {
                         //Publicar Zona favorita
                         numeroLocalidad = localidades.getLocalidad(clima.getUbicacion()).getNumero();
                         if(numeroLocalidad!=22){
-                           msgt.convertAndSend("/topic/regionFavorita."+numeroLocalidad, objList);  
+                           msgt.convertAndSend("/topic/regionFavorita."+numeroLocalidad, clima);  
                         }
                         break;
                     }

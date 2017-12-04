@@ -7,6 +7,13 @@ var apiclientConsultarMapa=(function(){
 	return {
             getAllReportesPublicados(callback){
                 return $.get("/sharingweather/V1/reportesClima/publicados",callback); 
+            },
+            getAllRegionesFavoritas(loginUsuario){
+                return $.ajax({
+                    url: "/sharingweather/V1/regionesFavoritas/"+loginUsuario,
+                    type: "GET",
+                    contentType: "application/json"
+                });
             }
 	};	
 
