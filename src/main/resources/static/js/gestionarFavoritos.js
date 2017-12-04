@@ -13,7 +13,7 @@ var gestionarFavoritos = (function(){
     return {
         
           addMisFavoritos(){
-              numero = $( "#localidad" ).val();
+              numero = $( "#localidades" ).val();
               nombre = $( "#myselect option:selected" ).text();
               var markup = "<tr class=\"filas\"><td>" + numero + "</td><td>" + nombre + "</td><td><button type=\"button\" class=\"btn btn-success\" onclick=\"app.actualizarPlano('"+numero+"')\">Open</button></td></tr>";
               $("table tbody").append(markup);
