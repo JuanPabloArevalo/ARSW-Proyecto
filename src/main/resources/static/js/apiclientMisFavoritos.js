@@ -10,9 +10,9 @@ var apiclientMisFavoritos = (function(){
        
        adicionarMisFavoritos(nombreUsuario, numero, nombre){
             return $.ajax({
-                url: "/sharingweather/V1/Usuario/favoritos",
+                url: "/sharingweather/V1/Favoritos",
                 type: "POST",
-                data: '{"nombreUsuario":"'+ nombreUsuario +'","numero":'+ numero +',"nombre":"'+ nombre +'"}',
+                data: '{"nombreUsuario":"'+ nombreUsuario +'","localidad":{"numero":'+ numero +', "nombre":"'+ nombre +'"}}',
                 contentType: "application/json"
             });
         }
