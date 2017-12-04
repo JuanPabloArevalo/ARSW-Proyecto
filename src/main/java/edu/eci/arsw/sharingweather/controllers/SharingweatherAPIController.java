@@ -128,7 +128,7 @@ public class SharingweatherAPIController {
 
     }
     
-    @RequestMapping(path = "/favoritos", method = RequestMethod.POST)
+    @RequestMapping(path = "/Usuario/favoritos", method = RequestMethod.POST)
     public ResponseEntity<?> manejadorPostAdicionarFavorito(@RequestBody String nombreUsuario,@RequestBody int numero, @RequestBody String nombre ) {
         try {
             sws.addLocalidadesFavoritas(nombreUsuario, numero, nombre);
