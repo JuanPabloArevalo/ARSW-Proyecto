@@ -7,13 +7,13 @@
 
 /* global apiclientMisFavoritos */
 
-var gestionarFavoritos = (function(){
+var gFavoritos = (function(){
     
-    var numero;
-    var nombre;
+    var numero = 0;
+    var nombre = "";
     
     return {
-        addMisFavoritos(){
+            adicionarfavoritos:function(){
             
               numero = $( "#localidades" ).val();
               nombre = $( "#localidades option:selected" ).text();
