@@ -24,14 +24,9 @@ public class Usuario {
     
     /**
      * Constructor
-     * @param nombreUsuario
-     * @param lFavoritas
-     * @param numero
-     * @param nombre
      */
-    public Usuario(String nombreUsuario, LocalidadFavoritas lFavoritas){
-        this.nombreUsuario = nombreUsuario;
-        this.localidad = lFavoritas; 
+    public Usuario(){
+         
     }
     /**
      * Constructor
@@ -41,12 +36,13 @@ public class Usuario {
      * @param password
      * @param correo 
      */
-    public Usuario(String nombre, int edad, String nombreUsuario, String password, String correo){
+    public Usuario(String nombre, int edad, String nombreUsuario, String password, String correo,LocalidadFavoritas lFavoritas){
         this.nombre = nombre;
         this.edad = edad;
         this.nombreUsuario = nombreUsuario;
         this.password = password;
         this.correo = correo;
+        this.localidad = lFavoritas;
         
     }
     
