@@ -79,7 +79,7 @@ public class SharingweatherAPIController {
 
     }
     
-     @RequestMapping(path = "/Usuarios/{usuario}/Favoritos", method = RequestMethod.GET)
+     @RequestMapping(path = "/{usuario}/Favoritos", method = RequestMethod.GET)
     public ResponseEntity<?> manejadorGetFavoritos(@PathVariable("usuario") String nombreU) {
         try {
             return new ResponseEntity<>(sws.getFavoritos(nombreU), HttpStatus.ACCEPTED);
