@@ -153,4 +153,10 @@ public class SharingweatherServices {
         return null;
 
     }
+    
+    public void addLocalidadesFavoritas(Usuario usuario){
+        
+         
+    
+    }
 }

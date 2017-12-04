@@ -5,6 +5,9 @@
  */
 package edu.eci.arsw.sharingweather.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author JuanArevaloMerchan y StefanyMoron
@@ -16,11 +19,16 @@ public class Usuario {
     private String nombreUsuario;
     private String password;
     private String correo;
+    private List<LocalidadFavoritas> localidadesFavoritas = new ArrayList<LocalidadFavoritas>();
     
     /**
      * Constructor
+     * @param numero
+     * @param nombre
      */
     public Usuario(){
+        
+        
     }
     /**
      * Constructor
@@ -30,13 +38,15 @@ public class Usuario {
      * @param password
      * @param correo 
      */
-    public Usuario(String nombre, int edad, String nombreUsuario, String password, String correo){
+    public Usuario(String nombre, int edad, String nombreUsuario, String password, String correo, LocalidadFavoritas lFavoritas){
         this.nombre = nombre;
         this.edad = edad;
         this.nombreUsuario = nombreUsuario;
         this.password = password;
         this.correo = correo;
+        localidadesFavoritas.add(lFavoritas);
     }
+    
     /**
      * @return the nombre
      */
@@ -107,4 +117,12 @@ public class Usuario {
         this.correo = correo;
     }
 
+    
+    public List<LocalidadFavoritas> getLocalidadesFavoritas(){
+        return localidadesFavoritas;
+    }
+    
+    public void addLocalidadFavorita(LocalidadFavoritas l){
+         localidadesFavoritas.add(l);
+    }
 }
