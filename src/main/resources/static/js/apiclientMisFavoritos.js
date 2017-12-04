@@ -8,6 +8,14 @@
 var apiclientMisFavoritos = (function(){
     return{
        
+       adicionarMisFavoritos(){
+            return $.ajax({
+                url: "/sharingweather/V1/favoritos",
+                type: "POST",
+                data: '{"nombreUsuario":"'+ nombreUsuario +'","numero":'+ numero +', "nombre":"'+ nombre +'"}',
+                contentType: "application/json"
+            });
+        }
     };
     
 }());

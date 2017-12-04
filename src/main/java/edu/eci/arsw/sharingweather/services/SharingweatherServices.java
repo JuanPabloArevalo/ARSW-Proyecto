@@ -5,6 +5,7 @@
  */
 package edu.eci.arsw.sharingweather.services;
 
+import edu.eci.arsw.sharingweather.model.LocalidadFavoritas;
 import edu.eci.arsw.sharingweather.model.ReporteClima;
 import edu.eci.arsw.sharingweather.model.Usuario;
 import edu.eci.arsw.sharingweather.persistence.SharingweatherNotFoundException;
@@ -154,9 +155,13 @@ public class SharingweatherServices {
 
     }
     
-    public void addLocalidadesFavoritas(Usuario usuario){
-        
-         
+    public void addLocalidadesFavoritas(String nombreUsuario, LocalidadFavoritas l) throws SharingweatherNotFoundException{
+        CopyOnWriteArrayList<Usuario> usuarios = swp.getUsuarios();
+         for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getNombreUsuario().equals(nombreUsuario)) {
+                   usuarios.get(i).addLocalidadFavorita(l);  
+            }
+        }
     
     }
 }

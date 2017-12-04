@@ -19,6 +19,7 @@ public class Usuario {
     private String nombreUsuario;
     private String password;
     private String correo;
+    private LocalidadFavoritas localidad;
     private List<LocalidadFavoritas> localidadesFavoritas = new ArrayList<LocalidadFavoritas>();
     
     /**
@@ -44,7 +45,8 @@ public class Usuario {
         this.nombreUsuario = nombreUsuario;
         this.password = password;
         this.correo = correo;
-        localidadesFavoritas.add(lFavoritas);
+        this.localidad = lFavoritas;
+        localidadesFavoritas.add(localidad);
     }
     
     /**

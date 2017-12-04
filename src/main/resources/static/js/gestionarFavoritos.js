@@ -15,9 +15,18 @@ var gestionarFavoritos = (function(){
           addMisFavoritos(){
               numero = $( "#localidades" ).val();
               nombre = $( "#localidades option:selected" ).text();
-              var markup = "<tr class=\"filas\"><td>" + numero + "</td><td>" + nombre + "</td><td><button type=\"button\" class=\"btn btn-info\" onclick=\"app.actualizarPlano('"+numero+"')\">Borrar</button></td></tr>";
-              $("table tbody").append(markup);
               
+              let promesa = apiclientMisFavoritos.adicionarMisFavoritos(sessionStorage.getItem("nombreUsuario"), numero, nombre); 
+                 promesa.then(
+                 function(){
+                     //window.location.href = "iniciarSesion.html";
+                      var filasTabla = "<tr class=\"filas\"><td>" + numero + "</td><td>" + nombre + "</td><td><button type=\"button\" class=\"btn btn-info\" onclick=\"app.actualizarPlano('"+numero+"')\">Borrar</button></td></tr>";
+                      $("table tbody").append(filasTabla);
+                 },
+                 function(){
+                $("#mensajeFalta").text(promesa.responseText); 
+                $("#divError").show();
+                 });
           }
         
         
