@@ -156,11 +156,15 @@ public class SharingweatherServices {
 
     }
     
-    public void addLocalidadesFavoritas(String nombreUsuario, LocalidadFavoritas l) throws SharingweatherNotFoundException{
+    public void addLocalidadesFavoritas(String nombreUsuario, int numero, String nombre) throws SharingweatherNotFoundException{
         CopyOnWriteArrayList<Usuario> usuarios = swp.getUsuarios();
+        LocalidadFavoritas localidad = null;
+        localidad.setNumero(numero);
+        localidad.setNombre(nombre);
+        
          for (int i = 0; i < usuarios.size(); i++) {
             if (usuarios.get(i).getNombreUsuario().equals(nombreUsuario)) {
-                   usuarios.get(i).addLocalidadFavorita(l);  
+                   usuarios.get(i).addLocalidadFavorita(localidad);  
             }
         }
     
@@ -168,6 +172,7 @@ public class SharingweatherServices {
     
     public List<LocalidadFavoritas> getFavoritos(String nombreUsuario) throws SharingweatherNotFoundException{
         CopyOnWriteArrayList<Usuario> usuarios = swp.getUsuarios();
+        
          for (int i = 0; i < usuarios.size(); i++) {
             if (usuarios.get(i).getNombreUsuario().equals(nombreUsuario)) {
                  return  usuarios.get(i).getLocalidadesFavoritas();
