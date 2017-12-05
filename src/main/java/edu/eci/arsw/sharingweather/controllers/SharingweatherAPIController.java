@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/sharingweather/V1")
 public class SharingweatherAPIController {
 
+    
     @Autowired
     private SharingweatherServices sws = null;
 
