@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.arsw.sharingweather.persistence.imp;
+package edu.eci.arsw.sharingweather.cache.stub;
 
-import edu.eci.arsw.sharingweather.model.LocalidadFavoritas;
+import edu.eci.arsw.sharingweather.cache.CacheNotFoundException;
+import edu.eci.arsw.sharingweather.cache.ReportesCache;
+import edu.eci.arsw.sharingweather.model.LocalidadFavorita;
 import edu.eci.arsw.sharingweather.model.LocalidadesBogota;
 import edu.eci.arsw.sharingweather.model.ReporteClima;
 import edu.eci.arsw.sharingweather.model.Ubicacion;
 import edu.eci.arsw.sharingweather.model.Usuario;
-import edu.eci.arsw.sharingweather.model.imp.LocalidadesBogotaLocal;
-import edu.eci.arsw.sharingweather.persistence.SharingweatherNotFoundException;
-import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistence;
-import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistenceException;
+import edu.eci.arsw.sharingweather.persistence.UsersRepository;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -27,39 +26,32 @@ import org.springframework.stereotype.Service;
  * @author JuanArevaloMerchan y StefanyMoron
  */
 @Service
-public class LocalPersistence implements SharingweatherPersistence {
-
+public class InMemoryReportesCache implements ReportesCache{
+    
     private ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> climasPublicados = new ConcurrentHashMap<>();
     private ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> climasNoPublicados = new ConcurrentHashMap<>();
     private AtomicLong numeroPublicados = new AtomicLong(1);
     private AtomicLong numeroNoPublicados = new AtomicLong(1);
-    private CopyOnWriteArrayList<Usuario> listaUsuarios = new CopyOnWriteArrayList<>();
     private static final double DISTANCIAMINIMA = 0.7;
     private static final int CANTIDADREPORTESMINIMO = 3;
-
+    
+    @Autowired
+    private UsersRepository usuarios = null;
     @Autowired
     private SimpMessagingTemplate msgt;
     @Autowired
     private LocalidadesBogota localidades = null;
-    /**
-     * Constructor
-     */
-    public LocalPersistence() {
-        LocalidadFavoritas localidades1 = new LocalidadFavoritas(1,"usaquen"); 
-        LocalidadFavoritas localidades2 = new LocalidadFavoritas(2,"Chapinero");
-        LocalidadFavoritas localidades3 = new LocalidadFavoritas(3,"Santa fe");
-        Usuario usuario = new Usuario("Juan Arevalo", 25, "juanarevalomerchan", "123", "juan.arevalo-m@mail.escuelaing.edu.co",localidades1);
-        Usuario usuario2 = new Usuario("Stefany Moron", 27, "stefanymoron", "1234", "stefany.moron@mail.escuelaing.edu.co", localidades2);
-        Usuario usuario3 = new Usuario("Hector Cadavid", 18, "hectorcadavid", "12345", "hector.cadavid@mail.escuelaing.edu.co",localidades3);
-        listaUsuarios.add(usuario);
-        listaUsuarios.add(usuario2);
-        listaUsuarios.add(usuario3);
+    
+    
+    public InMemoryReportesCache(){
         Ubicacion ub1 = new Ubicacion(4.746147, -74.030096);
         Ubicacion ub2 = new Ubicacion(4.746040, -74.031995);
         Ubicacion ub3 = new Ubicacion(4.748638, -74.030353);
+        LocalidadFavorita localidades1 = new LocalidadFavorita(1,"usaquen"); 
+        Usuario usuario = new Usuario("Juan Arevalo", 25, "juanarevalomerchan", "123", "juan.arevalo-m@mail.escuelaing.edu.co",localidades1);
         ReporteClima clima1 = new ReporteClima(ub1, 10, usuario, "sol");
-        ReporteClima clima2 = new ReporteClima(ub2, 12, usuario2, "sol");
-        ReporteClima clima3 = new ReporteClima(ub3, 18, usuario3, "sol");
+        ReporteClima clima2 = new ReporteClima(ub2, 12, usuario, "sol");
+        ReporteClima clima3 = new ReporteClima(ub3, 18, usuario, "sol");
         CopyOnWriteArrayList<ReporteClima> objList = new CopyOnWriteArrayList<>();
         objList.add(clima1);
         objList.add(clima2);
@@ -69,8 +61,8 @@ public class LocalPersistence implements SharingweatherPersistence {
         ub2 = new Ubicacion(4.729650, -74.031289);
         ub3 = new Ubicacion(4.732430, -74.033574);
         clima1 = new ReporteClima(ub1, 25, usuario, "agua");
-        clima2 = new ReporteClima(ub2, 32, usuario2, "agua");
-        clima3 = new ReporteClima(ub3, 45, usuario3, "agua");
+        clima2 = new ReporteClima(ub2, 32, usuario, "agua");
+        clima3 = new ReporteClima(ub3, 45, usuario, "agua");
         objList = new CopyOnWriteArrayList<>();
         objList.add(clima1);
         objList.add(clima2);
@@ -81,19 +73,17 @@ public class LocalPersistence implements SharingweatherPersistence {
         ub2 = new Ubicacion(4.703313, -74.034446);
         ub3 = new Ubicacion(4.703377, -74.036817);
         clima1 = new ReporteClima(ub1, 55, usuario, "nublado");
-        clima2 = new ReporteClima(ub2, 65, usuario2, "nublado");
-        clima3 = new ReporteClima(ub3, 75, usuario3, "nublado");
+        clima2 = new ReporteClima(ub2, 65, usuario, "nublado");
+        clima3 = new ReporteClima(ub3, 75, usuario, "nublado");
         objList = new CopyOnWriteArrayList<>();
         objList.add(clima1);
         objList.add(clima2);
         objList.add(clima3);
         climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
-        
-//        localidades = new LocalidadesBogotaLocal();
     }
-
+    
     @Override
-    public void saveReporteClima(ReporteClima clima, Usuario usuario) throws SharingweatherPersistenceException {
+    public void saveReporteClima(ReporteClima clima, Usuario usuario) throws CacheNotFoundException {
         CopyOnWriteArrayList<ReporteClima> objList;
         boolean encontro = false;
         Long llaveActual;
@@ -105,7 +95,7 @@ public class LocalPersistence implements SharingweatherPersistence {
             for (int i = 0; i < objList.size(); i++) {
                 if (objList.get(i).getUbicacion().distanciaEntreUbicaciones(clima.getUbicacion()) <= DISTANCIAMINIMA && clima.getClima().equals(objList.get(i).getClima())) {
                     if (clima.getUsuario().getNombreUsuario().equals(objList.get(i).getUsuario().getNombreUsuario())) {
-                        throw new SharingweatherPersistenceException("Ya has publicado un reporte en la misma zona y con el mismo clima.");
+                        throw new CacheNotFoundException("Ya has publicado un reporte en la misma zona y con el mismo clima.");
                     }
                     objList.add(clima);
                     if (objList.size() >= CANTIDADREPORTESMINIMO) {
@@ -140,7 +130,7 @@ public class LocalPersistence implements SharingweatherPersistence {
                 for (int i = 0; i < objList.size(); i++) {
                     if (objList.get(i).getUbicacion().distanciaEntreUbicaciones(clima.getUbicacion()) <= DISTANCIAMINIMA && clima.getClima().equals(objList.get(i).getClima())) {
                         if (clima.getUsuario().getNombreUsuario().equals(objList.get(i).getUsuario().getNombreUsuario())) {
-                            throw new SharingweatherPersistenceException("Ya has publicado un reporte en la misma zona y con el mismo clima.");
+                            throw new CacheNotFoundException("Ya has publicado un reporte en la misma zona y con el mismo clima.");
                         }
                         objList.add(clima);
                         climasPublicados.replace(llaveActual, objList);
@@ -170,56 +160,13 @@ public class LocalPersistence implements SharingweatherPersistence {
     }
 
     @Override
-    public ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> getReportesClimaPublicar() throws SharingweatherNotFoundException {
+    public ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> getReportesClimaPublicar() throws CacheNotFoundException {
         return climasPublicados;
-
     }
 
     @Override
-    public ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> getReportesClimaSinPublicar() throws SharingweatherNotFoundException {
+    public ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> getReportesClimaSinPublicar() throws CacheNotFoundException {
         return climasNoPublicados;
     }
-
-    @Override
-    public CopyOnWriteArrayList<Usuario> getUsuarios() throws SharingweatherNotFoundException {
-        return listaUsuarios;
-    }
-
-    @Override
-    public void addUsuarios(Usuario usuario) throws SharingweatherNotFoundException {
-        listaUsuarios.add(usuario);
-    }
-
-    @Override
-    public void addRegionFavorita(Usuario usario, LocalidadFavoritas lf) throws SharingweatherNotFoundException {
-        boolean encontro = false;
-        for(int i=0; i<listaUsuarios.size(); i++){
-            if(usario.getNombreUsuario().equalsIgnoreCase(listaUsuarios.get(i).getNombreUsuario())){
-                encontro = true;
-                if(!listaUsuarios.get(i).existeLocalidad(lf)){
-                    listaUsuarios.get(i).addLocalidadFavorita(lf);
-                }
-                else{
-                    throw new UnsupportedOperationException("La localidad ya existe");
-                }
-                
-                break;
-            }
-        }
-        
-        if(!encontro){
-            throw new UnsupportedOperationException("Usuario Invalido."); //To change body of generated methods, choose Tools | Templates.
     
-        }
-    }
-
-    @Override
-    public CopyOnWriteArrayList<LocalidadFavoritas> getRegionesFavoritas(Usuario usuario) throws SharingweatherNotFoundException {
-        for(int i=0; i<listaUsuarios.size(); i++){
-            if(usuario.getNombreUsuario().equalsIgnoreCase(listaUsuarios.get(i).getNombreUsuario())){
-                return listaUsuarios.get(i).getLocalidadesFavoritas();
-            }
-        }
-        throw new UnsupportedOperationException("Usuario inválido"); //To change body of generated methods, choose Tools | Templates.
-    }
 }

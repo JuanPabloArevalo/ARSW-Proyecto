@@ -7,16 +7,16 @@ package edu.eci.arsw.sharingweather.persistence;
 
 /**
  *
- * @author hcadavid
+ * @author JuanArevaloMerchan
  */
-public class SharingweatherPersistenceException extends Exception{
+public class PersistenceNotFoundException extends Exception{
 
-    public SharingweatherPersistenceException(String message) {
+    public PersistenceNotFoundException(String message) {
         super(message);
     }
 
-    public SharingweatherPersistenceException(String message, Throwable cause) {
+    public PersistenceNotFoundException(String message, Throwable cause) {
         super(message, cause);
     }
-    
+
 }

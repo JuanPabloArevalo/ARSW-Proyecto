@@ -5,8 +5,6 @@
  */
 package edu.eci.arsw.sharingweather.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -20,8 +18,8 @@ public class Usuario {
     private String nombreUsuario;
     private String password;
     private String correo;
-    private LocalidadFavoritas localidad;
-    private CopyOnWriteArrayList<LocalidadFavoritas> localidadesFavoritas = new CopyOnWriteArrayList<>();
+    private LocalidadFavorita localidad;
+    private CopyOnWriteArrayList<LocalidadFavorita> localidadesFavoritas = new CopyOnWriteArrayList<>();
     
     /**
      * Constructor
@@ -37,7 +35,7 @@ public class Usuario {
      * @param password
      * @param correo 
      */
-    public Usuario(String nombre, int edad, String nombreUsuario, String password, String correo,LocalidadFavoritas lFavoritas){
+    public Usuario(String nombre, int edad, String nombreUsuario, String password, String correo,LocalidadFavorita lFavoritas){
         this.nombre = nombre;
         this.edad = edad;
         this.nombreUsuario = nombreUsuario;
@@ -117,15 +115,15 @@ public class Usuario {
         this.correo = correo;
     }
     
-    public LocalidadFavoritas getlocalidad(){
+    public LocalidadFavorita getlocalidad(){
        return localidad;
     }
     
-    public CopyOnWriteArrayList<LocalidadFavoritas> getLocalidadesFavoritas(){
+    public CopyOnWriteArrayList<LocalidadFavorita> getLocalidadesFavoritas(){
         return localidadesFavoritas;
     }
     
-    public void addLocalidadFavorita(LocalidadFavoritas l){
+    public void addLocalidadFavorita(LocalidadFavorita l){
          localidadesFavoritas.add(l);
     }
     
@@ -134,7 +132,7 @@ public class Usuario {
      * @param lf
      * @return 
      */
-    public boolean existeLocalidad(LocalidadFavoritas lf){
+    public boolean existeLocalidad(LocalidadFavorita lf){
         for(int i=0; i<localidadesFavoritas.size(); i++){
             if(localidadesFavoritas.get(i).getNumero()==lf.getNumero()){
                 return true;

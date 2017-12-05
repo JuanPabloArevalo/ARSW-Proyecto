@@ -9,17 +9,17 @@ package edu.eci.arsw.sharingweather.model;
  *
  * @author User
  */
-public class LocalidadFavoritas {
+public class LocalidadFavorita {
     
     private int numero;
     private String nombre;
     
-    public LocalidadFavoritas(){
+    public LocalidadFavorita(){
         
     }
     
     
-    public LocalidadFavoritas(int numero , String nombre){
+    public LocalidadFavorita(int numero , String nombre){
      this.numero = numero;
      this.nombre = nombre;
             

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.arsw.sharingweather.model.imp;
+package edu.eci.arsw.sharingweather.model.stub;
 
 import edu.eci.arsw.sharingweather.model.Localidad;
 import edu.eci.arsw.sharingweather.model.LocalidadesBogota;
@@ -77,8 +77,7 @@ public class LocalidadesBogotaLocal implements LocalidadesBogota{
         localidades.add(puente);
         localidades.add(rafaelUribe);
         localidades.add(ciudadBolivar);
-        System.out.println("edu.eci.arsw.sharingweather.model.imp.LocalidadesBogotaLocal.<init>()1111111111111111111111111111111111111");
-    }
+     }
     //4.706553, -74.035508
     
     

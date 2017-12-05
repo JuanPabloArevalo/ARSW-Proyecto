@@ -5,14 +5,13 @@
  */
 package edu.eci.arsw.sharingweather.controllers;
 
-import edu.eci.arsw.sharingweather.model.LocalidadFavoritas;
+import edu.eci.arsw.sharingweather.cache.CacheNotFoundException;
+import edu.eci.arsw.sharingweather.model.LocalidadFavorita;
 import edu.eci.arsw.sharingweather.model.ReporteClima;
 import edu.eci.arsw.sharingweather.model.Usuario;
-import edu.eci.arsw.sharingweather.persistence.SharingweatherNotFoundException;
-import edu.eci.arsw.sharingweather.persistence.SharingweatherPersistenceException;
+import edu.eci.arsw.sharingweather.persistence.PersistenceNotFoundException;
+import edu.eci.arsw.sharingweather.persistence.PersistenceException;
 import edu.eci.arsw.sharingweather.services.SharingweatherServices;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +38,12 @@ public class SharingweatherAPIController {
     public ResponseEntity<?> manejadorGetAllReportesPublicados() {
         try {
             return new ResponseEntity<>(sws.getReportesPublicados(), HttpStatus.ACCEPTED);
-        } catch (SharingweatherNotFoundException ex) {
+        } catch (PersistenceNotFoundException ex) {
             Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("NO existen reportes publicados ", HttpStatus.NOT_FOUND);
+        } catch (CacheNotFoundException ex) {
+            Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
         }
 
     }
@@ -50,9 +52,12 @@ public class SharingweatherAPIController {
     public ResponseEntity<?> manejadorGetAllReportesNoPublicados() {
         try {
             return new ResponseEntity<>(sws.getReportesSinPublicar(), HttpStatus.ACCEPTED);
-        } catch (SharingweatherNotFoundException ex) {
+        } catch (PersistenceNotFoundException ex) {
             Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("NO existen reportes publicados ", HttpStatus.NOT_FOUND);
+        } catch (CacheNotFoundException ex) {
+            Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
         }
 
     }
@@ -61,7 +66,7 @@ public class SharingweatherAPIController {
     public ResponseEntity<?> manejadorGetRestrado() {
         try {
             return new ResponseEntity<>(sws.getUsuarios(), HttpStatus.ACCEPTED);
-        } catch (SharingweatherNotFoundException ex) {
+        } catch (PersistenceNotFoundException ex) {
             Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("NO hay usuarios registrados ", HttpStatus.NOT_FOUND);
         }
@@ -72,7 +77,7 @@ public class SharingweatherAPIController {
     public ResponseEntity<?> manejadorGetRegistrado(@PathVariable("usuario") String nombreU, @PathVariable("password") String password) {
         try {
             return new ResponseEntity<>(sws.iniciarSesion(nombreU, password), HttpStatus.ACCEPTED);
-        } catch (SharingweatherNotFoundException ex) {
+        } catch (PersistenceNotFoundException ex) {
             Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
         }
@@ -86,10 +91,10 @@ public class SharingweatherAPIController {
         try {
             sws.addNewReporteClima(repClima);
             return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (SharingweatherNotFoundException ex) {
+        } catch (PersistenceNotFoundException ex) {
             Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
-        } catch (SharingweatherPersistenceException ex) {
+        } catch (PersistenceException | CacheNotFoundException ex) {
             Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
         }
@@ -100,7 +105,7 @@ public class SharingweatherAPIController {
         try {
             sws.addUsuarios(usuario);
             return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (SharingweatherNotFoundException ex) {
+        } catch (PersistenceNotFoundException ex) {
             Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
         }
@@ -111,30 +116,42 @@ public class SharingweatherAPIController {
     public ResponseEntity<?> manejadorGetRegionesFavoritas(@PathVariable("usuario") String loginU) {
         try {
             return new ResponseEntity<>(sws.getFavoritos(loginU), HttpStatus.ACCEPTED);
-        } catch (SharingweatherNotFoundException ex) {
+        } catch (PersistenceNotFoundException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
         } 
     }
     
+    /**
+     *
+     * @param loginU
+     * @param l
+     * @return
+     */
     @RequestMapping(path = "/regionesFavoritas/{usuario}", method = RequestMethod.POST)
-    public ResponseEntity<?> manejadorPostAdicionarFavorito(@PathVariable("usuario") String loginU, @RequestBody LocalidadFavoritas l ) {
+    public ResponseEntity<?> manejadorPostAdicionarFavorito(@PathVariable("usuario") String loginU, @RequestBody LocalidadFavorita l ) {
         try {
             System.out.println("loginU()"+loginU);
             sws.addLocalidadesFavoritas(loginU, l);
             return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (SharingweatherNotFoundException ex) {
+        } catch (PersistenceNotFoundException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
         }
 
     }
     
+    /**
+     *
+     * @param loginU
+     * @param l
+     * @return
+     */
     @RequestMapping(value = "/regionesFavoritas/{usuario}", method = RequestMethod.DELETE)    
-    public ResponseEntity<?> manejadorDeleteFavoritos(@PathVariable("usuario") String loginU, @RequestBody LocalidadFavoritas l){
+    public ResponseEntity<?> manejadorDeleteFavoritos(@PathVariable("usuario") String loginU, @RequestBody LocalidadFavorita l){
             try { 
             sws.EliminarFavoritos(loginU, l);
             //registrar dato
             return new ResponseEntity<>(HttpStatus.CREATED);
-            } catch (Exception ex) {
+            } catch (PersistenceNotFoundException ex) {
             Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error bla bla bla",HttpStatus.FORBIDDEN);            
              }        
