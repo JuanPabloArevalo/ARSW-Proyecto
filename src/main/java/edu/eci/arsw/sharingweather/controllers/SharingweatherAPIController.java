@@ -153,7 +153,7 @@ public class SharingweatherAPIController {
             return new ResponseEntity<>(HttpStatus.CREATED);
             } catch (PersistenceNotFoundException ex) {
             Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error bla bla bla",HttpStatus.FORBIDDEN);            
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);            
              }        
     } 
     
