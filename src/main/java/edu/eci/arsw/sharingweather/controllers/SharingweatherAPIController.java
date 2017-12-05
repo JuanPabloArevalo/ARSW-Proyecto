@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SharingweatherAPIController {
 
     
+    
     @Autowired
     private SharingweatherServices sws = null;
 
