@@ -83,7 +83,6 @@ public class LocalidadesBogotaLocal implements LocalidadesBogota{
     
     @Override
     public Localidad getLocalidad(Ubicacion ubicacion){
-        Localidad retorno = null;
         Localidad seleccionada;
         for(int i=0; i<localidades.size(); i++){
             seleccionada = localidades.get(i);

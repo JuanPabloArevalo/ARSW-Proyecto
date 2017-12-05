@@ -207,7 +207,7 @@ public class SharingweatherServices {
        
     }
     
-   public void EliminarFavoritos(String nombreUsuario, LocalidadFavorita l) throws PersistenceNotFoundException{
+   public void eliminarFavoritos(String nombreUsuario, LocalidadFavorita l) throws PersistenceNotFoundException{
        CopyOnWriteArrayList<Usuario> usuariosL = usuarios.getUsuarios();
        Usuario usuario = null;
        for (int i = 0; i < usuariosL.size(); i++) {

@@ -148,7 +148,7 @@ public class SharingweatherAPIController {
     @RequestMapping(value = "/regionesFavoritas/{usuario}", method = RequestMethod.DELETE)    
     public ResponseEntity<?> manejadorDeleteFavoritos(@PathVariable("usuario") String loginU, @RequestBody LocalidadFavorita l){
             try { 
-            sws.EliminarFavoritos(loginU, l);
+            sws.eliminarFavoritos(loginU, l);
             //registrar dato
             return new ResponseEntity<>(HttpStatus.CREATED);
             } catch (PersistenceNotFoundException ex) {

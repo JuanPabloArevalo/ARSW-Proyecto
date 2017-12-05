@@ -12,7 +12,6 @@ import edu.eci.arsw.sharingweather.model.LocalidadesBogota;
 import edu.eci.arsw.sharingweather.model.ReporteClima;
 import edu.eci.arsw.sharingweather.model.Ubicacion;
 import edu.eci.arsw.sharingweather.model.Usuario;
-import edu.eci.arsw.sharingweather.persistence.UsersRepository;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -35,8 +34,7 @@ public class InMemoryReportesCache implements ReportesCache{
     private static final double DISTANCIAMINIMA = 0.7;
     private static final int CANTIDADREPORTESMINIMO = 3;
     
-    @Autowired
-    private UsersRepository usuarios = null;
+
     @Autowired
     private SimpMessagingTemplate msgt;
     @Autowired

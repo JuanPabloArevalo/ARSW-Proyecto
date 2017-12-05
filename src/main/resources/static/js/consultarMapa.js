@@ -36,13 +36,13 @@ function suscribirseTopicosRegionesFavoritas(region){
             var arreglo = JSON.parse(eventbody.body);
             var clim = "";
             if(arreglo.clima === "agua"){
-                clim = " esta cayendo un aguacero!"
+                clim = " esta cayendo un aguacero!";
             }
             else if(arreglo.clima === "nublado"){
-                clim = " esta a punto de llover"
+                clim = " esta a punto de llover";
             }
             else{
-                clim = " esta haciendo un solazo!" 
+                clim = " esta haciendo un solazo!";
             }
             $("textarea#idRegionesFavoritas").val("En "+ region.nombre+clim + "\n" +  $("textarea#idRegionesFavoritas").val());
         });
