@@ -77,6 +77,7 @@ public class LocalidadesBogotaLocal implements LocalidadesBogota{
         localidades.add(puente);
         localidades.add(rafaelUribe);
         localidades.add(ciudadBolivar);
+        System.out.println("edu.eci.arsw.sharingweather.model.imp.LocalidadesBogotaLocal.<init>()1111111111111111111111111111111111111");
     }
     //4.706553, -74.035508
     

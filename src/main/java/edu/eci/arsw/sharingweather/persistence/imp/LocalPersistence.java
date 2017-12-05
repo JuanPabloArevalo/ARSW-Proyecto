@@ -89,7 +89,7 @@ public class LocalPersistence implements SharingweatherPersistence {
         objList.add(clima3);
         climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
         
-        localidades = new LocalidadesBogotaLocal();
+//        localidades = new LocalidadesBogotaLocal();
     }
 
     @Override
