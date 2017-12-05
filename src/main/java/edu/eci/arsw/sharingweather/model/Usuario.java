@@ -138,7 +138,21 @@ public class Usuario {
                 return true;
             }
         }
-        
         return false;
+    }
+    
+    /**
+     * Metodo encargado de eliminar la localidad favorita
+     * @param l 
+     */
+    public void eliminarLocalidadFavorita(LocalidadFavorita l){
+        
+        for(int i=0; i<localidadesFavoritas.size(); i++){
+            if(localidadesFavoritas.get(i).getNumero()==l.getNumero()){
+                localidadesFavoritas.remove(i);
+                System.out.println("edu.eci.arsw.sharingweather.model.Usuario.eliminarLocalidadFavorita()");
+                break;
+            }
+        }
     }
 }

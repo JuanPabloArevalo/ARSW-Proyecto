@@ -148,13 +148,12 @@ public class SharingweatherAPIController {
     @RequestMapping(value = "/regionesFavoritas/{usuario}", method = RequestMethod.DELETE)    
     public ResponseEntity<?> manejadorDeleteFavoritos(@PathVariable("usuario") String loginU, @RequestBody LocalidadFavorita l){
             try { 
-            sws.eliminarFavoritos(loginU, l);
-            //registrar dato
-            return new ResponseEntity<>(HttpStatus.CREATED);
+                sws.eliminarFavoritos(loginU, l);
+                //registrar dato
+                return new ResponseEntity<>(HttpStatus.CREATED);
             } catch (PersistenceNotFoundException ex) {
-            Logger.getLogger(SharingweatherAPIController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);            
-             }        
+                return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_FOUND);            
+            }        
     } 
     
     

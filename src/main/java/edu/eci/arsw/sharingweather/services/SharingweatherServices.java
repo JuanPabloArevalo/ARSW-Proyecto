@@ -208,22 +208,23 @@ public class SharingweatherServices {
     }
     
    public void eliminarFavoritos(String nombreUsuario, LocalidadFavorita l) throws PersistenceNotFoundException{
-       CopyOnWriteArrayList<Usuario> usuariosL = usuarios.getUsuarios();
-       Usuario usuario = null;
-       for (int i = 0; i < usuariosL.size(); i++) {
-           if (usuariosL.get(i).getNombreUsuario().equalsIgnoreCase(nombreUsuario)) {
-               usuario = usuariosL.get(i);
-                for (int j = 0; j < usuario.getLocalidadesFavoritas().size(); j++) {
-                    if(usuario.getLocalidadesFavoritas().get(j).equals(l)){
-                       usuario.getLocalidadesFavoritas().remove(j);
-                    }
-                    
-                }    
-            } 
-       }
-        if(usuario==null){
+        CopyOnWriteArrayList<Usuario> usuariosL = usuarios.getUsuarios();
+        Usuario usuario = null;     
+        for (int i = 0; i < usuariosL.size(); i++) {
+            if (usuariosL.get(i).getNombreUsuario().equalsIgnoreCase(nombreUsuario)) {
+                   usuario = usuariosL.get(i);
+                   break;
+            }
+        }
+                 
+        if(usuario!=null){
+            localidades.eliminarRegionFavorita(usuario, l);
+        }
+        else{
             throw new PersistenceNotFoundException("Usuario no válido");
         }
+       
+
    }  
     
 }

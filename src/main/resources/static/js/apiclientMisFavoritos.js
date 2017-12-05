@@ -9,7 +9,6 @@ var apiclientMisFavoritos = (function(){
     return{
        
        adicionarMisFavoritos(numero, nombre, nombreUsuario){
-            console.info("ESTO: "+nombreUsuario)
             return $.ajax({
                 url: "/sharingweather/V1/regionesFavoritas/"+nombreUsuario,
                 type: "POST",
@@ -25,7 +24,7 @@ var apiclientMisFavoritos = (function(){
             return $.ajax({
                 url:  "/sharingweather/V1/regionesFavoritas/"+nombreUsuario,
                 type: "DELETE",
-                data: '{"numero":'+ numero +', "nombre":"'+ nombre +'"}',
+                data: '{"numero":'+numero+', "nombre":"'+nombre+'"}',
                 contentType: "application/json"
             });
         }

@@ -31,5 +31,11 @@ public interface LocalidadesRepository {
      */
     public CopyOnWriteArrayList<LocalidadFavorita> getRegionesFavoritas(Usuario usuario)throws PersistenceNotFoundException ;
     
-    
+    /**
+     * Metodo encargado de eliminar la region favorita
+     * @param usaurio
+     * @param lf
+     * @throws PersistenceNotFoundException 
+     */
+    public void eliminarRegionFavorita(Usuario usaurio, LocalidadFavorita lf) throws PersistenceNotFoundException;
 }

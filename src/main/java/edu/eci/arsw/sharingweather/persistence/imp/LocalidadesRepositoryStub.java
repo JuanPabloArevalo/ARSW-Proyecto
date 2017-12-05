@@ -58,5 +58,23 @@ public class LocalidadesRepositoryStub implements LocalidadesRepository{
         }
         throw new UnsupportedOperationException("Usuario inválido"); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void eliminarRegionFavorita(Usuario usaurio, LocalidadFavorita lf) throws PersistenceNotFoundException {
+        Usuario usuarioEncontrado = null;
+        for(int i=0; i<usuarios.getUsuarios().size(); i++){
+            if(usaurio.getNombreUsuario().equalsIgnoreCase(usuarios.getUsuarios().get(i).getNombreUsuario())){
+                usuarioEncontrado = usuarios.getUsuarios().get(i);
+                break;
+            }
+        }
+        
+        if(usuarioEncontrado!=null){
+            usuarioEncontrado.eliminarLocalidadFavorita(lf);
+        }
+        else{
+            throw new PersistenceNotFoundException("Usuario no encontrado");
+        }
+    }
     
 }

@@ -18,7 +18,7 @@ var gFavoritos = (function(){
     }
 
     function adicionarFila(item){
-        var markup = "<tr class=\"filas\"><td>" + item.numero + "</td><td>" + item.nombre + "</td><td><button type=\"button\" class=\"btn btn-info\" onclick=\"gFavoritos.eliminarFavoritos('"+item.numero+","+ item.nombre +"')\">Borrar</button></td></tr>";
+        var markup = "<tr class=\"filas\"><td>" + item.numero + "</td><td>" + item.nombre + "</td><td><button type=\"button\" class=\"btn btn-info\" onclick=\"gFavoritos.eliminarFavoritos('"+item.numero+"','"+ item.nombre +"')\">Borrar</button></td></tr>";
         $("table tbody").append(markup);
     }
     
