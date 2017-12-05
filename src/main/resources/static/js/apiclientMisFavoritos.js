@@ -20,6 +20,7 @@ var apiclientMisFavoritos = (function(){
         getFavoritos(nombreUsuario){
             return $.get("/sharingweather/V1/regionesFavoritas/"+nombreUsuario); 
         },
+        
         eliminarMisFavoritos(numero, nombre, nombreUsuario){
             return $.ajax({
                 url:  "/sharingweather/V1/regionesFavoritas/"+nombreUsuario,
