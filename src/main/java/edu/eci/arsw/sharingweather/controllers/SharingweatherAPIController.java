@@ -36,6 +36,7 @@ public class SharingweatherAPIController {
 
     @RequestMapping(path = "/reportesClima/publicados", method = RequestMethod.GET)
     public ResponseEntity<?> manejadorGetAllReportesPublicados() {
+        System.out.println("Entro ACAAAAA");
         try {
             return new ResponseEntity<>(sws.getReportesPublicados(), HttpStatus.ACCEPTED);
         } catch (PersistenceNotFoundException ex) {
