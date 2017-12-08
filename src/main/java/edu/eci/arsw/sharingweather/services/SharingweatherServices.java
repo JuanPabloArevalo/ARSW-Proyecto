@@ -10,7 +10,6 @@ import edu.eci.arsw.sharingweather.cache.ReportesCache;
 import edu.eci.arsw.sharingweather.model.LocalidadFavorita;
 import edu.eci.arsw.sharingweather.model.ReporteClima;
 import edu.eci.arsw.sharingweather.model.Usuario;
-import edu.eci.arsw.sharingweather.persistence.LocalidadesRepository;
 import edu.eci.arsw.sharingweather.persistence.PersistenceNotFoundException;
 import edu.eci.arsw.sharingweather.persistence.PersistenceException;
 import java.util.HashSet;
@@ -21,6 +20,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import edu.eci.arsw.sharingweather.persistence.UsersRepository;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -33,8 +34,6 @@ public class SharingweatherServices {
     private UsersRepository usuarios = null;
     @Autowired
     private ReportesCache reportes = null;
-    @Autowired
-    private LocalidadesRepository localidades = null;
 
     /**
      * Metodo encargado de adicionar un nuevo reporte del clima
@@ -46,10 +45,10 @@ public class SharingweatherServices {
      * @throws edu.eci.arsw.sharingweather.cache.CacheNotFoundException
      */
     public void addNewReporteClima(ReporteClima rcl) throws PersistenceNotFoundException, PersistenceException, CacheNotFoundException {
-            Usuario usuario = getUsuario(rcl.getUsuario().getNombreUsuario());
-            rcl.setUsuario(usuario);
-            reportes.saveReporteClima(rcl, usuario);
-        
+        Usuario usuario = getUsuario(rcl.getUsuario().getNombreUsuario());
+        rcl.setUsuario(usuario);
+        reportes.saveReporteClima(rcl, usuario);
+
     }
 
     /**
@@ -99,7 +98,7 @@ public class SharingweatherServices {
      */
     public Set<Usuario> getUsuarios() throws PersistenceNotFoundException {
         Set<Usuario> usuariosL = new HashSet<>();
-        CopyOnWriteArrayList<Usuario> usuariostemp = usuarios.getUsuarios();
+        ArrayList<Usuario> usuariostemp = usuarios.getAllUsers();
         for (int i = 0; i < usuariostemp.size(); i++) {
             usuariosL.add(usuariostemp.get(i));
         }
@@ -114,9 +113,9 @@ public class SharingweatherServices {
      * @throws PersistenceNotFoundException
      */
     public Usuario getUsuario(String nombreUsuario) throws PersistenceNotFoundException {
-        for (int i = 0; i < usuarios.getUsuarios().size(); i++) {
-            if (usuarios.getUsuarios().get(i).getNombreUsuario().equals(nombreUsuario)) {
-                return usuarios.getUsuarios().get(i);
+        for (int i = 0; i < usuarios.getAllUsers().size(); i++) {
+            if (usuarios.getAllUsers().get(i).getNombreUsuario().equals(nombreUsuario)) {
+                return usuarios.getAllUsers().get(i);
             }
         }
         return null;
@@ -130,12 +129,18 @@ public class SharingweatherServices {
      */
     public void addUsuarios(Usuario usuario) throws PersistenceNotFoundException {
 
-        for (int i = 0; i < usuarios.getUsuarios().size(); i++) {
-            if (usuarios.getUsuarios().get(i).getNombreUsuario().equals(usuario.getNombreUsuario()) || usuarios.getUsuarios().get(i).getCorreo().equals(usuario.getCorreo())) {
+        for (int i = 0; i < usuarios.getAllUsers().size(); i++) {
+            if (usuarios.getAllUsers().get(i).getNombreUsuario().equals(usuario.getNombreUsuario()) || usuarios.getAllUsers().get(i).getCorreo().equals(usuario.getCorreo())) {
                 throw new PersistenceNotFoundException("El usuario ya existe.");
             }
         }
-        usuarios.addUsuarios(usuario);
+        List<Usuario> usrs = new ArrayList<Usuario>();
+        usrs.add(usuario);
+        try {
+            usuarios.save(usrs);
+        } catch (Exception e) {
+            throw new PersistenceNotFoundException("Ha ocurrido un error con la base de datos: " + e.getMessage());
+        }
     }
 
     /**
@@ -147,7 +152,7 @@ public class SharingweatherServices {
      * @throws PersistenceNotFoundException
      */
     public Usuario iniciarSesion(String nombreUsuario, String password) throws PersistenceNotFoundException {
-        CopyOnWriteArrayList<Usuario> usuariosL = usuarios.getUsuarios();
+        ArrayList<Usuario> usuariosL = usuarios.getAllUsers();
         Usuario usuario = null;
         for (int i = 0; i < usuariosL.size(); i++) {
             if (usuariosL.get(i).getNombreUsuario().equals(nombreUsuario) && usuariosL.get(i).getPassword().equals(password)) {
@@ -162,69 +167,73 @@ public class SharingweatherServices {
         return null;
 
     }
-    
-    public void addLocalidadesFavoritas(String nombreUsuario, LocalidadFavorita l) throws PersistenceNotFoundException{
-        Usuario usuario = null;      
-        CopyOnWriteArrayList<Usuario> usuariosL = usuarios.getUsuarios();
+
+    public void addLocalidadesFavoritas(String nombreUsuario, LocalidadFavorita l) throws PersistenceNotFoundException {
+        Usuario usuario = null;
+        ArrayList<Usuario> usuariosL = usuarios.getAllUsers();
         for (int i = 0; i < usuariosL.size(); i++) {
             if (usuariosL.get(i).getNombreUsuario().equalsIgnoreCase(nombreUsuario)) {
-                   usuario = usuariosL.get(i);
-                   break;
+                usuario = usuariosL.get(i);
+                break;
             }
         }
-         
-        if(usuario!=null){
-            localidades.addRegionFavorita(usuario, l);
-        }
-        else{
+        if (usuario != null) {
+            usuario.addLocalidadFavorita(l);
+            try {
+                usuarios.save(usuario);
+            } catch (Exception e) {
+                throw new PersistenceNotFoundException("Ha ocurrido un error con la base de datos: " + e.getMessage());
+            }
+        } else {
             throw new PersistenceNotFoundException("Usuario no válido");
         }
-    
+
     }
-    
-    public Set<LocalidadFavorita> getFavoritos(String nombreUsuario) throws PersistenceNotFoundException{
+
+    public Set<LocalidadFavorita> getFavoritos(String nombreUsuario) throws PersistenceNotFoundException {
         Set<LocalidadFavorita> localidadesL = new HashSet<>();
-        CopyOnWriteArrayList<Usuario> usuariosL = usuarios.getUsuarios();
-        Usuario usuario = null;     
+        ArrayList<Usuario> usuariosL = usuarios.getAllUsers();
+        Usuario usuario = null;
         for (int i = 0; i < usuariosL.size(); i++) {
             if (usuariosL.get(i).getNombreUsuario().equalsIgnoreCase(nombreUsuario)) {
-                   usuario = usuariosL.get(i);
-                   break;
+                usuario = usuariosL.get(i);
+                break;
             }
         }
-                 
-        if(usuario!=null){
-            CopyOnWriteArrayList<LocalidadFavorita> localidadesTemp = localidades.getRegionesFavoritas(usuario);
+
+        if (usuario != null) {
+            List<LocalidadFavorita> localidadesTemp = usuario.getLocalidadesFavoritas();
             for (int i = 0; i < localidadesTemp.size(); i++) {
                 localidadesL.add(localidadesTemp.get(i));
             }
             return localidadesL;
-        }
-        else{
+        } else {
             throw new PersistenceNotFoundException("Usuario no válido");
         }
 
-       
     }
-    
-   public void eliminarFavoritos(String nombreUsuario, LocalidadFavorita l) throws PersistenceNotFoundException{
-        CopyOnWriteArrayList<Usuario> usuariosL = usuarios.getUsuarios();
-        Usuario usuario = null;     
+
+    public void eliminarFavoritos(String nombreUsuario, LocalidadFavorita l) throws PersistenceNotFoundException {
+        ArrayList<Usuario> usuariosL = usuarios.getAllUsers();
+        Usuario usuario = null;
         for (int i = 0; i < usuariosL.size(); i++) {
             if (usuariosL.get(i).getNombreUsuario().equalsIgnoreCase(nombreUsuario)) {
-                   usuario = usuariosL.get(i);
-                   break;
+                usuario = usuariosL.get(i);
+                break;
             }
         }
-                 
-        if(usuario!=null){
-            localidades.eliminarRegionFavorita(usuario, l);
-        }
-        else{
+
+        if (usuario != null) {
+            usuario.eliminarLocalidadFavorita(l);
+            try {
+                usuarios.save(usuario);
+            } catch (Exception e) {
+                throw new PersistenceNotFoundException("Ha ocurrido un error con la base de datos: " + e.getMessage());
+            }
+        } else {
             throw new PersistenceNotFoundException("Usuario no válido");
         }
-       
 
-   }  
-    
+    }
+
 }

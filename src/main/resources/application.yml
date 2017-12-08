@@ -1,0 +1,8 @@
+spring:
+    data:
+        mongodb:
+            host: ds044587.mlab.com
+            port: 44587
+            database: usuarios
+            username: arsw
+            password: arsw1

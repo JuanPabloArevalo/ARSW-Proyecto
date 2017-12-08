@@ -8,6 +8,7 @@ package edu.eci.arsw.sharingweatherapi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 /**
  *
@@ -15,6 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @ComponentScan(basePackages = {"edu.eci.arsw.sharingweather"})
+@EnableMongoRepositories(basePackages = "edu.eci.arsw.sharingweather")
 public class SharingWeatherAPIApplication {
     public static void main(String[] args) {
 	SpringApplication.run(SharingWeatherAPIApplication.class, args);

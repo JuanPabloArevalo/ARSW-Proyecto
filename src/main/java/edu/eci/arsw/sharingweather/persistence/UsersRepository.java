@@ -6,13 +6,16 @@
 package edu.eci.arsw.sharingweather.persistence;
 
 import edu.eci.arsw.sharingweather.model.Usuario;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 
 /**
  *
  * @author JuanArevaloMerchan y Stefany Moron
  */
-public interface UsersRepository {
+public interface UsersRepository extends MongoRepository<Usuario, Integer>{
 
 
     /**
@@ -20,13 +23,17 @@ public interface UsersRepository {
      * @return
      * @throws PersistenceNotFoundException 
      */
-    public CopyOnWriteArrayList<Usuario> getUsuarios()throws PersistenceNotFoundException ;
+    @Query("{}")
+    public ArrayList<Usuario> getAllUsers()throws PersistenceNotFoundException ;
     
    /**
      * Metodo encargado de adicionar los usuarios a la lista de usuarios
      * @param usuario
+     * @return 
      * @throws PersistenceNotFoundException 
      */
-    public  void addUsuarios(Usuario usuario)throws PersistenceNotFoundException;
+    @Query("{}")
+    public void insertar(Usuario usuario)throws PersistenceNotFoundException;
+    
 
 }

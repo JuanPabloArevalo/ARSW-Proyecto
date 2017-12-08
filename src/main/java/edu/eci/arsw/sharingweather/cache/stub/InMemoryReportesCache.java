@@ -42,42 +42,41 @@ public class InMemoryReportesCache implements ReportesCache{
     
     
     public InMemoryReportesCache(){
-        Ubicacion ub1 = new Ubicacion(4.746147, -74.030096);
-        Ubicacion ub2 = new Ubicacion(4.746040, -74.031995);
-        Ubicacion ub3 = new Ubicacion(4.748638, -74.030353);
-        LocalidadFavorita localidades1 = new LocalidadFavorita(1,"usaquen"); 
-        Usuario usuario = new Usuario("Juan Arevalo", 25, "juanarevalomerchan", "123", "juan.arevalo-m@mail.escuelaing.edu.co",localidades1);
-        ReporteClima clima1 = new ReporteClima(ub1, 10, usuario, "sol");
-        ReporteClima clima2 = new ReporteClima(ub2, 12, usuario, "sol");
-        ReporteClima clima3 = new ReporteClima(ub3, 18, usuario, "sol");
-        CopyOnWriteArrayList<ReporteClima> objList = new CopyOnWriteArrayList<>();
-        objList.add(clima1);
-        objList.add(clima2);
-        objList.add(clima3);
-        climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
-        ub1 = new Ubicacion(4.733147, -74.035017);
-        ub2 = new Ubicacion(4.729650, -74.031289);
-        ub3 = new Ubicacion(4.732430, -74.033574);
-        clima1 = new ReporteClima(ub1, 25, usuario, "agua");
-        clima2 = new ReporteClima(ub2, 32, usuario, "agua");
-        clima3 = new ReporteClima(ub3, 45, usuario, "agua");
-        objList = new CopyOnWriteArrayList<>();
-        objList.add(clima1);
-        objList.add(clima2);
-        objList.add(clima3);
-        climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
-
-        ub1 = new Ubicacion(4.703313, -74.034446);
-        ub2 = new Ubicacion(4.703313, -74.034446);
-        ub3 = new Ubicacion(4.703377, -74.036817);
-        clima1 = new ReporteClima(ub1, 55, usuario, "nublado");
-        clima2 = new ReporteClima(ub2, 65, usuario, "nublado");
-        clima3 = new ReporteClima(ub3, 75, usuario, "nublado");
-        objList = new CopyOnWriteArrayList<>();
-        objList.add(clima1);
-        objList.add(clima2);
-        objList.add(clima3);
-        climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
+//        Ubicacion ub1 = new Ubicacion(4.746147, -74.030096);
+//        Ubicacion ub2 = new Ubicacion(4.746040, -74.031995);
+//        Ubicacion ub3 = new Ubicacion(4.748638, -74.030353);
+//        Usuario usuario = new Usuario(1, "Juan Arevalo", 25, "juanarevalomerchan", "123", "juan.arevalo-m@mail.escuelaing.edu.co");
+//        ReporteClima clima1 = new ReporteClima(ub1, 10, usuario, "sol");
+//        ReporteClima clima2 = new ReporteClima(ub2, 12, usuario, "sol");
+//        ReporteClima clima3 = new ReporteClima(ub3, 18, usuario, "sol");
+//        CopyOnWriteArrayList<ReporteClima> objList = new CopyOnWriteArrayList<>();
+//        objList.add(clima1);
+//        objList.add(clima2);
+//        objList.add(clima3);
+//        climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
+//        ub1 = new Ubicacion(4.733147, -74.035017);
+//        ub2 = new Ubicacion(4.729650, -74.031289);
+//        ub3 = new Ubicacion(4.732430, -74.033574);
+//        clima1 = new ReporteClima(ub1, 25, usuario, "agua");
+//        clima2 = new ReporteClima(ub2, 32, usuario, "agua");
+//        clima3 = new ReporteClima(ub3, 45, usuario, "agua");
+//        objList = new CopyOnWriteArrayList<>();
+//        objList.add(clima1);
+//        objList.add(clima2);
+//        objList.add(clima3);
+//        climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
+//
+//        ub1 = new Ubicacion(4.703313, -74.034446);
+//        ub2 = new Ubicacion(4.703313, -74.034446);
+//        ub3 = new Ubicacion(4.703377, -74.036817);
+//        clima1 = new ReporteClima(ub1, 55, usuario, "nublado");
+//        clima2 = new ReporteClima(ub2, 65, usuario, "nublado");
+//        clima3 = new ReporteClima(ub3, 75, usuario, "nublado");
+//        objList = new CopyOnWriteArrayList<>();
+//        objList.add(clima1);
+//        objList.add(clima2);
+//        objList.add(clima3);
+//        climasPublicados.put(numeroPublicados.incrementAndGet(), objList);
     }
     
     @Override

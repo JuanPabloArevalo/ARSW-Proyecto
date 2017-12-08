@@ -5,21 +5,56 @@
  */
 package edu.eci.arsw.sharingweather.model;
 
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  *
  * @author JuanArevaloMerchan y StefanyMoron
  */
+@Document(collection = "usuarios")
 public class Usuario {
-
+    
+    @Id
+    private int id;
     private String nombre;
     private int edad;
     private String nombreUsuario;
     private String password;
     private String correo;
-    private LocalidadFavorita localidad;
-    private CopyOnWriteArrayList<LocalidadFavorita> localidadesFavoritas = new CopyOnWriteArrayList<>();
+    private List<LocalidadFavorita> localidadesFavoritas ;
+    
+        /**
+     * Constructor
+     * @param id
+     * @param nombre
+     * @param edad
+     * @param nombreUsuario
+     * @param password
+     * @param correo 
+     */
+    public Usuario(int id, String nombre, int edad, String nombreUsuario, String password, String correo){
+        this.id = id;
+        this.nombre = nombre;
+        this.edad = edad;
+        this.nombreUsuario = nombreUsuario;
+        this.password = password;
+        this.correo = correo;
+        this.localidadesFavoritas = new ArrayList<>();
+    }
+    
+        public Usuario(int id, String nombre, int edad, String nombreUsuario, String password, String correo, List<LocalidadFavorita> localidadesFavoritas){
+        this.id = id;
+        this.nombre = nombre;
+        this.edad = edad;
+        this.nombreUsuario = nombreUsuario;
+        this.password = password;
+        this.correo = correo;
+        this.localidadesFavoritas = localidadesFavoritas;
+    }
+    
     
     /**
      * Constructor
@@ -27,24 +62,56 @@ public class Usuario {
     public Usuario(){
          
     }
-    /**
-     * Constructor
-     * @param nombre
-     * @param edad
-     * @param nombreUsuario
-     * @param password
-     * @param correo 
-     */
-    public Usuario(String nombre, int edad, String nombreUsuario, String password, String correo,LocalidadFavorita lFavoritas){
-        this.nombre = nombre;
-        this.edad = edad;
-        this.nombreUsuario = nombreUsuario;
-        this.password = password;
-        this.correo = correo;
-        this.localidad = lFavoritas;
-        
+
+
+    
+    public void addLocalidadFavorita(LocalidadFavorita l){
+         getLocalidadesFavoritas().add(l);
     }
     
+    /**
+     * Metodo encargado de validar si existe la localidad favorita
+     * @param lf
+     * @return 
+     */
+    public boolean existeLocalidad(LocalidadFavorita lf){
+        for(int i=0; i<getLocalidadesFavoritas().size(); i++){
+            if(getLocalidadesFavoritas().get(i).getNumero()==lf.getNumero()){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    /**
+     * Metodo encargado de eliminar la localidad favorita
+     * @param l 
+     */
+    public void eliminarLocalidadFavorita(LocalidadFavorita l){
+        
+        for(int i=0; i<getLocalidadesFavoritas().size(); i++){
+            if(getLocalidadesFavoritas().get(i).getNumero()==l.getNumero()){
+                getLocalidadesFavoritas().remove(i);
+                System.out.println("edu.eci.arsw.sharingweather.model.Usuario.eliminarLocalidadFavorita()");
+                break;
+            }
+        }
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
     /**
      * @return the nombre
      */
@@ -114,45 +181,22 @@ public class Usuario {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    
-    public LocalidadFavorita getlocalidad(){
-       return localidad;
-    }
-    
-    public CopyOnWriteArrayList<LocalidadFavorita> getLocalidadesFavoritas(){
+
+    /**
+     * @return the localidadesFavoritas
+     */
+    public List<LocalidadFavorita> getLocalidadesFavoritas() {
         return localidadesFavoritas;
     }
-    
-    public void addLocalidadFavorita(LocalidadFavorita l){
-         localidadesFavoritas.add(l);
-    }
-    
+
     /**
-     * Metodo encargado de validar si existe la localidad favorita
-     * @param lf
-     * @return 
+     * @param localidadesFavoritas the localidadesFavoritas to set
      */
-    public boolean existeLocalidad(LocalidadFavorita lf){
-        for(int i=0; i<localidadesFavoritas.size(); i++){
-            if(localidadesFavoritas.get(i).getNumero()==lf.getNumero()){
-                return true;
-            }
-        }
-        return false;
+    public void setLocalidadesFavoritas(List<LocalidadFavorita> localidadesFavoritas) {
+        this.localidadesFavoritas = localidadesFavoritas;
     }
     
-    /**
-     * Metodo encargado de eliminar la localidad favorita
-     * @param l 
-     */
-    public void eliminarLocalidadFavorita(LocalidadFavorita l){
-        
-        for(int i=0; i<localidadesFavoritas.size(); i++){
-            if(localidadesFavoritas.get(i).getNumero()==l.getNumero()){
-                localidadesFavoritas.remove(i);
-                System.out.println("edu.eci.arsw.sharingweather.model.Usuario.eliminarLocalidadFavorita()");
-                break;
-            }
-        }
-    }
+    
 }
+
+
