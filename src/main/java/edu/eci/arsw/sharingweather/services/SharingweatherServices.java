@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import edu.eci.arsw.sharingweather.persistence.UsersRepository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -133,6 +134,12 @@ public class SharingweatherServices {
             if (usuarios.getAllUsers().get(i).getNombreUsuario().equals(usuario.getNombreUsuario()) || usuarios.getAllUsers().get(i).getCorreo().equals(usuario.getCorreo())) {
                 throw new PersistenceNotFoundException("El usuario ya existe.");
             }
+        }
+        if(usuario.getLocalidadesFavoritas()==null){
+            usuario.setLocalidadesFavoritas(new ArrayList());
+            Random aleatorio = new Random(System.currentTimeMillis());
+            int intAletorio = aleatorio.nextInt(77777777);
+            usuario.setId(intAletorio);
         }
         List<Usuario> usrs = new ArrayList<Usuario>();
         usrs.add(usuario);

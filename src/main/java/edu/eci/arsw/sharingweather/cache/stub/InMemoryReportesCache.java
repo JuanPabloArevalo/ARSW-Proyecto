@@ -7,10 +7,8 @@ package edu.eci.arsw.sharingweather.cache.stub;
 
 import edu.eci.arsw.sharingweather.cache.CacheNotFoundException;
 import edu.eci.arsw.sharingweather.cache.ReportesCache;
-import edu.eci.arsw.sharingweather.model.LocalidadFavorita;
 import edu.eci.arsw.sharingweather.model.LocalidadesBogota;
 import edu.eci.arsw.sharingweather.model.ReporteClima;
-import edu.eci.arsw.sharingweather.model.Ubicacion;
 import edu.eci.arsw.sharingweather.model.Usuario;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -18,13 +16,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author JuanArevaloMerchan y StefanyMoron
  */
-@Service
+
 public class InMemoryReportesCache implements ReportesCache{
     
     private ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> climasPublicados = new ConcurrentHashMap<>();

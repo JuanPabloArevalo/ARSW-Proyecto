@@ -5,13 +5,13 @@
  */
 package edu.eci.arsw.sharingweather.persistence.imp;
 
-import edu.eci.arsw.sharingweather.model.LocalidadFavorita;
-import edu.eci.arsw.sharingweather.model.Usuario;
-import edu.eci.arsw.sharingweather.persistence.PersistenceNotFoundException;
-import java.util.concurrent.CopyOnWriteArrayList;
-import org.springframework.stereotype.Service;
-import edu.eci.arsw.sharingweather.persistence.UsersRepository;
-import java.util.ArrayList;
+//import edu.eci.arsw.sharingweather.model.LocalidadFavorita;
+//import edu.eci.arsw.sharingweather.model.Usuario;
+//import edu.eci.arsw.sharingweather.persistence.PersistenceNotFoundException;
+//import java.util.concurrent.CopyOnWriteArrayList;
+//import org.springframework.stereotype.Service;
+//import edu.eci.arsw.sharingweather.persistence.UsersRepository;
+//import java.util.ArrayList;
 
 /**
  *

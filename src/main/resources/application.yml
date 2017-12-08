@@ -6,3 +6,6 @@ spring:
             database: usuarios
             username: arsw
             password: arsw1
+redis:
+    host: 54.245.48.146
+    port: 6379
