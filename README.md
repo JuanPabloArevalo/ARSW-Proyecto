@@ -33,70 +33,18 @@ Para poder realizar la publicación se debe poder tener acceso a la ubicación d
               <b>nombreUsuario:</b> hector.cadavid<br>
               <b>contraseña:</b> 12345<br>
               <b>correo:</b> hector.cadavid@mail.escuelaing.edu.co<br><br>
-       <b>Reportes de clima:</b>
-          <b>ZONA 1:</b><br>
-          <b>Reporte 1:</b><br>
-              <b>Latitud:</b>4.746147<br>
-              <b>Longitud:</b>-74.030096<br>
-              <b>Clima:</b>sol<br>
-              <b>Tiempo:</b>10<br>
-              <b>Usuario:</b>Usuario 1<br><br>
-          <b>Reporte 2:</b><br>
-              <b>Latitud:</b>4.746040<br>
-              <b>Longitud:</b>-74.031995<br>
-              <b>Clima:</b>sol<br>
-              <b>Tiempo:</b>12<br>
-              <b>Usuario:</b>Usuario 2<br><br>
-           <b>Reporte 3:</b><br>
-              <b>Latitud:</b>4.748638<br>
-              <b>Longitud:</b>-74.030353<br>
-              <b>Clima:</b>sol<br>
-              <b>Tiempo:</b>18<br>
-              <b>Usuario:</b>Usuario 3<br><br>
-          <b>ZONA 2:</b><br>
-          <b>Reporte 4:</b><br>
-              <b>Latitud:</b>4.733147<br>
-              <b>Longitud:</b>-74.035017<br>
-              <b>Clima:</b>agua<br>
-              <b>Tiempo:</b>23<br>
-              <b>Usuario:</b>Usuario 1<br><br>
-          <b>Reporte 5:</b><br>
-              <b>Latitud:</b>4.729650<br>
-              <b>Longitud:</b>-74.031289<br>
-              <b>Clima:</b>agua<br>
-              <b>Tiempo:</b>32<br>
-              <b>Usuario:</b>Usuario 2<br><br>
-           <b>Reporte 6:</b><br>
-              <b>Latitud:</b>4.732430<br>
-              <b>Longitud:</b>-74.033574<br>
-              <b>Clima:</b>agua<br>
-              <b>Tiempo:</b>32<br>
-              <b>Usuario:</b>Usuario 3<br><br>
-          <b>ZONA 3:</b><br>
-          <b>Reporte 7:</b><br>
-              <b>Latitud:</b>4.706553<br>
-              <b>Longitud:</b>-74.035508<br>
-              <b>Clima:</b>nublado<br>
-              <b>Tiempo:</b>55<br>
-              <b>Usuario:</b>Usuario 1<br><br>
-          <b>Reporte 8:</b><br>
-              <b>Latitud:</b>4.703313<br>
-              <b>Longitud:</b>-74.034446<br>
-              <b>Clima:</b>nublado<br>
-              <b>Tiempo:</b>65<br>
-              <b>Usuario:</b>Usuario 2<br><br>
-           <b>Reporte 9:</b><br>
-              <b>Latitud:</b>4.703377<br>
-              <b>Longitud:</b>-74.036817<br>
-              <b>Clima:</b>nublado<br>
-              <b>Tiempo:</b>75<br>
-              <b>Usuario:</b>Usuario 3<br><br>
-              
 
 
-Nuestra aplicación esta desplegada en Heroku en el siguiente link: [https://sharingweather.herokuapp.com/](https://sharingweather.herokuapp.com/)
 
-NOTA: Para tener acceso a la ubicación, se debe ingresar por medio del protocolo https, si se utiliza http, automaticamente se bloquea la ubicación del dispositivo. (Para dispositivos moviles encender el GPS)
+### SharingWeather desplegada en AWS
+
+Para ingresar a nuestra aplicación alojada en amazon, debemos entrar por la siguiente dirección : [sharinweather](http://34.209.213.0:8090/) ,esto direccionará a alguno de los servidores donde se encuentra alojada.
+Contamos con base de datos externa MoongoDB (mlab), allí se almacenará todos los datos de nuestros usuarios.
+Tenemos una base de datos dentro de Amazon, con REDIS, allí se almacenarán todos nuestros datos sobre la publicación de los climas.
+
+Desafortunadamente nuestra aplicación requiere la ubicación, y el tema de geolocalización no funciona si no es con https, pero en amazon no contamos con eso, por lo cual la localización automatica no se puede utilizar.
+Es por eso que hemos desbloquedo los campos de latitud y longitud para ingresarlos manualmente.
+
 
 El enlace al entorno Codacy del proyecto [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cc5e54277354433084212f5e7e0997ef)](https://www.codacy.com/app/JuanPabloArevalo/ARSWProyecto?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=JuanPabloArevalo/ARSWProyecto&amp;utm_campaign=Badge_Grade)
 
