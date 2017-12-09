@@ -176,7 +176,7 @@ public class SharingweatherServices {
 
     }
 
-    public void addLocalidadesFavoritas(String nombreUsuario, LocalidadFavorita l) throws PersistenceNotFoundException {
+    public void addLocalidadesFavoritas(String nombreUsuario, LocalidadFavorita l) throws PersistenceNotFoundException, PersistenceException {
         Usuario usuario = null;
         ArrayList<Usuario> usuariosL = usuarios.getAllUsers();
         for (int i = 0; i < usuariosL.size(); i++) {
@@ -186,6 +186,9 @@ public class SharingweatherServices {
             }
         }
         if (usuario != null) {
+            if(usuario.existeLocalidad(l)){
+                throw new PersistenceException("Ya tiene registrada la localidad favorita!");
+            }
             usuario.addLocalidadFavorita(l);
             try {
                 usuarios.save(usuario);
