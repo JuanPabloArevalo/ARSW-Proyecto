@@ -38,7 +38,7 @@ var reportarClima = (function () {
                             latitud = 0;
                             $("#txtLongitud").val(longitud);
                             $("#txtLatitud").val(latitud);
-                            $("#btnPublicar").attr("disabled", true);
+//                            $("#btnPublicar").attr("disabled", true);
                             switch (objPositionError.code) {
                                 case objPositionError.PERMISSION_DENIED:
                                     alert("No se ha permitido el acceso a la posición del usuario.");
