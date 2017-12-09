@@ -15,8 +15,6 @@ import edu.eci.arsw.sharingweather.persistence.PersistenceException;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import edu.eci.arsw.sharingweather.persistence.UsersRepository;
