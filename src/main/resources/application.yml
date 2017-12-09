@@ -1,4 +1,4 @@
-spring:
+ spring:
     data:
         mongodb:
             host: ds044587.mlab.com
@@ -6,6 +6,6 @@ spring:
             database: usuarios
             username: arsw
             password: arsw1
-redis:
-    host: 54.245.48.146
-    port: 6379
+    redis:
+       host: 34.212.138.202
+       port: 6379

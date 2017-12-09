@@ -10,6 +10,8 @@ import edu.eci.arsw.sharingweather.cache.ReportesCache;
 import edu.eci.arsw.sharingweather.model.LocalidadesBogota;
 import edu.eci.arsw.sharingweather.model.ReporteClima;
 import edu.eci.arsw.sharingweather.model.Usuario;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -39,6 +41,7 @@ public class InMemoryReportesCache implements ReportesCache{
     
     
     public InMemoryReportesCache(){
+        //                                  lat    long
 //        Ubicacion ub1 = new Ubicacion(4.746147, -74.030096);
 //        Ubicacion ub2 = new Ubicacion(4.746040, -74.031995);
 //        Ubicacion ub3 = new Ubicacion(4.748638, -74.030353);
@@ -153,14 +156,24 @@ public class InMemoryReportesCache implements ReportesCache{
         }
     }
 
+//    @Override
+//    public ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> getReportesClimaPublicar() throws CacheNotFoundException {
+//        return climasPublicados;
+//    }
+//
+//    @Override
+//    public ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> getReportesClimaSinPublicar() throws CacheNotFoundException {
+//        return climasNoPublicados;
+//    }
+
     @Override
-    public ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> getReportesClimaPublicar() throws CacheNotFoundException {
-        return climasPublicados;
+    public HashMap<Long, ArrayList<ReporteClima>> getReportesClimaPublicar() throws CacheNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> getReportesClimaSinPublicar() throws CacheNotFoundException {
-        return climasNoPublicados;
+    public HashMap<Long, ArrayList<ReporteClima>> getReportesClimaSinPublicar() throws CacheNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

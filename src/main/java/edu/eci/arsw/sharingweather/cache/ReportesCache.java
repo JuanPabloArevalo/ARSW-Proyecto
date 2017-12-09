@@ -7,6 +7,8 @@ package edu.eci.arsw.sharingweather.cache;
 
 import edu.eci.arsw.sharingweather.model.ReporteClima;
 import edu.eci.arsw.sharingweather.model.Usuario;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -27,13 +29,13 @@ public interface ReportesCache {
      * @return 
      * @throws edu.eci.arsw.sharingweather.cache.CacheNotFoundException 
      */
-    public ConcurrentHashMap<Long,CopyOnWriteArrayList<ReporteClima>> getReportesClimaPublicar() throws CacheNotFoundException;
+    public HashMap<Long,ArrayList<ReporteClima>> getReportesClimaPublicar() throws CacheNotFoundException;
     
     /**
      * Metodo encargado de traer los reposrtes de los climas sin publicar
      * @return 
      * @throws edu.eci.arsw.sharingweather.cache.CacheNotFoundException 
      */
-    public ConcurrentHashMap<Long,CopyOnWriteArrayList<ReporteClima>> getReportesClimaSinPublicar() throws CacheNotFoundException;
+    public HashMap<Long,ArrayList<ReporteClima>> getReportesClimaSinPublicar() throws CacheNotFoundException;
     
 }

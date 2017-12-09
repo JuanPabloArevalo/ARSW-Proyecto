@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import edu.eci.arsw.sharingweather.persistence.UsersRepository;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -60,10 +61,10 @@ public class SharingweatherServices {
      * @throws edu.eci.arsw.sharingweather.cache.CacheNotFoundException
      */
     public Set<ReporteClima> getReportesPublicados() throws PersistenceNotFoundException, CacheNotFoundException {
-        ConcurrentHashMap<Long, CopyOnWriteArrayList<ReporteClima>> mapa = reportes.getReportesClimaPublicar();
+        HashMap<Long, ArrayList<ReporteClima>> mapa = reportes.getReportesClimaPublicar();
         Set<ReporteClima> reportesL = new HashSet<>();
-        CopyOnWriteArrayList<ReporteClima> objList;
-        for (Map.Entry<Long, CopyOnWriteArrayList<ReporteClima>> entry : mapa.entrySet()) {
+        ArrayList<ReporteClima> objList;
+        for (Map.Entry<Long,ArrayList<ReporteClima>> entry : mapa.entrySet()) {
             objList = entry.getValue();
             for (int i = 0; i < objList.size(); i++) {
                 reportesL.add(objList.get(i));
@@ -81,8 +82,8 @@ public class SharingweatherServices {
      */
     public Set<ReporteClima> getReportesSinPublicar() throws PersistenceNotFoundException, CacheNotFoundException {
         Set<ReporteClima> reportesL = new HashSet<>();
-        CopyOnWriteArrayList<ReporteClima> objList;
-        for (Map.Entry<Long, CopyOnWriteArrayList<ReporteClima>> entry : reportes.getReportesClimaSinPublicar().entrySet()) {
+        ArrayList<ReporteClima> objList;
+        for (Map.Entry<Long, ArrayList<ReporteClima>> entry : reportes.getReportesClimaSinPublicar().entrySet()) {
             objList = entry.getValue();
             for (int i = 0; i < objList.size(); i++) {
                 reportesL.add(objList.get(i));
