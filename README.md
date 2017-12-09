@@ -18,19 +18,19 @@ Para poder realizar la publicación se debe poder tener acceso a la ubicación d
           <b>Usuario 1:</b><br>
               <b>Nombre:</b> Juan Arevalo<br>
               <b>Edad:</b> 25<br>
-              <b>nombreUsuario:</b> juan.arevalo.merchan<br>
+              <b>nombreUsuario:</b> juanarevalomerchan<br>
               <b>contraseña:</b> 123<br>
               <b>correo:</b> juan.arevalo-m@mail.escuelaing.edu.co<br><br>
           <b>Usuario 2:</b><br>
               <b>Nombre:</b> Stefany Moron<br>
               <b>Edad:</b> 27<br>
-              <b>nombreUsuario:</b> stefany.moron<br>
+              <b>nombreUsuario:</b> stefanymoron<br>
               <b>contraseña:</b> 1234<br>
               <b>correo:</b> stefany.moron@mail.escuelaing.edu.co<br><br>
          <b> Usuario 3:</b><br>
               <b>Nombre:</b> Hector Cadavid<br>
               <b>Edad:</b> 18<br>
-              <b>nombreUsuario:</b> hector.cadavid<br>
+              <b>nombreUsuario:</b> hectorcadavid<br>
               <b>contraseña:</b> 12345<br>
               <b>correo:</b> hector.cadavid@mail.escuelaing.edu.co<br><br>
        <b>Reportes de clima:</b>
@@ -102,5 +102,7 @@ El enlace al entorno Codacy del proyecto [![Codacy Badge](https://api.codacy.com
 
 El enlace al entorno Circle.CI del proyecto [![CircleCI](https://circleci.com/gh/JuanPabloArevalo/ARSWProyecto.svg?style=svg)](https://circleci.com/gh/JuanPabloArevalo/ARSWProyecto)
 
+
+Para ingresar a nuestra aplicación alojada, debemos entrar por la siguiente dirección : [http://34.209.213.0:8080/](http://34.209.213.0/)
 
 
