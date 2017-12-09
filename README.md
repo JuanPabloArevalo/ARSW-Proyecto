@@ -104,7 +104,7 @@ El enlace al entorno Circle.CI del proyecto [![CircleCI](https://circleci.com/gh
 
 ### SharingWeather desplegada en AWS
 
-Para ingresar a nuestra aplicación alojada en amazon, debemos entrar por la siguiente dirección : [http://34.209.213.0:8080/](http://34.209.213.0/) ,esto direccionará a alguno de los servidores donde se encuentra alojada.
+Para ingresar a nuestra aplicación alojada en amazon, debemos entrar por la siguiente dirección : [http://34.209.213.0:8090/](http://34.209.213.0:8090/) ,esto direccionará a alguno de los servidores donde se encuentra alojada.
 Contamos con base de datos externa MoongoDB (mlab), allí se almacenará todos los datos de nuestros usuarios.
 Tenemos una base de datos dentro de Amazon, con REDIS, allí se almacenarán todos nuestros datos sobre la publicación de los climas.
 
